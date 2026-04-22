@@ -1,613 +1,1373 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <title>Método Persaltum – Dejá de adivinar cómo vender online</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Dejá de adivinar cómo vender online y empezá a usar un sistema simple con el Método Persaltum: PDF del método + guía paso a paso + clase explicativa en video."
-  />
-  <style>
-    :root {
-      --bg: #050509;
-      --bg-soft: #0b0b12;
-      --accent: #f5c84c;
-      --accent-soft: #f5c84c22;
-      --text: #f7f7fb;
-      --muted: #c3c3d5;
-      --border-soft: #262636;
-      --danger: #ff5757;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151524 0, #050509 55%);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .page {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 24px 16px 40px;
-    }
-
-    header {
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .brand-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      background: #000000aa;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .brand-pill span {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    header h1 {
-      font-size: 26px;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-
-    header p {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-top: 20px;
-      margin-bottom: 32px;
-      background: linear-gradient(135deg, #101020, #080812);
-      border-radius: 18px;
-      padding: 18px 14px;
-      border: 1px solid var(--border-soft);
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-    }
-
-    .hero-text h2 {
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    .hero-text p {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .video-block {
-      width: 100%;
-    }
-
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 */
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border-soft);
-      background: #000;
-      margin-bottom: 14px;
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .purchase-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      padding: 12px 16px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1px solid transparent;
-      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, background 0.12s ease-out, border-color 0.12s ease-out;
-      cursor: pointer;
-      text-align: center;
-      white-space: normal;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #120b02;
-      box-shadow: 0 12px 25px rgba(245, 200, 76, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 30px rgba(245, 200, 76, 0.55);
-    }
-
-    .btn-secondary {
-      background: #ffffff10;
-      color: var(--text);
-      border-color: var(--border-soft);
-    }
-
-    .btn-secondary:hover {
-      background: #ffffff1a;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--accent);
-      border-color: var(--accent-soft);
-    }
-
-    .btn-outline:hover {
-      background: var(--accent-soft);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-    }
-
-    .small-note {
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    main section {
-      margin-bottom: 32px;
-      background: #090910;
-      border-radius: 16px;
-      border: 1px solid var(--border-soft);
-      padding: 18px 14px;
-    }
-
-    main h2 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
-
-    main h3 {
-      font-size: 15px;
-      margin-top: 10px;
-      margin-bottom: 6px;
-    }
-
-    ul {
-      padding-left: 18px;
-      margin-top: 4px;
-    }
-
-    ul li {
-      font-size: 14px;
-      margin-bottom: 4px;
-      color: var(--muted);
-    }
-
-    p {
-      font-size: 14px;
-      margin-bottom: 8px;
-      color: var(--muted);
-    }
-
-    .price-highlight {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--accent);
-      margin: 4px 0;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 2px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .tag {
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      background: #ffffff10;
-      border: 1px solid var(--border-soft);
-      color: var(--muted);
-    }
-
-    .faq-item {
-      margin-bottom: 12px;
-    }
-
-    .faq-item h3 {
-      color: var(--text);
-    }
-
-    .final-cta {
-      text-align: center;
-      border: 1px solid var(--accent-soft);
-      background: radial-gradient(circle at top, #181522, #050509);
-    }
-
-    .final-cta h2 {
-      font-size: 20px;
-      margin-bottom: 8px;
-    }
-
-    .final-cta p {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 16px;
-    }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: underline;
-      text-decoration-style: dotted;
-    }
-
-    @media (min-width: 720px) {
-      .page {
-        padding: 32px 20px 48px;
-      }
-
-      header h1 {
-        font-size: 32px;
-      }
-
-      .hero {
-        flex-direction: row;
-        padding: 20px 18px;
-      }
-
-      .hero-text, .video-block {
-        flex: 1;
-      }
-
-      .hero-text {
-        padding-right: 12px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <header>
-      <div class="brand-pill">
-        <span>PERSALTUM</span> · Universidad Digital del Infoproducto
-      </div>
-      <h1>Método Persaltum – Dejá de adivinar cómo vender online</h1>
-      <p>
-        Lanzamiento online · Acceso inmediato · PDF del método + guía paso a paso + clase explicativa en video
-      </p>
-    </header>
-
-    <!-- HERO: VIDEO + PRIMER CTA DE COMPRA -->
-    <section class="hero" id="inicio">
-      <div class="hero-text">
-        <h2>Dejá de improvisar y empezá a usar un sistema simple</h2>
-        <p>
-          Este no es “otro PDF más”. Es la presentación completa del Método Persaltum, con una guía paso a paso
-          y una clase explicativa en video para que entiendas cómo crear un sistema simple de ventas digitales
-          que trabaje para vos, incluso si recién estás empezando.
-        </p>
-        <ul>
-          <li>Por qué hoy estás perdiendo tiempo y dinero intentando vender online sin un sistema.</li>
-          <li>Qué es un sistema simple que capta, responde y vende por vos las 24 horas.</li>
-          <li>Cómo usar el Método Persaltum como base para construir tu negocio digital.</li>
-        </ul>
-      </div>
-
-      <div class="video-block" id="video">
-        <div class="video-wrapper">
-          <iframe
-            src="https://www.youtube.com/embed/SJCvhQZMuT4"
-            title="Video explicativo Método Persaltum"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-
-        <!-- CTA DE COMPRA INMEDIATAMENTE DESPUÉS DEL VIDEO -->
-        <div class="purchase-buttons">
-          <a
-            class="btn btn-primary"
-            href="https://buy.stripe.com/8x228q3HL8H14qx1OKbwk0n"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Obtener el Método Persaltum (PDF + Clase en video) – USD 37
-          </a>
-          <a
-            class="btn btn-secondary"
-            href="https://pay.hotmart.com/V101694536F"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Comprar en Hotmart (ideal LATAM)
-          </a>
-          <a
-            class="btn btn-outline"
-            href="https://mpago.la/1dvcVva"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Pagar con Mercado Pago (Argentina)
-          </a>
-        </div>
-        <p class="small-note">
-          Pagos 100% seguros. Vas a recibir el PDF y la clase en video en el correo que uses al pagar.
-        </p>
-      </div>
-    </section>
-
-    <main>
-      <!-- CÓMO ACCEDÉS -->
-      <section id="como">
-        <span class="pill">Oferta lanzamiento solo online</span>
-        <h2>Cómo accedés al Método Persaltum</h2>
-        <p>
-          Apenas se acredita tu pago, recibís acceso inmediato al PDF con la presentación del método,
-          la guía paso a paso y la clase explicativa en video para vender en redes sociales.
-        </p>
-        <div class="price-highlight">USD 37</div>
-        <p>pago único</p>
-        <p>
-          Al comprar, vas a tener en un solo lugar la estructura del método, los pasos concretos y la explicación
-          en video para entender cómo dejar de improvisar y empezar a pensar tus ventas online como un sistema
-          que trabaja para vos.
-        </p>
-        <h3>Qué te llevás hoy</h3>
-        <ul>
-          <li>✓ PDF descargable con la presentación completa del Método Persaltum.</li>
-          <li>✓ Guía paso a paso para aplicar el método en tu propio proyecto.</li>
-          <li>✓ Clase explicativa en video para seguir el proceso sin perderte en tecnicismos.</li>
-          <li>✓ Una base clara para los siguientes niveles dentro del ecosistema Persaltum.</li>
-        </ul>
-      </section>
-
-      <!-- WHATSAPP / COMUNIDAD -->
-      <section id="whatsapp">
-        <h2>Unite al grupo de WhatsApp de Persaltum</h2>
-        <p>
-          Si querés seguir de cerca todo lo que viene después de este material —nuevas clases, lanzamientos y
-          oportunidades para profundizar en el método— podés sumarte al grupo de WhatsApp.
-        </p>
-        <div class="purchase-buttons">
-          <a
-            class="btn btn-secondary"
-            href="https://chat.whatsapp.com/Gg1xzEhj28vEJVSth0VLzG"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ingresar al grupo de WhatsApp
-          </a>
-        </div>
-        <p class="small-note">
-          Desde ahí vas a recibir novedades, avisos de nuevas clases y próximos lanzamientos de Persaltum.
-        </p>
-      </section>
-
-      <!-- PARA QUIÉN ES -->
-      <section id="para-quien">
-        <h2>¿Para quién es este método?</h2>
-        <p>
-          El Método Persaltum está pensado para personas que quieren vender sus servicios, mentorías o infoproductos
-          por internet sin depender de “golpes de suerte” o tendencias del momento.
-        </p>
-
-        <h3>Si recién estás empezando</h3>
-        <p>
-          Querés montar tu primer producto digital o servicio online y te sentís perdido entre tanta información.
-          Necesitás un mapa simple que te diga: hacé primero esto, después esto.
-        </p>
-
-        <h3>Si ya probaste de todo</h3>
-        <p>
-          Ya hiciste reels, posteos y directos, pero las ventas son esporádicas. Este método te ayuda a dejar de
-          depender solo del “contenido” y empezar a construir un sistema que venda.
-        </p>
-
-        <h3>Si querés algo aplicable</h3>
-        <p>
-          No querés un curso eterno ni teoría vacía. Querés claridad, pasos concretos y un recurso que puedas revisar
-          cada vez que sientas que te estás desviando del camino.
-        </p>
-      </section>
-
-      <!-- QUIÉN ESTÁ DETRÁS -->
-      <section id="autor">
-        <h2>Quién está detrás de Persaltum</h2>
-        <p>
-          Mi nombre es Pablo Galli. Desde hace años construyo proyectos digitales y ayudo a personas a crear y vender
-          sus propios infoproductos y servicios por internet. Probé, ajusté y simplifiqué muchísimas estrategias
-          hasta quedarme con lo que realmente funciona de forma simple y aplicable.
-        </p>
-        <p>
-          Persaltum nace de esa experiencia en el mundo digital: procesos claros, lenguaje simple y foco en resultados
-          reales, no en promesas vacías. No vengo a complicarte la vida con tecnicismos, sino a darte un sistema que
-          puedas entender y poner en práctica aunque estés empezando.
-        </p>
-        <p>
-          Este PDF, la guía paso a paso y la clase en video son el primer paso de todo lo que se viene dentro de la
-          Universidad Digital del Infoproducto: una base sólida sobre la cual después vas a poder construir sistemas
-          más avanzados, automatizaciones y productos escalables.
-        </p>
-
-        <div class="tags">
-          <div class="tag">Negocios digitales</div>
-          <div class="tag">Infoproductos</div>
-          <div class="tag">Mentorías</div>
-          <div class="tag">Ventas simples</div>
-          <div class="tag">Automatizaciones básicas</div>
-        </div>
-      </section>
-
-      <!-- LO QUE SE VIENE DENTRO DEL ECOSISTEMA PERSALTUM -->
-      <section id="proximos-pasos">
-        <h2>Lo que se viene dentro del ecosistema Persaltum</h2>
-        <p>
-          El Método Persaltum en PDF + clase en video es solo el inicio. A partir de esta base, vas a poder acceder
-          (si querés avanzar) a próximos niveles pensados para que tu sistema de ventas digitales crezca paso a paso.
-        </p>
-
-        <h3>1. Persaltum Start – Mini curso de implementación</h3>
-        <p>
-          Un entrenamiento corto para que construyas tu primer sistema simple de captación y ventas en 7 días,
-          aplicando el método que ya conocés del PDF.
-        </p>
-
-        <h3>2. Pack de plantillas y guiones</h3>
-        <p>
-          Modelos de mensajes, guiones de video, estructuras de contenido y secuencias simples para que no tengas que
-          arrancar desde una hoja en blanco cada vez.
-        </p>
-
-        <h3>3. Taller intensivo de implementación</h3>
-        <p>
-          Una experiencia enfocada en ejecutar: revisar ofertas, ajustar mensajes y dejar tu sistema funcionando con
-          ejemplos reales y feedback.
-        </p>
-
-        <h3>4. Comunidad y siguientes niveles</h3>
-        <p>
-          A medida que Persaltum crezca, vas a tener acceso a más niveles de profundidad, automatizaciones y modelos
-          avanzados de negocio digital. Los primeros en enterarse y tener prioridad serán quienes ya tengan el Método
-          Persaltum y estén dentro del grupo de WhatsApp.
-        </p>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq">
-        <h2>Preguntas frecuentes rápidas</h2>
-
-        <div class="faq-item">
-          <h3>¿Cuándo recibo el PDF y la clase en video?</h3>
-          <p>
-            Apenas se aprueba tu pago, te llega un correo con los enlaces de acceso. Si pagás por Hotmart,
-            también vas a poder entrar desde tu cuenta de Hotmart.
-          </p>
-        </div>
-
-        <div class="faq-item">
-          <h3>¿Necesito experiencia previa en marketing o tecnología?</h3>
-          <p>
-            No. El material está pensado para que cualquier persona pueda seguirlo, incluso si es su primer
-            acercamiento al mundo de los infoproductos y ventas digitales.
-          </p>
-        </div>
-
-        <div class="faq-item">
-          <h3>¿Esto es un curso completo?</h3>
-          <p>
-            No. Es tu primer paso estratégico: la presentación del método, la guía paso a paso y una clase
-            explicativa que ordena tus ideas, te muestra el sistema y te prepara para avanzar a niveles más
-            profundos dentro de la Universidad Digital del Infoproducto.
-          </p>
-        </div>
-
-        <div class="faq-item">
-          <h3>¿Qué pasa si tengo dudas antes o después de comprar?</h3>
-          <p>
-            Podés sumarte al grupo de WhatsApp o contactarme y te voy a ayudar en la medida de lo posible.
-            La idea es que sientas claridad y seguridad sobre lo que estás comprando y cómo aplicarlo.
-          </p>
-        </div>
-      </section>
-
-      <!-- CTA FINAL: OPCIÓN DE COMPRA AL FONDO DE LA PÁGINA -->
-      <section class="final-cta" id="comprar">
-        <h2>¿Listo para dejar de adivinar cómo vender online?</h2>
-        <p>
-          Llevate hoy el PDF + clase en video del Método Persaltum y empezá a construir un sistema simple que
-          venda por vos, aunque recién estés empezando.
-        </p>
-
-        <div class="purchase-buttons">
-          <a
-            class="btn btn-primary"
-            href="https://buy.stripe.com/8x228q3HL8H14qx1OKbwk0n"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Obtener el Método Persaltum – USD 37
-          </a>
-          <a
-            class="btn btn-secondary"
-            href="https://pay.hotmart.com/V101694536F"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Comprar en Hotmart (ideal LATAM)
-          </a>
-          <a
-            class="btn btn-outline"
-            href="https://mpago.la/1dvcVva"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Pagar con Mercado Pago (Argentina)
-          </a>
-        </div>
-
-        <p class="small-note">
-          El acceso es inmediato y vas a poder revisar el contenido todas las veces que necesites.
-        </p>
-      </section>
-    </main>
-
-    <footer>
-      © Persaltum – Universidad Digital del Infoproducto. Todos los derechos reservados. ·
-      <a href="#">Política de privacidad</a>
-    </footer>
-  </div>
-</body>
-</html>
+import { useState, useCallback } from “react”;
+
+/* ─────────────────────────────────────────────────────
+TOKENS
+───────────────────────────────────────────────────── */
+const T = {
+bg: “#F9F6EF”, surface: “#FFFFFF”, surfaceAlt: “#F2EFE8”,
+ink: “#131210”, muted: “#6A6760”, faint: “#B0ADA8”,
+gold: “#C8952A”, goldBg: “#FBF0D0”, goldDark: “#8A6418”,
+green: “#1B6040”, greenBg: “#E8F5EE”,
+red: “#A82820”, redBg: “#FDEEE8”,
+blue: “#1C3D70”, blueBg: “#E8EEF8”,
+purple: “#5A2E90”, purpleBg: “#F0E8FA”,
+teal: “#0E6B6B”, tealBg: “#E6F6F5”,
+border: “#E4E1D8”, borderStrong: “#C4C1B8”,
+dark: “#131210”, darkSurface: “#1E1C18”,
+};
+const F = { display: “‘Playfair Display’, Georgia, serif”, body: “system-ui, sans-serif”, mono: “‘JetBrains Mono’, ‘Courier New’, monospace” };
+
+/* ─────────────────────────────────────────────────────
+DATA: 12 PHASES
+───────────────────────────────────────────────────── */
+const BLOCKS_META = [
+{ id: “fund”, label: “Fundamentos”, color: T.blue, n: “01” },
+{ id: “crec”, label: “Crecimiento”, color: T.red, n: “02” },
+{ id: “opti”, label: “Optimización”, color: T.teal, n: “03” },
+{ id: “expa”, label: “Expansión”, color: T.purple, n: “04” },
+];
+
+const PHASES = [
+/* ── BLOQUE 1: FUNDAMENTOS ── */
+{
+id: “p1”, n: 1, block: “fund”, icon: “🏗️”, color: T.blue, bg: T.blueBg,
+title: “Arquitectura de Producto”, subtitle: “Construís sobre cimientos sólidos o construís para derrumbar.”,
+duration: “Semanas 1–2”, kpi: “Producto validado y listo para vender”,
+description: “El 80% de los infoproductos que no venden tienen un problema de producto, no de marketing. Un producto bien arquitectado se vende casi solo porque resuelve un dolor específico, a una persona específica, con un resultado medible. Esta fase establece los cimientos irreemplazables.”,
+principles: [
+“Un producto que intenta servir a todos, no sirve a nadie. La riqueza está en el nicho dentro del nicho.”,
+“El precio es un mensaje de posicionamiento. Cobrar barato no atrae más clientes, atrae peores clientes.”,
+“Vendé el resultado, no el contenido. A nadie le importan tus módulos; les importa en qué se convierte su vida.”,
+“Validá con dinero, no con opiniones. Un presale de 5 personas vale más que 50 encuestas gratuitas.”,
+],
+prompts: [
+{ title: “Validación de Idea (Anti-fracaso)”, text: `Actúa como un investigador de mercado especialista en infoproductos digitales LATAM.\nTengo esta idea de producto: [DESCRIPCIÓN DETALLADA]\nPrecio tentativo: $[PRECIO] USD\nCliente ideal: [DESCRIPCIÓN]\n\nAnalizá con datos y lógica:\n1. ¿Existe demanda real o estoy inventando una necesidad? Dame señales concretas.\n2. ¿Quiénes son los 3 competidores directos y qué GAPS dejan sin cubrir?\n3. ¿Cuál es el ángulo diferenciador más potente disponible para mí?\n4. Dame 5 nombres posibles (cortos, memorables, orientados a resultado).\n5. Calificá la idea del 1 al 10 con justificación honesta.\n6. Si el número es menor a 7, decime exactamente cómo la pivotearías.\nSé brutalmente honesto. No necesito que me digas lo que quiero escuchar.` },
+{ title: “Propuesta de Valor Irresistible”, text: `Soy [NOMBRE], [PROFESIÓN/EXPERIENCIA].\nCreé un producto llamado [NOMBRE] que ayuda a [CLIENTE IDEAL] a lograr [RESULTADO CONCRETO] en [PLAZO REALISTA].\n\nEl mayor obstáculo que supera mi cliente para llegar a ese resultado es: [OBSTÁCULO].\nMis credenciales relevantes: [DATOS CONCRETOS].\nResultados de clientes o propios: [EVIDENCIA].\n\nEscribí:\n1. Una propuesta de valor en una sola oración de 20 palabras máximo (resultado + para quién + diferenciador).\n2. El párrafo de "Para quién es" (5 sí + 3 no — específicos, no genéricos).\n3. Los 5 dolores en primera persona que siente mi cliente antes de encontrarme.\n4. Las 3 victorias que celebra después de usar mi producto.\n5. El headline principal y subheadline para mi landing page.` },
+{ title: “Estructura de Producto Escalable”, text: `Tengo este concepto de producto: [DESCRIPCIÓN].\nFormato deseado: [CURSO VIDEO / PDF / MENTORÍA / HÍBRIDO]\nDuración objetivo: [X horas / X módulos]\nNivel del cliente: [PRINCIPIANTE / INTERMEDIO]\n\nDiseñame la estructura completa:\n1. Índice con módulos y lecciones (cada lección orientada a UN resultado concreto).\n2. "Victoria rápida" que el alumno logra en los primeros 30 minutos de consumir el producto.\n3. El orden pedagógico correcto (qué enseñar primero para que el resto tenga sentido).\n4. Materiales complementarios que multiplican el valor percibido sin añadir horas (checklists, templates, scripts).\n5. Cómo estructurar el producto para que el 80% del valor venga del 20% del contenido.\n6. Cómo diseñarlo desde el inicio para que exista un upsell natural al siguiente nivel.` },
+],
+metrics: [“Claridad del cliente ideal (1 persona concreta)”, “Propuesta de valor en ≤20 palabras”, “1 victoria rápida definida (primeros 30min)”],
+},
+{
+id: “p2”, n: 2, block: “fund”, icon: “🎣”, color: T.green, bg: T.greenBg,
+title: “Máquina de Captación”, subtitle: “Construís un flujo constante de personas que ya confían antes de comprar.”,
+duration: “Semanas 2–4”, kpi: “100–500 leads activos”,
+description: “La captación es el oxígeno de cualquier negocio digital. Sin un flujo constante de personas nuevas descubriéndote, vivís en ciclos de escasez. Esta fase construye la infraestructura que atrae, califica y nutre prospectos de forma predecible.”,
+principles: [
+“El lead magnet no es para captar emails. Es la primera experiencia de tu cliente contigo. Si es mediocre, ya empezaste mal.”,
+“El contenido que vende habla del problema de tu cliente, no de vos. El 80/20: 80% sobre ellos, 20% sobre vos.”,
+“El email es el único canal donde la audiencia es tuya. Instagram puede desaparecer mañana. Tu lista, no.”,
+“WhatsApp en LATAM convierte 3–5x más que cualquier otro canal. Usarlo mal es dejar dinero sobre la mesa.”,
+],
+prompts: [
+{ title: “Lead Magnet que Pre-Vende”, text: `Creá un lead magnet tipo [CHECKLIST / GUÍA RÁPIDA / TEMPLATE / CALCULADORA] para [CLIENTE IDEAL].\n\nTítulo: debe incluir número + resultado específico + tiempo.\nResuelve: [PROBLEMA CONCRETO] en menos de 10 minutos de implementación.\nMi producto de pago relacionado: [PRODUCTO] a $[PRECIO].\n\nDame:\n1. El título ganador + 3 alternativas.\n2. Estructura completa del contenido (máximo 5 páginas, cada una con un solo punto accionable).\n3. El CTA final que lleva naturalmente hacia mi producto de pago sin que suene forzado.\n4. La descripción de 2 líneas para la landing de captura.\n5. El texto del botón de descarga.\nEl lead magnet debe hacer que quien lo descargue piense: "Si esto es gratis, imaginate lo que paga".` },
+{ title: “Sistema de Contenido 3-3-3”, text: `[BRAND BRIEF COMPLETO]\nObjetivo de este mes de contenido: [OBJETIVO ESPECÍFICO — generar leads / calentar para lanzamiento / posicionarme como experto en X]\n\nCreá el plan de contenido mensual completo:\n• 3 posts de DESPERTAR por semana: hacen consciente el problema (tono: "esto te está pasando y no te diste cuenta")\n• 3 posts de EDUCACIÓN por semana: demostran expertise con valor accionable (tono: "acá hay algo que podés implementar hoy")\n• 3 posts de AUTORIDAD por semana: construyen confianza personal (tono: "soy la persona que resolvió esto")\n\nPara cada post: TEMA → HOOK (primera oración que para el scroll) → 3 BULLETS de contenido → CTA.\nPara las stories diarias: 5 tipos rotativos (encuesta / detrás de escena / tip rápido / pregunta / teaser).\nTono: [TONO]. Vocabulario: [PALABRAS FRECUENTES]. Prohibido: [PALABRAS QUE NO USÁS].` },
+{ title: “Secuencia Email de Bienvenida (5 emails)”, text: `[BRAND BRIEF]\nEl suscriptor acaba de descargar: [NOMBRE DEL LEAD MAGNET]\nMi producto de destino: [PRODUCTO] a $[PRECIO]\nPlazo de la secuencia: 5 días\n\nEscribí los 5 emails completos:\nEmail 1 (inmediato): Entrega del lead magnet + quién soy + qué esperar en los próximos días.\nEmail 2 (24h): Mi historia de transformación personal (el antes → el momento clave → el después).\nEmail 3 (48h): El error #1 que comete [CLIENTE IDEAL] (que yo también cometí y cómo lo resolví).\nEmail 4 (72h): Caso de éxito real o construido de alguien que usó mi método.\nEmail 5 (96h): Oferta directa a [PRODUCTO] con escasez suave y garantía.\n\nPara cada email:\n— Línea de asunto (+ 2 variantes A/B)\n— Preview text (máx 50 caracteres)\n— Cuerpo completo en tono conversacional (300–450 palabras)\n— Un solo CTA claro\n— P.D. que genera curiosidad sobre el siguiente email (excepto el último)` },
+],
+metrics: [“Tasa de conversión landing captura >35%”, “Tasa apertura email >28%”, “Tasa de click email >3.5%”],
+},
+{
+id: “p3”, n: 3, block: “fund”, icon: “💡”, color: T.gold, bg: T.goldBg,
+title: “Sistema de Conversión”, subtitle: “Transformás el interés en decisión de compra con estructura, no con suerte.”,
+duration: “Semanas 3–5”, kpi: “Primera venta + order bump activo”,
+description: “La conversión es el punto donde el dinero entra. La mayoría de los infoproductores tiene el problema al revés: invierten el 90% del tiempo en crear contenido y el 10% en el sistema de ventas. Esta fase invierte esa proporción donde importa.”,
+principles: [
+“Una landing page de ventas no vende tu producto. Vende la decisión de comprarlo. Hay una diferencia enorme.”,
+“El copy debe sonar como la voz de tu cliente describiendo su propio problema — no como un vendedor describiendo su solución.”,
+“El Order Bump es el cambio con mayor ROI en todo el funnel. 5 minutos de trabajo, 25–40% más de ingresos por compra.”,
+“La garantía no cuesta dinero: reduce la fricción de decisión y aumenta las ventas más de lo que incrementa los reembolsos.”,
+],
+prompts: [
+{ title: “Landing Page Completa (12 secciones)”, text: `[BRAND BRIEF COMPLETO]\nProducto: [NOMBRE] a $[PRECIO] USD\nDolores del cliente en primera persona: [LISTA DE 6-8]\nResultados concretos prometidos: [LISTA DE 4-5]\n\nEscribí la landing page completa con estas 12 secciones:\n1. HEADLINE: La promesa más poderosa en ≤12 palabras.\n2. SUBHEADLINE: Amplía la promesa + menciona al cliente ideal.\n3. EL PROBLEMA: Agitá el dolor (3 párrafos que hagan sentir "esto es exactamente lo que me pasa").\n4. LA PROMESA: Qué cambia cuando tienen tu producto.\n5. CREDENCIALES: Por qué sos la persona indicada + prueba.\n6. QUÉ INCLUYE: Features convertidas en beneficios (bullet por bullet).\n7. PARA QUIÉN ES / NO ES: 5 SÍ + 3 NO específicos.\n8. TESTIMONIOS: 3 plantillas de testimonio que cualquier alumno pueda completar.\n9. FAQ: 8 preguntas + respuestas que eliminan objeciones.\n10. GARANTÍA: Texto de la garantía de satisfacción.\n11. PRECIO Y BONOS: Presentación del precio con anclaje de valor.\n12. CTA FINAL: El cierre con urgencia real.\nTono: [TONO]. Evitá: clichés tipo "revolucionario", "fórmula secreta", "hazte millonario".` },
+{ title: “Script WhatsApp que Convierte”, text: `[BRAND BRIEF]\nContexto: el prospecto llegó porque [VIO MI STORY / DESCARGÓ EL LEAD MAGNET / ME PREGUNTÓ POR DM / LO CONTACTÉ YO]\nProducto que vendo: [PRODUCTO] a $[PRECIO]\n\nEscribí el script completo de conversación:\n— Apertura (cálida, sin vender, genera rapport en 2 mensajes)\n— 3 preguntas de diagnóstico que revelan el dolor real sin parecer interrogatorio\n— Reconocimiento empático de su situación\n— Transición natural hacia la presentación de la oferta\n— Presentación del producto en 4 líneas (lo que obtiene, el resultado, el precio, por qué ahora)\n— Respuestas pre-escritas para las 5 objeciones más comunes:\n • "Está caro" → \n • "Lo tengo que pensar" → \n • "No tengo tiempo ahora" → \n • "Ya probé algo similar y no funcionó" → \n • "¿Me podés mandar más info?" (evitar el loop de info) →\n— Cierre con CTA y link de pago\n— Seguimiento a las 24hs si no responde\nTono: como hablarle a un conocido inteligente. Nunca vendedor ni robótico.` },
+{ title: “Order Bump + Upsell + Downsell”, text: `Producto core: [NOMBRE] a $[PRECIO]\nCliente ideal post-compra: alguien que ya decidió comprar y quiere resultados rápidos.\n\nDiseñame la arquitectura completa del backend:\n\nORDER BUMP (20-30% del precio core):\n— Nombre del producto\n— Qué problema específico resuelve (el PRIMER obstáculo de implementación)\n— Texto del checkbox en el checkout (máx 80 palabras: titular de impacto + 3 bullets + CTA)\n\nUPSELL POST-COMPRA (2-3x el precio core):\n— Nombre del producto \n— Por qué es la evolución lógica inmediata\n— Página de upsell completa (300 palabras): hook → lo que obtienen → por qué ahora → precio → garantía → CTA\n— CTA de rechazo (no cierra la puerta: "No gracias, seguiré sin [beneficio específico]")\n\nDOWNSELL (50-60% del precio del upsell rechazado):\n— Versión reducida del upsell (diferente formato, mismo núcleo de valor)\n— Texto de la oferta de downsell (150 palabras)\n\nProyección de ticket promedio con esta arquitectura activada.` },
+],
+metrics: [“Conversión landing >2.5%”, “Tasa order bump >22%”, “Reembolsos <4%”],
+},
+
+/* ── BLOQUE 2: CRECIMIENTO ── */
+{
+id: “p4”, n: 4, block: “crec”, icon: “🚀”, color: T.red, bg: T.redBg,
+title: “Lanzamiento Estratégico”, subtitle: “El evento que concentra ventas, prueba el mercado y construye momentum.”,
+duration: “5–7 días activos”, kpi: “Primer pico de caja”,
+description: “Un lanzamiento no es improvisación. Es una partitura con roles y tiempos definidos. El Lanzamiento Relámpago de Persaltum genera el 70% de las ventas de un período comprimido en 5 días, sin importar el tamaño de la audiencia.”,
+principles: [
+“El 40% de las ventas ocurre en las primeras 24hs (apertura). El 35% en las últimas 24hs (urgencia). Nunca abandones el cierre.”,
+“La escasez falsa destruye confianza para siempre. La urgencia real (precio que sube, cupos limitados reales) construye autoridad.”,
+“Lanzar sin haber calentado la audiencia es como pedirle matrimonio a alguien que acabas de conocer.”,
+“El webinar multiplica la conversión por 3–5x para audiencias medianas. El ROI de prepararlo es enorme.”,
+],
+prompts: [
+{ title: “Plan Lanzamiento Relámpago 5 Días”, text: `[BRAND BRIEF]\nProducto: [NOMBRE] a $[PRECIO]\nCanales disponibles: [INSTAGRAM / EMAIL / WHATSAPP]\nAudiencia: [X seguidores / X suscriptores / X contactos WhatsApp]\nUrgencia real: [PRECIO SUBE a $X el día 6 / CUPOS LIMITADOS a X / BONUS que desaparece]\n\nDame el plan completo DÍA POR DÍA:\n\nDÍA 1 — PRE-CALENTAMIENTO:\n[post de valor que toca el problema + story de "algo viene"]\n\nDÍA 2 — CALENTAMIENTO:\n[contenido que demuestra autoridad + story de expectativa + DM personal a 20 contactos cálidos]\n\nDÍA 3 — APERTURA:\n[email de apertura + post de anuncio + 5 stories secuenciales + broadcast WhatsApp]\n\nDÍA 4 — MITAD + OBJECIONES:\n[email de objeciones + story de FAQ + respuesta personalizada a quienes preguntaron]\n\nDÍA 5 — CIERRE:\n[email de last call mañana + post urgencia + stories countdown]\n\nDÍA 5 NOCHE — ÚLTIMO MOMENTO:\n[email final "cierra en 3 horas" + última story + último WhatsApp]\n\nPara cada pieza: texto completo listo para publicar/enviar.` },
+{ title: “Guión Webinar de Lanzamiento (60 min)”, text: `[BRAND BRIEF]\nProducto que vendo al final: [NOMBRE] a $[PRECIO]\n\nEscribí el guión completo del webinar:\n\n0–5 min | APERTURA: Hook que justifica estar aquí + promesa de la sesión + credencial rápida en una oración.\n5–15 min | EL MITO: La gran creencia errónea que frena a [CLIENTE IDEAL] (que tenías vos también).\n15–35 min | EL SISTEMA: Los 3 pilares de [NOMBRE DEL MÉTODO]. Por cada pilar: concepto (2 min) + ejemplo real (3 min) + micro-victoria que pueden implementar hoy (2 min).\n35–40 min | CASO DE ÉXITO: Historia de transformación (antes → proceso → resultado con números).\n40–50 min | PRESENTACIÓN DE OFERTA: El producto, lo que incluye, el precio normal, el precio especial hoy, los bonos, la garantía, la urgencia.\n50–55 min | Q&A ESTRATÉGICO: Las 5 preguntas que más objeciones esconden, respondidas proactivamente.\n55–60 min | CIERRE: El costo de no actuar + CTA final directo.\n\nIncluí las transiciones exactas entre cada sección.` },
+{ title: “Secuencia de Emails de Lanzamiento (7)”, text: `[BRAND BRIEF]\nProducto: [NOMBRE] a $[PRECIO]\nCarrito abierto: Lunes a Viernes 23:59\nUrgencia: [PRECIO SUBE / BONOS DESAPARECEN / CUPOS LIMITADOS]\n\nEscribí los 7 emails completos:\n\nEMAIL 1 — Lunes (apertura): Historia de origen del producto + la promesa + CTA de compra.\nEMAIL 2 — Martes: El problema profundo que [CLIENTE IDEAL] carga sin resolver + prueba social.\nEMAIL 3 — Miércoles: Las 3 objeciones más comunes respondidas con argumentos + FAQ.\nEMAIL 4 — Jueves am: Caso de éxito detallado (antes/proceso/resultado con datos).\nEMAIL 5 — Jueves pm: Urgencia real — mañana cierra. Recordatorio de lo que incluye + garantía.\nEMAIL 6 — Viernes 9am: LAST CALL — abre hoy, cierra esta noche. Queda poco tiempo.\nEMAIL 7 — Viernes 20hs: Cierra en 4 horas. Email corto, directo, emocional. Sin disculpas.\n\nPara cada email:\n— Asunto principal + 2 variantes A/B\n— Preview text (≤50 caracteres)\n— Cuerpo completo (300–500 palabras)\n— Un único CTA claro` },
+],
+metrics: [“Ventas día 1 >40% del total”, “Ventas día 5 >30% del total”, “Tasa de apertura emails lanzamiento >35%”],
+},
+{
+id: “p5”, n: 5, block: “crec”, icon: “📢”, color: T.purple, bg: T.purpleBg,
+title: “Tráfico y Publicidad Paga”, subtitle: “Invertís dinero para generar más dinero de forma predecible y escalable.”,
+duration: “Desde mes 2”, kpi: “ROAS >3x sostenido”,
+description: “Los ads no crean negocios — los amplifican. Primero validás orgánico (que el funnel convierte), después escalás con publicidad. Con $5–10/día podés testear 3 creativos en 5 días y saber exactamente qué funciona antes de escalar.”,
+principles: [
+“Nunca pongas publicidad a un funnel que no convierte orgánicamente. Los ads amplifican lo que ya existe, no lo crean.”,
+“Un solo cambio por semana en los ads. Si cambiás todo a la vez, no sabés qué funcionó.”,
+“El creativo (imagen/video) hace el 70% del trabajo en Meta Ads. El copy es importante; el creativo es crítico.”,
+“La audiencia de remarketing (gente que ya te conoce) convierte 5–10x más que la audiencia fría. Priorizala.”,
+],
+prompts: [
+{ title: “Copy de Anuncios (3 ángulos)”, text: `[BRAND BRIEF]\nProducto/Lead Magnet que promociono: [NOMBRE]\nObjetivo del anuncio: [CAPTACIÓN DE LEADS / VENTA DIRECTA]\nCliente ideal: [DESCRIPCIÓN DETALLADA]\n\nEscribí 3 variantes completas de anuncio:\n\nANUNCIO A — ÁNGULO DOLOR:\nHook visual: qué imagen/video acompaña este texto.\nTítulo (≤40 caracteres).\nCuerpo (150–200 palabras): abre con el dolor más agudo → agitá → promesa de solución → CTA urgente.\nDescripción del enlace (≤25 caracteres).\nBotón CTA sugerido.\n\nANUNCIO B — ÁNGULO RESULTADO:\nIgual estructura pero abrís con el estado deseado ("Imaginate que [resultado concreto]...").\n\nANUNCIO C — ÁNGULO HISTORIA/CURIOSIDAD:\nIgual estructura pero abrís con una historia personal de 3 oraciones que genera intriga.\n\nPara cada variante: qué audiencia funcionaría mejor y por qué.` },
+{ title: “Estrategia de Segmentación Meta Ads”, text: `Quiero llegar a [CLIENTE IDEAL] con Meta Ads para venderles [PRODUCTO/LEAD MAGNET].\nUbicación: [ARGENTINA / MÉXICO / COLOMBIA / LATAM]\nPresupuesto inicial: $[5-15]/día.\n\nDame la estrategia completa:\n1. AUDIENCIAS FRÍAS: Los 8 intereses más específicos que targetear (no genéricos como "marketing digital" sino intereses de nicho real).\n2. DATOS DEMOGRÁFICOS: Edad, género, dispositivo, comportamientos a incluir y a excluir.\n3. AUDIENCIAS PERSONALIZADAS: Cómo crear las audiencias de retargeting (visitantes del sitio / engagements de Instagram / compradores anteriores).\n4. LOOKALIKE: Qué audiencia origen usar para crear el 1% y 3% lookalike.\n5. EXCLUSIONES CRÍTICAS: Qué audiencias siempre excluir para no desperdiciar presupuesto.\n6. ESTRUCTURA DE CAMPAÑA: Cuántas campañas / conjuntos / anuncios inicialmente.\n7. ESCALADO: Cómo pasar de $10/día a $50/día sin romper el rendimiento.\n8. KPIs mínimos aceptables para cada etapa (CPL, CTR, CPC, ROAS).` },
+{ title: “Análisis y Diagnóstico de Ads”, text: `Actúa como un media buyer experto en infoproductos LATAM.\nTe paso mis métricas de los últimos 7 días:\n\nCampaña: [NOMBRE]\nObjetivo: [LEADS / VENTAS]\nPresupuesto gastado: $[X]\nAlcance: [X]\nImpresiones: [X]\nClicks: [X]\nCTR: [X%]\nCPC: $[X]\nCPL o Costo por venta: $[X]\nLeads o ventas obtenidas: [X]\nROAS: [X]\n\nAnalizá:\n1. Diagnóstico honesto: ¿qué está roto y qué está funcionando?\n2. ¿Dónde se rompe el flujo (el problema está en el anuncio, en la landing, o en el funnel post-lead)?\n3. Los 3 cambios concretos con mayor impacto inmediato.\n4. Qué testear esta semana (máximo UN elemento por vez).\n5. Si el ROAS es menor a 2x: qué hacer antes de escalar (o si deberías pausar).` },
+],
+metrics: [“CPL <$5 USD (lead magnet)”, “CTR anuncio >1.5%”, “ROAS funnel completo >3x”],
+},
+{
+id: “p6”, n: 6, block: “crec”, icon: “🪜”, color: “#2D6A4F”, bg: “#E8F5EE”,
+title: “Escalera de Valor y Backend”, subtitle: “Cada cliente que conseguís vale mucho más de lo que te pagó la primera vez.”,
+duration: “Mes 2–3”, kpi: “LTV 3x mayor al ticket inicial”,
+description: “La diferencia entre un negocio que sobrevive y uno que prospera está en el LTV (valor de vida del cliente). Conseguir un cliente nuevo cuesta 5x más que retener uno existente. La escalera de valor convierte cada comprador en múltiples flujos de ingresos.”,
+principles: [
+“El backend (membresía, high-ticket, afiliados) es donde vive el dinero real. El frontend (core product) solo paga los ads.”,
+“Una membresía de $37/mes con 100 miembros activos vale más que 10 lanzamientos anuales de $97.”,
+“Los afiliados son tu equipo de ventas sin sueldo fijo. Con una comisión del 40%, generan el 30% de tus ventas adicionales.”,
+“El high-ticket ($497+) se vende en llamadas, no en landing pages. El precio justifica el tiempo de conversación.”,
+],
+prompts: [
+{ title: “Diseño de Membresía / Comunidad Recurrente”, text: `Tengo un producto core: [NOMBRE] a $[PRECIO].\nQuiero crear una membresía recurrente como backend natural.\n\nDiseñame la estructura completa:\n1. NOMBRE y PROPUESTA DE VALOR (qué obtiene el miembro que no puede conseguir por su cuenta).\n2. PRECIO (qué pricing mensual/anual justifica la permanencia en mi nicho).\n3. CONTENIDO MENSUAL: ¿Qué entregás cada semana para que nadie cancele? (sessions en vivo, recursos, acceso, comunidad).\n4. ONBOARDING: Los primeros 7 días de un nuevo miembro (para crear el hábito antes de que piensen en cancelar).\n5. RETENCIÓN: 3 estrategias para bajar el churn mensual por debajo del 5%.\n6. CÓMO VENDERLA: ¿Cuándo y cómo presentar la membresía justo después de la compra del core?\n7. PROYECCIÓN: Ingresos mensuales con 50 / 100 / 200 / 500 miembros activos.\n8. HERRAMIENTA RECOMENDADA: Circle / Slack / Telegram / Hotmart Club — y por qué.` },
+{ title: “Programa de Afiliados Estratégico”, text: `Producto: [NOMBRE] a $[PRECIO].\nPlataforma: Hotmart / [OTRA].\n\nDiseñame el programa de afiliados completo:\n1. COMISIÓN: Porcentaje recomendado y cómo calcularlo para que sea rentable para ambas partes.\n2. CRITERIOS DE SELECCIÓN: Qué tipo de afiliado querés (audiencia, plataforma, valores, tamaño mínimo).\n3. KIT DE AFILIADO completo:\n — Email de captación de afiliados (para que quieran unirse)\n — 3 posts de Instagram listos para copiar y pegar\n — 3 stories con textos\n — 2 emails de venta para que envíen a su lista\n — Descripción del producto para que expliquen sin errores\n4. ONBOARDING: Qué enviarle a un afiliado nuevo en los primeros 3 días.\n5. RETENCIÓN: Cómo mantener activos a los afiliados con mejor performance (incentivos, competencias, comunicación).\n6. PROYECCIÓN: Si tenés 10 afiliados activos que venden 5 unidades/mes, ¿cuánto generan para vos?` },
+{ title: “Oferta High-Ticket ($497–$997)”, text: `Tengo este producto core: [NOMBRE] a $[PRECIO].\nQuiero crear un programa high-ticket como techo de mi escalera de valor.\n\n1. DISEÑO DE LA OFERTA: Qué incluye que el core no incluye (no más contenido — más acompañamiento, resultados garantizados, acceso directo).\n2. PRECIO: Cómo calcular el precio correcto basado en el resultado que prometo.\n3. PROCESO DE VENTA (no hay landing page — hay aplicación + llamada):\n — Página de aplicación: qué preguntar para pre-calificar al prospecto.\n — Email de seguimiento post-aplicación.\n4. GUIÓN DE LLAMADA DE VENTAS (45 minutos):\n — Apertura (5 min): rapport + agenda + permiso para hacer preguntas\n — Diagnóstico (15 min): preguntas que revelan el dolor real\n — Visión (5 min): el futuro que se puede tener\n — Presentación (10 min): la oferta, los resultados, el precio\n — Manejo de objeciones (5 min): precio / tiempo / confianza\n — Cierre (5 min): decisión y próximos pasos\n5. SEGUIMIENTO: Qué hacer si no deciden en la llamada (secuencia de 3 mensajes).` },
+],
+metrics: [“Tasa de aceptación membresía post-compra >15%”, “Churn mensual membresía <6%”, “Ratio de conversión llamada high-ticket >30%”],
+},
+
+/* ── BLOQUE 3: OPTIMIZACIÓN ── */
+{
+id: “p7”, n: 7, block: “opti”, icon: “🤖”, color: T.teal, bg: T.tealBg,
+title: “Automatización IA-First”, subtitle: “Construís sistemas que trabajan mientras dormís y piensan como vos.”,
+duration: “Mes 2–3”, kpi: “10+ horas semanales liberadas”,
+description: “La automatización real no es solo programar emails. Es construir sistemas inteligentes donde Claude actúa como el cerebro, y herramientas como n8n, Make o Zapier actúan como el cuerpo. Juntos crean un negocio que funciona sin supervisión constante.”,
+principles: [
+“Automatizá procesos repetibles, no procesos creativos. Claude hace el 80% del trabajo intelectual; vos ponés el 20% de dirección.”,
+“Antes de automatizar algo, optimizalo manualmente. Automatizar un proceso roto solo lo rompe más rápido.”,
+“Un agente de IA mal diseñado daña la relación con el cliente. La personalidad del agente es tan importante como su funcionalidad.”,
+“Los workflows de n8n/Make no requieren programación. Requieren pensamiento sistémico. Cualquiera puede aprenderlos.”,
+],
+prompts: [
+{ title: “System Prompt de Agente IA para tu Negocio”, text: `Quiero crear un agente de IA personalizado para [FUNCIÓN: atención al cliente / creación de contenido / soporte a alumnos].\n\n[BRAND BRIEF COMPLETO]\n\nEscribí el system prompt completo para este agente:\n1. IDENTIDAD: Quién es, cómo se llama, cuál es su función principal.\n2. PERSONALIDAD: Tono, estilo, adjetivos que describen cómo interactúa.\n3. CAPACIDADES: Qué puede hacer y cómo debe hacerlo.\n4. LÍMITES: Qué no puede hacer y cómo escalar cuando aparece.\n5. CONOCIMIENTO DE PRODUCTOS: Todos los productos, precios, links y descripciones.\n6. FAQ INCORPORADO: Las 15 preguntas más frecuentes con sus respuestas exactas.\n7. PROTOCOLO DE OBJECIONES: Cómo responder a cada objeción de venta.\n8. ESCALACIÓN: Cuándo y cómo derivar al humano (vos).\n9. FORMATO DE RESPUESTAS: Longitud, uso de emojis, lenguaje formal/informal.\n\nEl agente debe sonar exactamente como yo. Si alguien habla con el agente y después habla conmigo, no debe sentir diferencia.` },
+{ title: “Workflow de Automatización Completa”, text: `Necesito automatizar este proceso de mi negocio: [DESCRIPCIÓN DEL PROCESO].\nHerramientas disponibles: [MAILERLITE / HOTMART / INSTAGRAM / WHATSAPP / NOTION / GOOGLE SHEETS]\nHerramienta de automatización que tengo o puedo usar: [N8N / MAKE / ZAPIER]\n\nDiseñame el workflow completo:\n1. TRIGGER: Qué evento lo activa (nueva compra, nuevo suscriptor, comentario, etc.).\n2. PASOS DEL FLUJO: Secuencia exacta de acciones con la lógica de cada paso.\n3. PUNTOS DE DECISIÓN: Dónde el flujo se bifurca según condiciones (compró sí/no, abrió el email sí/no, etc.).\n4. INTEGRACIONES NECESARIAS: Qué APIs o conexiones necesito configurar.\n5. MANEJO DE ERRORES: Qué pasa si algo falla y cómo notificarme.\n6. CÓMO IMPLEMENTARLO EN [N8N/MAKE]: Pasos concretos para construirlo sin programar.\n7. TIEMPO DE IMPLEMENTACIÓN estimado para alguien sin experiencia técnica.\n\nEste workflow debe reemplazar completamente el trabajo manual de [TIEMPO QUE DEMORA HOY].` },
+{ title: “Claude Projects: Base de Conocimiento Permanente”, text: `Necesito construir mi Claude Project para que Claude conozca todo sobre mi negocio y trabaje de forma consistente sin que tenga que explicar contexto cada vez.\n\n[BRAND BRIEF]\n[DESCRIPCIÓN DE TODOS LOS PRODUCTOS]\n[PRECIOS Y LINKS]\n[TESTIMONIOS DE CLIENTES]\n[MEJORES EMAILS QUE CONVIRTIERON]\n[POSTS CON MAYOR ENGAGEMENT]\n\nEscribí:\n1. LAS INSTRUCCIONES PERMANENTES del Project (qué reglas debe seguir Claude siempre en este espacio).\n2. EL ÍNDICE DE DOCUMENTOS que debo subir al Project y en qué orden de prioridad.\n3. CÓMO ESTRUCTURAR CADA DOCUMENTO para que Claude los use eficientemente.\n4. LOS 10 PROMPTS MAESTROS que debo guardar en el Project para las tareas más frecuentes.\n5. EL FLUJO DE TRABAJO SEMANAL usando el Project (qué hacer los lunes / miércoles / viernes).\n6. CÓMO MANTENERLO ACTUALIZADO mensualmente sin que se vuelva obsoleto.` },
+],
+metrics: [“Tiempo en tareas repetibles <2hs/semana”, “Tasa de respuesta automática <5 min”, “Satisfacción atención al cliente >90%”],
+},
+{
+id: “p8”, n: 8, block: “opti”, icon: “⭐”, color: T.purple, bg: T.purpleBg,
+title: “Posicionamiento y Marca Personal”, subtitle: “Construís autoridad que atrae en lugar de perseguir.”,
+duration: “Proceso continuo”, kpi: “Referente reconocido en el nicho”,
+description: “El posicionamiento no es lo que vos decís sobre vos mismo — es lo que otros dicen cuando no estás en la sala. Una marca personal fuerte convierte el marketing en atracción: la gente viene a vos en lugar de que tengas que ir a buscarlos.”,
+principles: [
+“Ser el experto en TODO es ser experto en NADA. La autoridad más poderosa viene de posicionarte en un nicho específico.”,
+“El contenido pilar (un video / artículo profundo por mes) vale más que 30 posts superficiales diarios.”,
+“Las colaboraciones multiplican tu audiencia sin costo. Un podcast en la audiencia de otra persona es el ad más eficiente.”,
+“La consistencia supera a la perfección. Publicar bien por 12 meses consecutivos construye más que publicar brillantemente durante 3 meses.”,
+],
+prompts: [
+{ title: “Estrategia de Thought Leadership 90 días”, text: `[BRAND BRIEF]\nNicho específico en el que quiero ser la referencia: [NICHO PRECISO]\nAudiencia actual: [X seguidores / X suscriptores]\nObjetivo a 90 días: [RESULTADO CONCRETO]\n\nDiseñame la estrategia de thought leadership para los próximos 90 días:\n1. LOS 3 TEMAS PILARES en los que construiré autoridad (específicos, no genéricos).\n2. CONTENIDO PILAR: Un contenido extenso por mes (¿reel de 10 min? ¿artículo de 2000 palabras? ¿video de YouTube?) que establece mi posición.\n3. ÁNGULO ÚNICO: La perspectiva que solo yo puedo ofrecer porque viene de mi experiencia específica.\n4. FRASE DE POSICIONAMIENTO: La oración con la que cualquiera puede describir lo que hago y en qué soy único.\n5. COLABORACIONES ESTRATÉGICAS: 5 personas en mi nicho con quienes una colaboración multiplicaría mi audiencia (cómo identificarlas y cómo acercarme).\n6. PLAN SEMANA A SEMANA para los 90 días: qué publicar, qué contactar, qué evento crear.` },
+{ title: “Pitch para Podcasts y Medios”, text: `[BRAND BRIEF]\nNicho y expertise: [DESCRIPCIÓN]\nTema del que puedo hablar con máxima autoridad: [TEMA]\nResultados concretos para mencionar: [DATOS]\n\nEscribí:\n1. PITCH PARA PODCAST (200 palabras): Por qué soy el invitado ideal, qué le doy a su audiencia, qué temas puedo desarrollar con valor real. Tono: colega experto, no postulante.\n2. 5 TÍTULOS de episodios que yo podría protagonizar que generarían muchos downloads.\n3. BIO PARA PRESENTACIÓN en podcast (100 palabras): Lo que me hace interesante, no solo mis credenciales.\n4. LISTA DE 10 PODCASTS en español que tienen mi audiencia ideal (con criterio de por qué cada uno).\n5. SECUENCIA DE ACERCAMIENTO:\n — Email/DM de presentación inicial\n — Seguimiento a 7 días si no responden\n — Segundo seguimiento a 14 días\n6. QUÉ PREPARAR para la entrevista: los 3 puntos clave que siempre voy a comunicar sin importar las preguntas.` },
+{ title: “Sistema de Contenido Pilar Mensual”, text: `[BRAND BRIEF]\nTema del contenido pilar de este mes: [TEMA]\nFormato elegido: [REEL LARGO / VIDEO YOUTUBE / ARTÍCULO / PODCAST EPISODIO / LIVE]\n\nDesarrollá el contenido pilar completo:\n1. TÍTULO: Irresistible para quien tiene el problema + SEO-friendly.\n2. ESTRUCTURA COMPLETA: La narración de principio a fin (con tiempos si es video/audio).\n3. EL GANCHO DE APERTURA: Los primeros 10 segundos o primeras 2 oraciones que determinan si se quedan o no.\n4. LOS 3 PUNTOS CLAVE que cada persona debe llevarse al terminar.\n5. LA HISTORIA PERSONAL que valida los puntos (la más potente que tengo sobre este tema).\n6. EL CIERRE: Cómo terminar generando acción (no solo reflexión).\n7. CÓMO REPURPOSEAR este contenido en: 5 posts de feed + 3 stories + 1 email + 1 reel corto de 30 segundos.\n8. EL PARÁMETRO DE ÉXITO: Cómo medir si este contenido pilar cumplió su objetivo.` },
+],
+metrics: [“Menciones espontáneas de la marca/semana”, “Invitaciones a podcasts/eventos recibidas/mes”, “Seguidores nuevos orgánicos/semana”],
+},
+{
+id: “p9”, n: 9, block: “opti”, icon: “🌐”, color: T.teal, bg: T.tealBg,
+title: “Comunidad y Ecosistema”, subtitle: “Construís un activo que crece solo porque la gente se queda por las personas, no solo por vos.”,
+duration: “Mes 3–6”, kpi: “Comunidad activa con efecto red”,
+description: “Una comunidad bien construida es el activo más defensible en el mundo digital. Las plataformas cambian, los algoritmos cambian, los competidores aparecen — pero una comunidad con identidad, líderes internos y cultura propia es casi imposible de replicar.”,
+principles: [
+“La comunidad no es un grupo de WhatsApp. Es una identidad compartida. Las mejores comunidades tienen nombre, valores, lenguaje propio y rituales.”,
+“El churn de membresía baja drásticamente cuando los miembros forman relaciones entre sí — no solo con vos.”,
+“Los embajadores son los miembros que ya hablan de vos sin que se los pidas. Identificarlos y empoderarlos vale más que cualquier programa de afiliados.”,
+“Un evento virtual bien ejecutado (masterclass, summit, challenge) puede triplicar el tamaño de tu comunidad en 72 horas.”,
+],
+prompts: [
+{ title: “Estructura y Cultura de Comunidad”, text: `Quiero lanzar/mejorar mi comunidad para alumnos de [PRODUCTO/PROGRAMA].\nPlataforma elegida: [CIRCLE / SLACK / TELEGRAM / DISCORD / HOTMART CLUB]\nPrecio de membresía: $[PRECIO]/mes\n\nDiseñame la estructura completa:\n1. NOMBRE Y TAGLINE de la comunidad (que genere pertenencia e identidad).\n2. VALORES DECLARADOS (3–5 valores que definen la cultura y filtran quién es bienvenido).\n3. CANALES / ESPACIOS: Cómo organizar los temas para que nadie se pierda (máx 8 espacios).\n4. RITUALES COMUNITARIOS: Actividades semanales/mensuales que generan hábito de participación (check-ins, wins, retos).\n5. ONBOARDING DE NUEVOS MIEMBROS: Los primeros 7 días (día a día) para crear el hábito de participación antes de que piensen en cancelar.\n6. RECONOCIMIENTO: Cómo celebrar los logros de los miembros públicamente.\n7. MODERACIÓN: Cómo mantener la calidad y la cultura cuando la comunidad crece.\n8. ESCALA: Cómo identificar y empoderar a los primeros líderes internos de la comunidad.` },
+{ title: “Evento Virtual de Lanzamiento / Growth”, text: `Quiero lanzar un evento virtual para crecer mi comunidad y generar leads calificados.\nTipo de evento: [CHALLENGE 5 DÍAS / MASTERCLASS GRATUITA / SUMMIT / WORKSHOP]\nTema: [TEMA QUE RESUELVE EL DOLOR PRINCIPAL DE MI CLIENTE IDEAL]\nFecha planeada: [FECHA]\n\nDame el plan completo:\n1. NOMBRE DEL EVENTO: Irresistible, con resultado específico en el título.\n2. ESTRUCTURA DÍA A DÍA (si es challenge) o AGENDA (si es masterclass/summit).\n3. PÁGINA DE REGISTRO: Headline + promesa + lo que obtienen + formulario.\n4. SECUENCIA DE EMAILS PRE-EVENTO (5 días antes): para maximizar el show-up rate.\n5. CÓMO MONETIZARLO: Dónde y cómo presentar la oferta de pago sin que parezca un infomercial.\n6. SEGUIMIENTO POST-EVENTO: Para los que asistieron y para los que no.\n7. MÉTRICAS DE ÉXITO: Cómo sé si el evento fue exitoso (registros, show-up rate, conversión a ventas).\n8. CÓMO REPROGRAMARLO como evento evergreen para que corra solo.` },
+{ title: “Programa de Embajadores”, text: `Tengo una comunidad/base de clientes de [NÚMERO] personas.\nQuiero crear un programa de embajadores (no afiliados — personas que hablan de mi marca porque creen en ella).\n\n1. CRITERIOS DE SELECCIÓN: Qué señales indican que alguien es un embajador natural (antes de formalizar nada).\n2. ESTRUCTURA DEL PROGRAMA:\n — Nombre del programa (exclusivo, aspiracional)\n — Beneficios para los embajadores (acceso anticipado, reconocimiento, sesiones privadas, comisiones opcionales)\n — Compromisos que se les pide (posts por mes, referidos, contenido compartido)\n3. PROCESO DE INVITACIÓN: El mensaje personal que se les manda para invitarlos (que se sientan especiales, no reclutados).\n4. ACTIVACIÓN: Cómo involucrarlos en el primer mes para que se comprometan.\n5. RECONOCIMIENTO PÚBLICO: Cómo celebrarlos frente a la comunidad.\n6. IMPACTO ESTIMADO: Si tenés 10 embajadores activos que traen 3 leads/mes cada uno, ¿qué representa para el negocio?` },
+],
+metrics: [“Tasa de participación semanal comunidad >20%”, “NPS de la comunidad >60”, “Nuevos miembros traídos por referidos >30%”],
+},
+
+/* ── BLOQUE 4: EXPANSIÓN ── */
+{
+id: “p10”, n: 10, block: “expa”, icon: “📊”, color: “#784212”, bg: “#FDF3E7”,
+title: “Business Intelligence”, subtitle: “Tomás decisiones con datos, no con intuición ni con miedo.”,
+duration: “Proceso continuo”, kpi: “Dashboard activo con decisiones semanales”,
+description: “El 90% de los infoproductores toman decisiones de marketing basándose en sensaciones. El 10% que domina los datos toma el 90% del mercado. Esta fase te convierte en el segundo grupo sin necesidad de ser analista de datos.”,
+principles: [
+“Una sola métrica mejorada por semana es más poderoso que cambiar todo el funnel mensualmente.”,
+“El A/B testing no es para grandes empresas. Es para cualquiera que quiera saber qué funciona antes de apostar más.”,
+“El análisis de cohortes (quiénes compran, cuándo, de dónde vienen) revela los patrones de oro de tu negocio.”,
+“Si no podés medir el impacto de una acción, todavía no sabés si vale la pena repetirla.”,
+],
+prompts: [
+{ title: “Dashboard de KPIs del Negocio”, text: `Actúa como un analista de negocios digitales. Quiero construir mi dashboard de métricas.\n\nMi negocio tiene estas fuentes de ingresos: [LISTA]\nCanales de captación: [LISTA]\nHerramientas que uso: [MAILERLITE / HOTMART / META ADS / INSTAGRAM / etc.]\n\nDame:\n1. LAS 15 MÉTRICAS ESENCIALES que todo infoproductor debe rastrear semanalmente (con fórmula de cálculo y benchmarks del sector).\n2. CÓMO ORGANIZARLAS EN UN DASHBOARD simple en Google Sheets (estructura de columnas, qué actualizar cada semana, qué revisar mensualmente).\n3. LAS 3 MÉTRICAS NORTE que, si mejoran, mejora todo lo demás.\n4. SEÑALES DE ALERTA: Qué número en qué métrica me indica que algo está roto urgentemente.\n5. RUTINA SEMANAL DE ANÁLISIS: Qué revisar los lunes y qué decisión tomar según cada escenario posible.\n6. CÓMO LEER GOOGLE ANALYTICS y META ADS MANAGER para extraer los datos sin perderse en los números.` },
+{ title: “Plan de A/B Testing Sistemático”, text: `Quiero implementar A/B testing en mi negocio para optimizar con datos.\nElementos que quiero testear: [ASUNTOS DE EMAIL / HEADLINES DE LANDING / COPY DE ADS / PRECIOS / CTAs]\n\nDame el sistema completo:\n1. PRIORIZACIÓN: Qué elementos testear primero según impacto potencial vs. facilidad de implementación.\n2. PROTOCOLO POR ELEMENTO:\n Para EMAIL: cómo testear asuntos (tamaño mínimo de lista, duración del test, qué declarar ganador).\n Para LANDING: cómo testear headlines sin herramientas caras.\n Para ADS: estructura de campaign test en Meta.\n3. CALCULADORA DE SIGNIFICANCIA: Cómo saber si el resultado es estadísticamente válido antes de decidir.\n4. REGISTRO DE TESTS: Plantilla para trackear qué testé, resultados, y qué aprendí.\n5. CADENCIA: Con qué frecuencia lanzar tests para que los datos sean limpios.\n6. LOS 5 TESTS CON MAYOR ROI que debería hacer primero en mi negocio específico.` },
+{ title: “Análisis Post-Lanzamiento Profundo”, text: `Acabo de cerrar un lanzamiento. Te paso los datos para que me des un diagnóstico completo.\n\nDATOS:\nLeads captados: [X]\nEmails en lista: [X]\nTasa apertura promedio: [X%]\nTasa de click: [X%]\nVisitas a la landing de ventas: [X]\nVentas totales: [X]\nIngresos brutos: $[X]\nOrder bumps vendidos: [X]\nUpsells vendidos: [X]\nReembolsos: [X]\nFuente principal de tráfico: [ORGÁNICO / ADS / REFERIDOS]\n\nAnalizá con detalle:\n1. Diagnóstico de cada etapa del funnel (dónde se perdió el mayor % de personas).\n2. Las 3 palancas con mayor impacto si las mejoro para el próximo lanzamiento.\n3. Benchmarks del sector vs. mis números: ¿estoy por encima o por debajo y en qué?\n4. Proyección concreta: si mejoro X, Y, Z en el próximo lanzamiento, ¿qué ingresos esperar?\n5. Las 3 acciones específicas a implementar esta semana para capturar valor residual del lanzamiento.` },
+],
+metrics: [“Reunión de métricas semanal (30min)”, “1 A/B test activo/semana”, “Dashboard actualizado cada lunes”],
+},
+{
+id: “p11”, n: 11, block: “expa”, icon: “🌎”, color: T.blue, bg: T.blueBg,
+title: “Expansión LATAM e Internacional”, subtitle: “Tu método no tiene por qué quedarse en un solo mercado ni en un solo idioma.”,
+duration: “Mes 6–12”, kpi: “2+ mercados activos”,
+description: “El mercado hispanohablante tiene 500+ millones de personas. Si tu negocio solo está optimizado para Argentina o México, estás ignorando el 80% de tu mercado natural. La expansión regional no requiere reinventar — requiere adaptar estratégicamente.”,
+principles: [
+“Cada mercado LATAM tiene su código cultural específico. El mismo mensaje vende diferente en Argentina que en México o Colombia.”,
+“El pricing debe ajustarse al poder adquisitivo local pero también al costo percibido de la solución. No copies precios; calcula valor.”,
+“Los partnerships con creadores locales son el atajo más eficiente para entrar a un nuevo mercado.”,
+“Hotmart te da acceso nativo a Brasil, México, Colombia y toda LATAM sin infraestructura adicional.”,
+],
+prompts: [
+{ title: “Estrategia de Entrada a Nuevo Mercado”, text: `Quiero expandir mi negocio de infoproductos al mercado de [PAÍS: MÉXICO / COLOMBIA / CHILE / PERÚ / BRASIL].\nMi producto: [NOMBRE] a $[PRECIO]\nMi mercado actual: [ARGENTINA / OTRO]\n\nDame la estrategia de entrada completa:\n1. ANÁLISIS DEL MERCADO: Características culturales específicas que afectan el mensaje de venta en ese país.\n2. ADAPTACIÓN DEL COPY: Qué cambiar en mi landing page para que suene local (no solo el vocabulario — la mentalidad).\n3. PRICING LOCAL: Precio recomendado en moneda local y en USD, considerando paridad de poder adquisitivo.\n4. CANALES PREFERIDOS: Qué plataforma y qué formato domina en ese mercado (Instagram / TikTok / YouTube / WhatsApp).\n5. COLABORACIONES ESTRATÉGICAS: Tipo de creador/influencer con quien colaborar y cómo encontrarlos.\n6. VALIDACIÓN: Cómo testear el mercado nuevo con inversión mínima antes de escalar.\n7. HOTMART: Cómo configurar el producto para vender en ese mercado con los métodos de pago locales.\n8. PRIMEROS 30 DÍAS: Plan concreto día a día para hacer las primeras ventas en ese país.` },
+{ title: “Adaptación Cultural del Marketing”, text: `Tengo este copy de ventas / email / post de Instagram que funciona en [PAÍS ORIGEN]:\n[INSERTAR COPY ORIGINAL]\n\nAdaptalo para [PAÍS DESTINO] considerando:\n1. Vocabulario y expresiones locales (palabras que usan, palabras que NO usan).\n2. Referencias culturales que resuenen (y las que hay que evitar).\n3. Nivel de formalidad adecuado para el mercado.\n4. El tono predominante en ese mercado (más directo vs. más cercano vs. más aspiracional).\n5. La objeción específica más común en ese mercado para mi tipo de producto.\n6. Cómo terminar el mensaje / CTA de la forma que más convierte culturalmente.\n\nDame la versión adaptada completa, no solo recomendaciones. Quiero poder usar el texto directamente.` },
+{ title: “Plan de Partnerships Regionales”, text: `Quiero construir una red de partnerships estratégicos en LATAM para distribuir [PRODUCTO].\n\nDame el plan completo:\n1. TIPOS DE PARTNER: Qué tipo de persona/empresa tiene mi audiencia ideal en LATAM (creadores de contenido / agencias / universidades / asociaciones profesionales / otros infoproductores no competidores).\n2. MODELO DE PARTNERSHIP: Las 3 estructuras posibles (afiliado / co-creador / distribución B2B) y cuándo usar cada una.\n3. CÓMO ENCONTRARLOS: Metodología para identificar a los 10 mejores partners potenciales en cada país.\n4. CÓMO ACERCARSE: El primer mensaje personalizado que genera conversación sin que suene a un pitch de ventas.\n5. LA PROPUESTA: Qué ofrecer a cada tipo de partner para que digan sí.\n6. CONTRATO SIMPLE: Los 5 términos básicos que deben quedar claros antes de empezar.\n7. GESTIÓN: Cómo mantener activos a los partners en el tiempo sin que consuma todo tu tiempo.` },
+],
+metrics: [“Ventas fuera del mercado principal >20%”, “Partners activos en al menos 2 países”, “Copy adaptado para 3 mercados”],
+},
+{
+id: “p12”, n: 12, block: “expa”, icon: “🏆”, color: “#212F3C”, bg: “#EBF5FB”,
+title: “Activos Digitales y Legado”, subtitle: “Construís un negocio que vale sin vos presente — y que puede crecer infinitamente.”,
+duration: “Mes 12+”, kpi: “Negocio escalable e independiente”,
+description: “La diferencia entre un trabajo y un activo es que el activo funciona cuando no estás. Esta fase transforma tu infoproducto en un negocio que puede ser licenciado, vendido, o que puede crecer con formadores certificados sin que vos pongas el 100% del tiempo.”,
+principles: [
+“Un método bien documentado puede ser licenciado, enseñado por otros, o vendido como franquicia digital.”,
+“Las certificaciones crean un ejército de distribuidores que pagan por el privilegio de difundir tu método.”,
+“El contenido evergreen que creaste hace 3 años sigue generando ingresos hoy. Eso es un activo real.”,
+“La valoración de un negocio digital se basa en ingresos recurrentes, no en ingresos de lanzamiento. Construí recurrencia desde el principio.”,
+],
+prompts: [
+{ title: “Modelo de Certificación / Licenciamiento”, text: `Tengo un método propio llamado [NOMBRE DEL MÉTODO] que enseño en [PRODUCTO].\nResultados comprobables: [DATOS DE RESULTADOS]\n\nQuiero crear un programa de certificación para que otros puedan enseñar mi método.\n\nDiseñame la estructura completa:\n1. NOMBRE DEL PROGRAMA DE CERTIFICACIÓN (aspiracional, que genere deseo de tener esa credencial).\n2. REQUERIMIENTOS DE INGRESO: Quién puede aplicar (experiencia previa, haber pasado por tu producto primario).\n3. ESTRUCTURA DEL PROGRAMA: Módulos, duración, formato (¿online + mentorías? ¿prueba práctica?).\n4. PROCESO DE EVALUACIÓN: Cómo se certifica que alguien está listo para enseñar el método.\n5. PRECIO: Rango recomendado para una certificación de este tipo en LATAM.\n6. DERECHOS Y OBLIGACIONES del certificado (qué pueden hacer, qué NO pueden hacer con tu método).\n7. MODELO DE INGRESOS: Diferentes formas de monetizar el programa (precio único / membresía / royalty por venta / todo lo anterior).\n8. COMUNIDAD DE CERTIFICADOS: Cómo estructurar el grupo de personas certificadas para que sea un activo adicional.` },
+{ title: “Valoración y Estrategia de Salida”, text: `Tengo un negocio de infoproductos con estas características:\nIngresos mensuales: $[X] (desglose: $X lanzamientos + $X recurrente + $X high ticket)\nBase de clientes: [X] compradores totales\nLista de email: [X] suscriptores\nAudiencia en redes: [X] seguidores\nProductos: [LISTA]\nAntigüedad del negocio: [X] años\nSistemas y automatizaciones: [DESCRIPCIÓN]\n\nAnalizá:\n1. VALORACIÓN ESTIMADA: Rango de múltiplos de valuación para negocios digitales de este tipo (SDE múltiple).\n2. QUÉ AUMENTA EL VALOR: Los 5 factores que más impactan en el precio de venta de un negocio como el mío.\n3. QUÉ REDUCE EL VALOR: Los riesgos que los compradores identificarían y cómo mitigarlos.\n4. DOCUMENTACIÓN NECESARIA para preparar la empresa para una venta potencial.\n5. PLATAFORMAS DE VENTA: Dónde se venden negocios digitales de este tipo (Acquire.com, Empire Flippers, etc.).\n6. ESTRATEGIA DE SALIDA ALTERNATIVA: Si no quiero vender, cómo estructuro el negocio para que funcione con el mínimo de mi tiempo personal.` },
+{ title: “Construcción de IP (Propiedad Intelectual)”, text: `Quiero documentar y proteger la propiedad intelectual de mi método/sistema.\nNombre del método: [NOMBRE]\nConcepto central: [DESCRIPCIÓN]\n\nDame la estrategia completa de construcción de IP:\n1. DOCUMENTACIÓN DEL MÉTODO: Cómo escribir el manual definitivo que nadie más puede replicar exactamente.\n2. ELEMENTOS ÚNICOS: Los componentes del método que son genuinamente originales y protegibles.\n3. NAMING DEL SISTEMA: Cómo crear nombres propios para los pasos, herramientas y conceptos del método (que se vuelvan propios del lenguaje del nicho).\n4. MARCA REGISTRADA: Cómo registrar el nombre del método (proceso básico en Argentina y LATAM).\n5. CONTENIDO EVERGREEN: Los 5 piezas de contenido que más contribuyen a que el método sea reconocido como tuyo (no de los competidores).\n6. CITAS Y REFERENCIAS: Cómo lograr que otros en el sector citen tu método (estrategia de thought leadership + distribución académica básica).` },
+],
+metrics: [“Ingresos recurrentes >50% del total”, “Certificados activos >10”, “Negocio funciona 20hs o menos/semana”],
+},
+];
+
+/* ─────────────────────────────────────────────────────
+DATA: PRICING
+───────────────────────────────────────────────────── */
+const PRICING = [
+{
+id: “starter”, name: “Sistema Digital”, price: “$97”, badge: “Más Popular”,
+badgeColor: T.gold, color: T.gold, bg: T.goldBg,
+tagline: “El sistema completo para arrancar y vender.”,
+forWho: “Profesionales que están empezando o que tienen un producto pero no están vendiendo.”,
+includes: [
+“Sistema completo de 12 fases (acceso de por vida)”,
+“Biblioteca de 36+ prompts listos para Claude”,
+“Dashboard de métricas con benchmarks”,
+“Hoja de ruta personalizada según tu etapa”,
+“Kit de inicio gratuito incluido”,
+“Actualizaciones del sistema por 12 meses”,
+],
+notIncludes: [“Sesiones en vivo”, “Comunidad privada”, “Soporte directo”],
+howToSell: {
+strategy: “Funnel evergreen + lanzamiento orgánico”,
+channels: “Instagram → Lead Magnet Gratis → Email secuencia 5 días → Oferta $97”,
+bestFor: “Audiencias de 200–2.000 personas”,
+urgency: “Precio sube a $147 después del lanzamiento”,
+ads: “Meta Ads $5–10/día al lead magnet gratuito. CPL objetivo: $2–4. ROI esperado: 5–8x.”,
+script: `"Acabo de lanzar el Sistema Persaltum Digital — el mapa completo para que cualquier profesional con conocimiento pueda vender online con IA. Son 12 fases, 36+ prompts de Claude listos para usar, y una hoja de ruta personalizada según en qué etapa estás. Por el lanzamiento, está a $97 en lugar de $147. Cierra el [FECHA]. ¿Te mando el link?"`,
+},
+projection: “20 ventas = $1.940 | 50 ventas = $4.850 | 100 ventas = $9.700”,
+},
+{
+id: “growth”, name: “Sistema Pro”, price: “$297”, badge: “Mayor Valor”,
+badgeColor: T.green, color: T.green, bg: T.greenBg,
+tagline: “El sistema + comunidad activa + implementación grupal.”,
+forWho: “Profesionales que ya tienen algo, quieren acelerar, y valoran la implementación acompañada.”,
+includes: [
+“Todo lo del Sistema Digital”,
+“Comunidad privada (Circle / plataforma)”,
+“2 sesiones grupales en vivo por mes (Zoom, 90 min)”,
+“Grabaciones de todas las sesiones anteriores”,
+“Revisión de landing page (1 vez por alumno)”,
+“Soporte por email con respuesta en 48hs”,
+“Actualizaciones por 24 meses”,
+],
+notIncludes: [“Sesiones 1:1”, “WhatsApp directo”, “Revisión de funnel completo”],
+howToSell: {
+strategy: “Webinar de lanzamiento + lista caliente”,
+channels: “Email lista caliente → Webinar gratuito → Pitch al final del webinar”,
+bestFor: “Audiencias de 500–5.000 personas con lista de email caliente”,
+urgency: “Cupos limitados a 50 alumnos por cohorte. Una vez lleno, lista de espera.”,
+ads: “Retargeting a quienes ya compraron el tier $97 o a quienes abrieron 3+ emails del funnel.”,
+script: `"Este mes abro una nueva cohorte del Sistema Pro — donde además del sistema completo, tenemos sesiones en vivo grupales dos veces por mes para implementar en tiempo real. Los cupos son 50 por cohorte para que el acompañamiento sea real. Está a $297. ¿Querés que te reserve un lugar?"`,
+},
+projection: “20 ventas = $5.940 | 40 ventas = $11.880 | 50 ventas = $14.850”,
+},
+{
+id: “elite”, name: “Sistema Elite”, price: “$697”, badge: “High-Ticket”,
+badgeColor: T.purple, color: T.purple, bg: T.purpleBg,
+tagline: “Implementación guiada 1:1 + resultados garantizados.”,
+forWho: “Profesionales que quieren resultados en el menor tiempo posible y valoran el acceso directo.”,
+includes: [
+“Todo lo del Sistema Pro”,
+“2 sesiones 1:1 por mes (45 min cada una)”,
+“Revisión completa de funnel + landing + emails”,
+“Soporte directo por WhatsApp (respuesta en 24hs en días hábiles)”,
+“Plan de lanzamiento personalizado para tu producto específico”,
+“Acceso prioritario a nuevas fases y materiales”,
+“Acceso de por vida + todas las actualizaciones futuras”,
+],
+notIncludes: [],
+howToSell: {
+strategy: “Aplicación + llamada de ventas (no landing pública)”,
+channels: “Instagram DM / WhatsApp → Formulario de aplicación → Llamada de 30 min → Cierre”,
+bestFor: “Compradores del tier $97 o $297 que quieren acelerar”,
+urgency: “Máximo 10 alumnos Elite simultáneos para mantener la calidad del 1:1.”,
+ads: “No se vende con ads fríos. Solo a audiencia caliente: compradores previos + lista de email calificada.”,
+script: `"Tengo disponibilidad para 3 nuevos alumnos Elite este mes — sesiones personales 1:1 + soporte directo + revisión de todo tu funnel. Para ver si es el fit correcto, te mando el formulario de aplicación de 5 minutos. ¿Te parece?"`,
+},
+projection: “5 alumnos = $3.485 | 10 alumnos = $6.970 | 15 alumnos = $10.455”,
+},
+];
+
+/* ─────────────────────────────────────────────────────
+DATA: FREE KIT
+───────────────────────────────────────────────────── */
+const FREE_PROMPTS = [
+{ n: “01”, title: “Define tu cliente ideal en 60 segundos”, text: `Basándote en mi expertise en [TEMA], describí mi cliente ideal con máxima especificidad:\n— Demografía: edad, profesión, situación actual\n— Psicografía: qué piensa antes de dormirse, qué lo frustra, qué desea\n— Nivel de consciencia del problema: ¿sabe que tiene el problema o todavía no?\n— Objeción #1 antes de comprar cualquier producto en mi nicho\n— La frase exacta que diría para describir su propio problema\n— La frase exacta que diría para describir su resultado deseado\nSé específico. Si la respuesta aplica a "cualquier persona", es muy vaga.` },
+{ n: “02”, title: “Propuesta de valor en una oración”, text: `Tengo este producto/servicio: [DESCRIPCIÓN]\nEscribo para este cliente: [CLIENTE IDEAL]\n\nEscribí MI propuesta de valor en UNA ORACIÓN de máximo 20 palabras que incluya:\n— A quién ayudo (específico)\n— Qué resultado obtenemos (medible o concreto)\n— El diferenciador único (por qué yo y no otro)\n\nDame 5 variantes, de la más directa a la más aspiracional. Ninguna puede sonar genérica.` },
+{ n: “03”, title: “5 hooks de Instagram que paran el scroll”, text: `[BRAND BRIEF]\nTema del post: [TEMA CONCRETO]\n\nEscribí 5 primeras líneas (hooks) para un post de Instagram que paren el scroll.\nCada hook debe:\n— Crear curiosidad O generar identificación inmediata en [CLIENTE IDEAL]\n— Tener máximo 12 palabras\n— No empezar con "¿Alguna vez...?" ni con "La verdad es que..."\n— No usar emojis al inicio\nClasificalos del más agresivo al más sutil.` },
+{ n: “04”, title: “Email de ventas de 300 palabras”, text: `[BRAND BRIEF]\nProducto: [NOMBRE] a $[PRECIO]\n\nEscribí un email de venta de exactamente 300 palabras que:\n— Abra con el dolor más agudo del cliente (no con el producto)\n— Agite el problema en el párrafo 2 (¿qué cuesta no resolver esto?)\n— Presente la solución en el párrafo 3 (sin listar todo lo que incluye)\n— Cierre con un CTA directo y una razón para actuar hoy\n— Tenga una P.D. que funcione como segundo CTA\nTono: conversacional, directo, sin exageraciones.` },
+{ n: “05”, title: “Story de Instagram que vende sin vender”, text: `[BRAND BRIEF]\nObjetivo: generar interés en [PRODUCTO/SERVICIO] sin mencionar el precio directamente.\n\nEscribí una secuencia de 5 stories de Instagram:\nStory 1: Pregunta provocadora o dato impactante que para el dedo.\nStory 2: El antes (la situación que tiene el cliente antes de resolver el problema).\nStory 3: El insight (el giro mental que cambia la perspectiva).\nStory 4: El después (el estado deseado, sin prometer milagros).\nStory 5: CTA suave ("Si querés saber más, respondé este mensaje").\nPara cada story: texto + qué mostrar visualmente.` },
+{ n: “06”, title: “Respuesta a la objeción ‘es muy caro’”, text: `Vendo [PRODUCTO] a $[PRECIO] y el prospecto dice: "Está muy caro para mí ahora".\n\nEscribí 3 respuestas distintas para esta objeción:\nRespuesta A: Reencuadre del valor (comparar el precio con el costo del problema).\nRespuesta B: Reducción del riesgo (garantía + pago en cuotas si aplica).\nRespuesta C: Pregunta clarificadora (descubrir si el problema es precio o prioridad).\nCada respuesta en máximo 4 oraciones. Tono: empático, nunca defensivo ni presionante.` },
+{ n: “07”, title: “Análisis de competidores en 5 minutos”, text: `Soy [DESCRIPCIÓN]. Vendo [PRODUCTO] a [CLIENTE IDEAL].\nMis 3 competidores más directos son: [NOMBRES O DESCRIPCIONES]\n\nAnalizá con honestidad:\n1. Qué hace bien cada competidor (que yo podría aprender).\n2. Qué le falta a cada competidor (el gap que yo puedo llenar).\n3. Cómo se diferencian entre ellos y cómo se parecen.\n4. El posicionamiento único que queda disponible para mí.\n5. Una frase de posicionamiento que me ubique en ese espacio vacío.\nNo me digas que "el mercado es grande y hay lugar para todos". Quiero diferenciación real.` },
+{ n: “08”, title: “Plan de contenido urgente (1 semana)”, text: `[BRAND BRIEF]\nSituación: necesito publicar contenido esta semana pero no tengo nada planificado.\nObjetivo de la semana: [GENERAR LEADS / LANZAR ALGO / MANTENER PRESENCIA]\n\nDame el plan de contenido completo para los próximos 7 días:\n3 posts de feed + 5 stories + 3 reels de 30–60 segundos.\nPara cada pieza: tema, hook, 3 bullets de contenido, CTA.\nPrioridad: que sea publicable HOY, no perfecto. Tono coloquial, directo, sin producción sofisticada.` },
+{ n: “09”, title: “Testimonio de cliente que convierte”, text: `Tengo este feedback de un cliente: [FEEDBACK EN BRUTO DEL CLIENTE]\n\nTransformalo en un testimonio estructurado que convierta:\n1. SITUACIÓN ANTES: Cómo estaba el cliente antes de comprar (con emoción, no solo datos).\n2. EL PROCESO: Qué hizo exactamente con el producto (específico, creíble).\n3. RESULTADO CONCRETO: El después, idealmente con números o cambios medibles.\n4. POR QUÉ LO RECOMENDARÍA: La razón genuina, no el "es excelente".\nFormato: párrafo natural de 100–120 palabras. Que suene a persona real, no a marketing.` },
+{ n: “10”, title: “Primera llamada de ventas (sin experiencia)”, text: `No tengo experiencia en ventas y tengo que hacer mi primera llamada para vender [PRODUCTO] a $[PRECIO].\nEl prospecto se anotó porque [CONTEXTO: descargó el lead magnet / me preguntó por DM / etc.].\n\nDame el guión completo de 30 minutos:\n0–3 min: Apertura (cómo crear rapport en 3 primeras oraciones).\n3–12 min: Diagnóstico (las 5 preguntas que revelan si es un buen fit SIN que parezca encuesta).\n12–17 min: La visión (cómo mostrarle el futuro posible con tu producto).\n17–22 min: Presentación de la oferta (precio, lo que incluye, garantía — sin listado aburrido).\n22–27 min: Manejo de las 3 objeciones más frecuentes.\n27–30 min: Cierre (cómo pedir una decisión directamente sin presión).\nTono: conversación entre iguales, no vendedor.` },
+];
+
+const CHECKLIST_ITEMS = [
+{ week: 1, day: “Día 1–2”, task: “Definir cliente ideal y propuesta de valor (Prompts 01 y 02 del Kit)” },
+{ week: 1, day: “Día 3–4”, task: “Crear lead magnet en Claude + configurar landing de captura en MailerLite” },
+{ week: 1, day: “Día 5–7”, task: “Escribir secuencia de 5 emails de bienvenida con Claude” },
+{ week: 2, day: “Día 8–9”, task: “Estructurar el índice del producto con Claude (Fase 1 → Bloque 2)” },
+{ week: 2, day: “Día 10–11”, task: “Publicar 3 posts orgánicos sobre el problema (sin vender)” },
+{ week: 2, day: “Día 12–14”, task: “DM personal a 20 contactos cálidos anunciando que viene algo” },
+{ week: 3, day: “Día 15–16”, task: “Escribir la landing page con Claude (Fase 3 → Bloque 1)” },
+{ week: 3, day: “Día 17”, task: “Configurar producto en Hotmart con precio + order bump” },
+{ week: 3, day: “Día 18–20”, task: “3 posts de calentamiento + stories de anticipación” },
+{ week: 3, day: “Día 21”, task: “Anuncio oficial del lanzamiento (email + post + stories)” },
+{ week: 4, day: “Día 22 — APERTURA”, task: “Carrito abierto: email + post + 5 stories + WhatsApp broadcast” },
+{ week: 4, day: “Día 23–24”, task: “Contenido de objeciones + FAQ + respuesta manual a DMs” },
+{ week: 4, day: “Día 25–26”, task: “Testimonios + prueba social + email de mitad de lanzamiento” },
+{ week: 4, day: “Día 27–28 — CIERRE”, task: “Last call: email + post urgencia + stories countdown + WhatsApp final” },
+];
+
+const METRICS_DATA = [
+{ phase: “Captación”, metric: “Conversión landing captura”, target: “35–55%”, alert: “<15%”, action: “Reescribí el headline. Testea 3 variantes del titular en 48hs.” },
+{ phase: “Captación”, metric: “Costo por lead (CPL) con ads”, target: “$1–5 USD”, alert: “>$10”, action: “Cambiá el creativo del anuncio. El copy del ad puede ser lo de menos.” },
+{ phase: “Email”, metric: “Tasa de apertura de emails”, target: “>28%”, alert: “<15%”, action: “Mejorá asuntos. Verificá que no caigas en spam haciendo un test de entregabilidad.” },
+{ phase: “Email”, metric: “Tasa de click en emails”, target: “>3.5%”, alert: “<1%”, action: “Un solo CTA por email. Si tenés 3 links, la gente no hace click en ninguno.” },
+{ phase: “Conversión”, metric: “Conversión landing de ventas”, target: “2–8%”, alert: “<1%”, action: “Revisá el headline, el precio percibido y si la garantía está visible.” },
+{ phase: “Conversión”, metric: “Tasa de order bump”, target: “20–35%”, alert: “<10%”, action: “El order bump no resuelve el obstáculo correcto. Cambiá la propuesta.” },
+{ phase: “Conversión”, metric: “Reembolsos”, target: “<4%”, alert: “>8%”, action: “El producto no cumple la promesa. Revisá la brecha entre lo que prometés y lo que entregás.” },
+{ phase: “Publicidad”, metric: “CTR de anuncios”, target: “>1.5%”, alert: “<0.5%”, action: “El creativo no para el scroll. Cambiá la imagen/video. El copy es secundario.” },
+{ phase: “Publicidad”, metric: “ROAS funnel completo”, target: “>3x”, alert: “<1.5x”, action: “El funnel post-lead no convierte. El problema no está en el ad, está en la secuencia de emails.” },
+{ phase: “Retención”, metric: “Tasa apertura emails post-compra”, target: “>45%”, alert: “<20%”, action: “El email de bienvenida no creó expectativa. Reescribilo para que quieran abrir el próximo.” },
+{ phase: “Retención”, metric: “Tasa de upsell post-compra”, target: “15–25%”, alert: “<8%”, action: “El upsell no es la evolución lógica del core. Cambiá la oferta o el momento.” },
+{ phase: “Comunidad”, metric: “Participación semanal en comunidad”, target: “>20% miembros”, alert: “<5%”, action: “Falta ritual semanal. Crea un evento fijo que genere hábito de participación.” },
+{ phase: “Escalabilidad”, metric: “Ingresos recurrentes / ingresos totales”, target: “>40%”, alert: “<15%”, action: “Dependés demasiado de lanzamientos. Lanzá la membresía o el funnel evergreen.” },
+{ phase: “Escalabilidad”, metric: “Horas trabajadas / ingresos generados”, target: “<4hs/$1K”, alert: “>10hs/$1K”, action: “El negocio no está automatizado. Revisá las fases 7 (automatización) y 6 (escalera de valor).” },
+{ phase: “Expansión”, metric: “% ventas fuera del mercado principal”, target: “>20%”, alert: “0%”, action: “Aún no expandiste. Fase 11 — elegí UN país para entrar en los próximos 60 días.” },
+];
+
+/* ─────────────────────────────────────────────────────
+ATOMIC COMPONENTS
+───────────────────────────────────────────────────── */
+const Chip = ({ children, color = T.gold, bg }) => (
+<span style={{ display: “inline-block”, background: bg || `${color}18`, color, border: `1px solid ${color}35`, borderRadius: 4, padding: “2px 8px”, fontSize: 10, fontWeight: 700, letterSpacing: “0.7px”, textTransform: “uppercase”, fontFamily: F.body }}>
+{children}
+</span>
+);
+
+const Panel = ({ children, accent, color, style = {} }) => (
+
+<div style={{ background: T.surface, border: `1px solid ${T.border}`, borderLeft: accent ? `4px solid ${accent}` : `1px solid ${T.border}`, borderRadius: 12, padding: 18, marginBottom: 12, ...style }}>
+{children}
+</div>
+);
+
+const SectionTitle = ({ chip, h2, sub }) => (
+
+<div style={{ marginBottom: 20 }}>
+{chip && <div style={{ marginBottom: 8 }}><Chip>{chip}</Chip></div>}
+<h2 style={{ margin: "0 0 6px", fontSize: 24, fontWeight: 900, color: T.ink, lineHeight: 1.15, fontFamily: F.display }}>{h2}</h2>
+{sub && <p style={{ margin: 0, fontSize: 13, color: T.muted, fontFamily: F.body, lineHeight: 1.7 }}>{sub}</p>}
+</div>
+);
+
+const Divider = () => <div style={{ height: 1, background: T.border, margin: “14px 0” }} />;
+
+const StatRow = ({ stats }) => (
+
+<div style={{ display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, background: T.surfaceAlt, borderRadius: 12, overflow: "hidden", border: `1px solid ${T.border}`, marginBottom: 16 }}>
+{stats.map((s, i) => (
+<div key={i} style={{ padding: "14px 8px", textAlign: "center", borderRight: i < stats.length - 1 ? `1px solid ${T.border}` : "none" }}>
+<div style={{ fontSize: 24, fontWeight: 900, color: s.color || T.gold, fontFamily: F.body, lineHeight: 1 }}>{s.value}</div>
+<div style={{ fontSize: 11, color: T.ink, fontWeight: 600, marginTop: 4, fontFamily: F.body }}>{s.label}</div>
+{s.sub && <div style={{ fontSize: 10, color: T.muted, marginTop: 2, fontFamily: F.body }}>{s.sub}</div>}
+</div>
+))}
+</div>
+);
+
+/* ─────────────────────────────────────────────────────
+COPY BUTTON
+───────────────────────────────────────────────────── */
+const CopyBtn = ({ text }) => {
+const [copied, setCopied] = useState(false);
+const handleCopy = useCallback(() => {
+if (navigator.clipboard) {
+navigator.clipboard.writeText(text).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1800); });
+}
+}, [text]);
+return (
+<button onClick={handleCopy} style={{ background: copied ? T.green : T.dark, color: “#fff”, border: “none”, borderRadius: 6, padding: “5px 12px”, fontSize: 10, fontWeight: 700, cursor: “pointer”, fontFamily: F.body, letterSpacing: “0.5px”, transition: “background .2s” }}>
+{copied ? “✓ Copiado” : “Copiar”}
+</button>
+);
+};
+
+/* ─────────────────────────────────────────────────────
+SECTION: SISTEMA (12 PHASES) — Master-Detail
+───────────────────────────────────────────────────── */
+function SistemaSection() {
+const [activePhaseId, setActivePhaseId] = useState(“p1”);
+const [activeTab, setActiveTab] = useState(“descripcion”); // descripcion | principios | prompts | metricas
+
+const phase = PHASES.find(p => p.id === activePhaseId) || PHASES[0];
+
+const tabLabels = [
+{ id: “descripcion”, label: “📖 Descripción” },
+{ id: “principios”, label: “💡 Principios” },
+{ id: “prompts”, label: “📋 Prompts” },
+{ id: “metricas”, label: “✓ Métricas” },
+];
+
+return (
+<div>
+<SectionTitle
+chip=“12 Fases · 4 Bloques Estratégicos”
+h2={<>El Sistema Completo de<br /><span style={{ color: T.gold }}>Ventas Escalable</span></>}
+sub=“Seleccioná una fase para ver su contenido completo. Cada fase incluye descripción, principios, prompts listos para Claude y métricas de éxito.”
+/>
+
+```
+<StatRow stats={[
+{ value: "12", label: "Fases", sub: "Completas" },
+{ value: "36+", label: "Prompts", sub: "Para Claude" },
+{ value: "4", label: "Bloques", sub: "Estratégicos" },
+{ value: "∞", label: "Nichos", sub: "Cualquier producto" },
+]} />
+
+{/* ── PHASE GRID SELECTOR ── */}
+<div style={{ marginBottom: 6 }}>
+<div style={{ fontSize: 10, fontWeight: 800, color: T.muted, letterSpacing: "1.2px", textTransform: "uppercase", fontFamily: F.body, marginBottom: 10 }}>
+SELECCIONÁ UNA FASE
+</div>
+<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6, marginBottom: 4 }}>
+{PHASES.map(p => (
+<button
+key={p.id}
+onClick={() => { setActivePhaseId(p.id); setActiveTab("descripcion"); }}
+style={{
+background: activePhaseId === p.id ? p.color : T.surface,
+border: `2px solid ${activePhaseId === p.id ? p.color : T.border}`,
+borderRadius: 10,
+padding: "10px 8px",
+cursor: "pointer",
+textAlign: "center",
+transition: "all .15s",
+position: "relative",
+}}
+>
+<div style={{ fontSize: 18, marginBottom: 3 }}>{p.icon}</div>
+<div style={{
+fontSize: 9, fontWeight: 800, letterSpacing: "0.8px", textTransform: "uppercase",
+fontFamily: F.body, color: activePhaseId === p.id ? "rgba(255,255,255,0.7)" : T.muted, marginBottom: 2
+}}>
+Fase {p.n}
+</div>
+<div style={{
+fontSize: 11, fontWeight: 700, fontFamily: F.body,
+color: activePhaseId === p.id ? "#fff" : T.ink,
+lineHeight: 1.3,
+}}>
+{p.title}
+</div>
+{activePhaseId === p.id && (
+<div style={{
+position: "absolute", bottom: -6, left: "50%", transform: "translateX(-50%)",
+width: 0, height: 0,
+borderLeft: "6px solid transparent", borderRight: "6px solid transparent",
+borderTop: `6px solid ${p.color}`,
+}} />
+)}
+</button>
+))}
+</div>
+</div>
+
+{/* ── PHASE DETAIL CARD ── */}
+<div style={{
+background: T.surface, border: `2px solid ${phase.color}`,
+borderRadius: 14, overflow: "hidden", marginTop: 12,
+}}>
+{/* Phase header — always visible */}
+<div style={{ background: phase.color, padding: "16px 18px" }}>
+<div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+<div>
+<div style={{ fontSize: 11, color: "rgba(255,255,255,0.75)", fontWeight: 700, letterSpacing: "1px", fontFamily: F.body, marginBottom: 4 }}>
+FASE {phase.n} · {phase.duration.toUpperCase()}
+</div>
+<div style={{ fontSize: 20, fontWeight: 900, color: "#fff", fontFamily: F.display, lineHeight: 1.2, marginBottom: 4 }}>
+{phase.icon} {phase.title}
+</div>
+<div style={{ fontSize: 13, color: "rgba(255,255,255,0.85)", fontFamily: F.body }}>
+{phase.subtitle}
+</div>
+</div>
+<div style={{
+background: "rgba(255,255,255,0.2)", borderRadius: 8,
+padding: "6px 10px", textAlign: "center", flexShrink: 0,
+}}>
+<div style={{ fontSize: 9, color: "rgba(255,255,255,0.7)", fontFamily: F.body, fontWeight: 700, letterSpacing: "0.5px" }}>META</div>
+<div style={{ fontSize: 11, color: "#fff", fontFamily: F.body, fontWeight: 800, lineHeight: 1.3, marginTop: 2, maxWidth: 90 }}>
+{phase.kpi}
+</div>
+</div>
+</div>
+</div>
+
+{/* Content tabs */}
+<div style={{ display: "flex", borderBottom: `1px solid ${T.border}`, background: T.surfaceAlt }}>
+{tabLabels.map(t => (
+<button
+key={t.id}
+onClick={() => setActiveTab(t.id)}
+style={{
+flex: 1, padding: "10px 4px",
+background: "none", border: "none",
+borderBottom: activeTab === t.id ? `3px solid ${phase.color}` : "3px solid transparent",
+color: activeTab === t.id ? phase.color : T.muted,
+fontSize: 10, fontWeight: activeTab === t.id ? 800 : 500,
+cursor: "pointer", fontFamily: F.body,
+transition: "all .15s", whiteSpace: "nowrap",
+}}
+>
+{t.label}
+</button>
+))}
+</div>
+
+{/* Tab content */}
+<div style={{ padding: "20px 18px" }}>
+
+{/* ── TAB: DESCRIPCIÓN ── */}
+{activeTab === "descripcion" && (
+<div>
+<p style={{ margin: "0 0 20px", fontSize: 14, lineHeight: 1.9, color: T.ink, fontFamily: F.body }}>
+{phase.description}
+</p>
+
+<div style={{ background: phase.bg, border: `1px solid ${phase.color}30`, borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
+<div style={{ fontSize: 10, fontWeight: 800, color: phase.color, letterSpacing: "1.2px", textTransform: "uppercase", fontFamily: F.body, marginBottom: 10 }}>
+¿QUÉ LOGRÁS EN ESTA FASE?
+</div>
+<div style={{ fontSize: 15, fontWeight: 800, color: T.ink, fontFamily: F.body }}>
+{phase.kpi}
+</div>
+</div>
+
+<div style={{ background: T.surfaceAlt, borderRadius: 10, padding: "14px 16px" }}>
+<div style={{ fontSize: 10, fontWeight: 800, color: T.muted, letterSpacing: "1.2px", textTransform: "uppercase", fontFamily: F.body, marginBottom: 10 }}>
+CONTENIDO DE ESTA FASE
+</div>
+{phase.prompts.map((pr, i) => (
+<div key={i} style={{ display: "flex", gap: 10, marginBottom: 10, alignItems: "flex-start" }}>
+<div style={{
+width: 26, height: 26, borderRadius: "50%",
+background: phase.color, color: "#fff",
+display: "flex", alignItems: "center", justifyContent: "center",
+fontSize: 11, fontWeight: 800, flexShrink: 0, fontFamily: F.body
+}}>{i + 1}</div>
+<div>
+<div style={{ fontSize: 13, fontWeight: 700, color: T.ink, fontFamily: F.body }}>
+{pr.title}
+</div>
+<div style={{ fontSize: 11, color: T.muted, fontFamily: F.body, marginTop: 2 }}>
+Prompt completo disponible en la pestaña "Prompts"
+</div>
+</div>
+</div>
+))}
+<div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${T.border}` }}>
+<button
+onClick={() => setActiveTab("prompts")}
+style={{
+background: phase.color, color: "#fff", border: "none",
+borderRadius: 8, padding: "10px 16px", fontSize: 12,
+fontWeight: 700, cursor: "pointer", fontFamily: F.body,
+width: "100%",
+}}
+>
+Ver los {phase.prompts.length} prompts completos →
+</button>
+</div>
+</div>
+</div>
+)}
+
+{/* ── TAB: PRINCIPIOS ── */}
+{activeTab === "principios" && (
+<div>
+<div style={{ fontSize: 13, color: T.muted, fontFamily: F.body, marginBottom: 16, lineHeight: 1.7 }}>
+Los principios son las reglas no negociables de esta fase. Violarlos es el camino más corto al fracaso.
+</div>
+{phase.principles.map((p, i) => (
+<div key={i} style={{
+display: "flex", gap: 14, marginBottom: 14, padding: "14px 16px",
+background: i % 2 === 0 ? phase.bg : T.surface,
+border: `1px solid ${phase.color}25`,
+borderLeft: `4px solid ${phase.color}`,
+borderRadius: 10,
+}}>
+<div style={{
+width: 28, height: 28, borderRadius: "50%",
+background: phase.color, color: "#fff",
+display: "flex", alignItems: "center", justifyContent: "center",
+fontSize: 13, fontWeight: 900, flexShrink: 0, fontFamily: F.body
+}}>{i + 1}</div>
+<p style={{ margin: 0, fontSize: 14, lineHeight: 1.7, color: T.ink, fontFamily: F.body }}>
+{p}
+</p>
+</div>
+))}
+</div>
+)}
+
+{/* ── TAB: PROMPTS ── */}
+{activeTab === "prompts" && (
+<div>
+<div style={{ fontSize: 13, color: T.muted, fontFamily: F.body, marginBottom: 16, lineHeight: 1.7 }}>
+<strong style={{ color: T.ink }}>Cómo usar estos prompts:</strong> Copiá el texto, abrí Claude, pegá tu Brand Brief al inicio, y luego pegá el prompt reemplazando los [CORCHETES] con tu información real.
+</div>
+
+{phase.prompts.map((pr, j) => (
+<PromptCard key={j} pr={pr} phaseColor={phase.color} index={j} />
+))}
+</div>
+)}
+
+{/* ── TAB: MÉTRICAS ── */}
+{activeTab === "metricas" && (
+<div>
+<div style={{ fontSize: 13, color: T.muted, fontFamily: F.body, marginBottom: 16, lineHeight: 1.7 }}>
+Estas métricas confirman que completaste la fase exitosamente. Si no las alcanzás, volvé a los prompts y revisá qué paso salteaste.
+</div>
+{phase.metrics.map((m, i) => (
+<div key={i} style={{
+display: "flex", gap: 12, alignItems: "flex-start",
+padding: "14px 16px", background: T.surface,
+border: `1px solid ${T.border}`, borderRadius: 10, marginBottom: 10
+}}>
+<div style={{
+width: 32, height: 32, borderRadius: "50%",
+background: T.greenBg, border: `2px solid ${T.green}`,
+display: "flex", alignItems: "center", justifyContent: "center",
+fontSize: 14, flexShrink: 0
+}}>✓</div>
+<div>
+<div style={{ fontSize: 14, fontWeight: 700, color: T.ink, fontFamily: F.body, lineHeight: 1.4 }}>
+{m}
+</div>
+<div style={{ fontSize: 11, color: T.green, fontFamily: F.body, marginTop: 4, fontWeight: 600 }}>
+Indicador de éxito — Fase {phase.n}
+</div>
+</div>
+</div>
+))}
+
+<div style={{ background: T.goldBg, border: `1px solid ${T.gold}40`, borderRadius: 10, padding: "14px 16px", marginTop: 16 }}>
+<div style={{ fontSize: 10, fontWeight: 800, color: T.goldDark, letterSpacing: "1px", textTransform: "uppercase", fontFamily: F.body, marginBottom: 8 }}>
+SIGUIENTE PASO
+</div>
+<p style={{ margin: "0 0 10px", fontSize: 13, color: T.goldDark, fontFamily: F.body, lineHeight: 1.6 }}>
+¿Completaste todas las métricas? Pasá a la siguiente fase.
+</p>
+{phase.n < 12 && (
+<button
+onClick={() => { setActivePhaseId(`p${phase.n + 1}`); setActiveTab("descripcion"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+style={{
+background: T.gold, color: "#fff", border: "none",
+borderRadius: 8, padding: "10px 16px", fontSize: 12,
+fontWeight: 700, cursor: "pointer", fontFamily: F.body, width: "100%",
+}}
+>
+Ir a Fase {phase.n + 1}: {PHASES.find(p => p.n === phase.n + 1)?.title} →
+</button>
+)}
+</div>
+</div>
+)}
+</div>
+</div>
+
+{/* ── FASE NAVIGATION ── */}
+<div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+{phase.n > 1 && (
+<button
+onClick={() => { setActivePhaseId(`p${phase.n - 1}`); setActiveTab("descripcion"); }}
+style={{ flex: 1, padding: "10px", background: T.surface, border: `1px solid ${T.border}`, borderRadius: 10, cursor: "pointer", fontFamily: F.body, fontSize: 12, color: T.muted }}
+>
+← Fase {phase.n - 1}
+</button>
+)}
+{phase.n < 12 && (
+<button
+onClick={() => { setActivePhaseId(`p${phase.n + 1}`); setActiveTab("descripcion"); }}
+style={{ flex: 1, padding: "10px", background: phase.color, border: "none", borderRadius: 10, cursor: "pointer", fontFamily: F.body, fontSize: 12, fontWeight: 700, color: "#fff" }}
+>
+Siguiente: Fase {phase.n + 1} →
+</button>
+)}
+</div>
+</div>
+```
+
+);
+}
+
+/* ─────────────────────────────────────────────────────
+PROMPT CARD — standalone with open-by-default
+───────────────────────────────────────────────────── */
+function PromptCard({ pr, phaseColor, index }) {
+const [open, setOpen] = useState(index === 0); // first one open by default
+
+return (
+<div style={{ marginBottom: 14, border: `1px solid ${open ? phaseColor : T.border}`, borderRadius: 12, overflow: “hidden”, transition: “border-color .2s” }}>
+{/* Header */}
+<div
+onClick={() => setOpen(!open)}
+style={{
+display: “flex”, justifyContent: “space-between”, alignItems: “center”,
+padding: “14px 16px”,
+background: open ? `${phaseColor}12` : T.surfaceAlt,
+cursor: “pointer”,
+}}
+>
+<div style={{ display: “flex”, gap: 10, alignItems: “center” }}>
+<div style={{
+width: 28, height: 28, borderRadius: 8,
+background: phaseColor, color: “#fff”,
+display: “flex”, alignItems: “center”, justifyContent: “center”,
+fontSize: 12, fontWeight: 800, flexShrink: 0, fontFamily: F.body
+}}>{index + 1}</div>
+<div>
+<div style={{ fontSize: 9, color: phaseColor, fontWeight: 700, fontFamily: F.body, letterSpacing: “0.8px”, textTransform: “uppercase” }}>Prompt {index + 1}</div>
+<div style={{ fontSize: 14, fontWeight: 700, color: T.ink, fontFamily: F.body, lineHeight: 1.3 }}>
+{pr.title}
+</div>
+</div>
+</div>
+<div style={{
+fontSize: 18, color: phaseColor,
+transform: open ? “rotate(90deg)” : “none”,
+transition: “transform .2s”, flexShrink: 0, fontFamily: F.body
+}}>›</div>
+</div>
+
+```
+{/* Body — prompt text always fully visible when open */}
+{open && (
+<div style={{ padding: "0 16px 16px" }}>
+<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0 8px" }}>
+<div style={{ fontSize: 11, color: T.muted, fontFamily: F.body }}>
+Reemplazá los <strong>[CORCHETES]</strong> con tu información real
+</div>
+<CopyBtn text={pr.text} />
+</div>
+{/* Full prompt text — completely readable */}
+<div style={{
+background: "#111", borderRadius: 10, padding: "16px",
+border: `1px solid #333`,
+}}>
+<pre style={{
+margin: 0, fontSize: 12, lineHeight: 1.9,
+color: "#c8f0b8",
+whiteSpace: "pre-wrap", wordBreak: "break-word",
+fontFamily: F.mono,
+}}>
+{pr.text}
+</pre>
+</div>
+</div>
+)}
+</div>
+```
+
+);
+}
+
+/* ─────────────────────────────────────────────────────
+SECTION: PROMPTS LIBRARY
+───────────────────────────────────────────────────── */
+function PromptsSection() {
+const [activePhase, setActivePhase] = useState(“all”);
+const [searchText, setSearchText] = useState(””);
+
+const allPrompts = PHASES.flatMap(p => p.prompts.map(pr => ({ …pr, phaseName: p.title, phaseN: p.n, phaseColor: p.color, phaseId: p.id })));
+const filtered = allPrompts.filter(p => {
+const matchPhase = activePhase === “all” || p.phaseId === activePhase;
+const matchSearch = searchText === “” || p.title.toLowerCase().includes(searchText.toLowerCase());
+return matchPhase && matchSearch;
+});
+
+return (
+<div>
+<SectionTitle chip={`${allPrompts.length} Prompts · Listos para usar`} h2={<>Biblioteca Completa<br /><span style={{ color: T.gold }}>de Prompts de Claude</span></>} sub=“Copiá, reemplazá los [CORCHETES] con tu información y pegá directamente en Claude. Sin contexto adicional necesario.” />
+<input value={searchText} onChange={e => setSearchText(e.target.value)} placeholder=“Buscar prompt…” style={{ width: “100%”, padding: “10px 14px”, borderRadius: 8, border: `1px solid ${T.border}`, fontSize: 13, fontFamily: F.body, background: T.surface, color: T.ink, marginBottom: 12, outline: “none” }} />
+<div style={{ display: “flex”, gap: 6, overflowX: “auto”, scrollbarWidth: “none”, paddingBottom: 4, marginBottom: 14 }}>
+<button onClick={() => setActivePhase(“all”)} style={{ background: activePhase === “all” ? T.gold : T.surface, color: activePhase === “all” ? “#fff” : T.muted, border: `1px solid ${activePhase === "all" ? T.gold : T.border}`, borderRadius: 20, padding: “5px 12px”, fontSize: 10, fontWeight: 700, cursor: “pointer”, whiteSpace: “nowrap”, flexShrink: 0, fontFamily: F.body }}>
+Todos ({allPrompts.length})
+</button>
+{PHASES.map(p => (
+<button key={p.id} onClick={() => setActivePhase(p.id)} style={{ background: activePhase === p.id ? `${p.color}15` : T.surface, color: activePhase === p.id ? p.color : T.muted, border: `1.5px solid ${activePhase === p.id ? p.color : T.border}`, borderRadius: 20, padding: “5px 12px”, fontSize: 10, fontWeight: 700, cursor: “pointer”, whiteSpace: “nowrap”, flexShrink: 0, fontFamily: F.body }}>
+{p.icon} F{p.n}
+</button>
+))}
+</div>
+{filtered.length === 0 ? <div style={{ textAlign: “center”, color: T.muted, fontSize: 13, padding: 30, fontFamily: F.body }}>No se encontraron prompts. Intentá otra búsqueda.</div> :
+filtered.map((pr, i) => (
+<Panel key={i} accent={pr.phaseColor}>
+<div style={{ display: “flex”, justifyContent: “space-between”, alignItems: “flex-start”, marginBottom: 10 }}>
+<div>
+<Chip color={pr.phaseColor}>Fase {pr.phaseN} · {pr.phaseName}</Chip>
+<div style={{ fontSize: 15, fontWeight: 700, color: T.ink, marginTop: 6, fontFamily: F.body }}>{pr.title}</div>
+</div>
+<CopyBtn text={pr.text} />
+</div>
+<div style={{ background: “#0f0f0e”, borderRadius: 8, padding: “12px 14px” }}>
+<pre style={{ margin: 0, fontSize: 11, lineHeight: 1.8, color: “#b8e8a8”, whiteSpace: “pre-wrap”, wordBreak: “break-word”, fontFamily: F.mono }}>{pr.text}</pre>
+</div>
+<div style={{ marginTop: 8, fontSize: 11, color: T.muted, fontStyle: “italic”, fontFamily: F.body }}>
+→ Reemplazá todos los [CORCHETES] antes de usar.
+</div>
+</Panel>
+))}
+</div>
+);
+}
+
+/* ─────────────────────────────────────────────────────
+SECTION: MÉTRICAS + CALCULADORA
+───────────────────────────────────────────────────── */
+function MetricasSection() {
+const [audience, setAudience] = useState(300);
+const [price, setPrice] = useState(97);
+const [convRate, setConvRate] = useState(2);
+const [bumpRate, setBumpRate] = useState(25);
+const [bumpPrice, setBumpPrice] = useState(27);
+const [upsellRate, setUpsellRate] = useState(15);
+const [upsellPrice, setUpsellPrice] = useState(197);
+
+const coreVentas = Math.round(audience * convRate / 100);
+const coreIngresos = coreVentas * price;
+const bumpIngresos = Math.round(coreVentas * bumpRate / 100) * bumpPrice;
+const upsellIngresos = Math.round(coreVentas * upsellRate / 100) * upsellPrice;
+const total = coreIngresos + bumpIngresos + upsellIngresos;
+const neto = Math.round(total * 0.9);
+
+const metricGroups = […new Set(METRICS_DATA.map(m => m.phase))];
+
+return (
+<div>
+<SectionTitle chip=“Calculadora + 15 KPIs” h2={<>Dashboard de<br /><span style={{ color: T.gold }}>Métricas y Proyección</span></>} sub=“Calculá el potencial de tu lanzamiento y monitoreá los KPIs que determinan si tu sistema funciona.” />
+{/* Calculator */}
+<Panel style={{ background: T.goldBg, border: `1px solid ${T.gold}40`, marginBottom: 20 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.goldDark, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 14 }}>🧮 CALCULADORA DE LANZAMIENTO</div>
+{[
+{ label: “Audiencia (seguidores/suscriptores)”, val: audience, set: setAudience, min: 50, max: 10000, step: 50 },
+{ label: `Precio del producto ($${price} USD)`, val: price, set: setPrice, min: 27, max: 997, step: 10 },
+{ label: `Tasa de conversión (${convRate}%)`, val: convRate, set: setConvRate, min: 0.5, max: 10, step: 0.5 },
+{ label: `Order bump: $${bumpPrice} · tasa ${bumpRate}%`, val: bumpRate, set: setBumpRate, min: 0, max: 60, step: 5 },
+{ label: `Upsell: $${upsellPrice} · tasa ${upsellRate}%`, val: upsellRate, set: setUpsellRate, min: 0, max: 40, step: 5 },
+].map((s, i) => (
+<div key={i} style={{ marginBottom: 12 }}>
+<div style={{ fontSize: 11, color: T.goldDark, fontFamily: F.body, marginBottom: 4 }}>{s.label}</div>
+<input type=“range” min={s.min} max={s.max} step={s.step} value={s.val} onChange={e => s.set(Number(e.target.value))} style={{ width: “100%”, accentColor: T.gold }} />
+</div>
+))}
+<Divider />
+<div style={{ display: “grid”, gridTemplateColumns: “1fr 1fr”, gap: 8 }}>
+{[
+{ label: “Core product”, value: `$${coreIngresos.toLocaleString()}`, sub: `${coreVentas} ventas` },
+{ label: “Order bump”, value: `$${bumpIngresos.toLocaleString()}`, sub: `${Math.round(coreVentas * bumpRate / 100)} compras` },
+{ label: “Upsell”, value: `$${upsellIngresos.toLocaleString()}`, sub: `${Math.round(coreVentas * upsellRate / 100)} compras` },
+{ label: “NETO EST. (−10% fees)”, value: `$${neto.toLocaleString()}`, sub: “USD”, color: T.gold },
+].map((r, i) => (
+<div key={i} style={{ background: T.surface, borderRadius: 8, padding: “10px 12px”, border: `1px solid ${T.border}` }}>
+<div style={{ fontSize: 10, color: T.muted, fontFamily: F.body }}>{r.label}</div>
+<div style={{ fontSize: 20, fontWeight: 900, color: r.color || T.ink, fontFamily: F.body, lineHeight: 1.1 }}>{r.value}</div>
+{r.sub && <div style={{ fontSize: 10, color: T.muted, fontFamily: F.body }}>{r.sub}</div>}
+</div>
+))}
+</div>
+</Panel>
+{/* Metrics */}
+{metricGroups.map(group => (
+<div key={group} style={{ marginBottom: 16 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.muted, letterSpacing: “1.2px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 8, paddingLeft: 4 }}>{group}</div>
+{METRICS_DATA.filter(m => m.phase === group).map((m, i) => (
+<Panel key={i} style={{ padding: “14px 16px”, marginBottom: 8 }}>
+<div style={{ fontSize: 13, fontWeight: 700, color: T.ink, marginBottom: 8, fontFamily: F.body }}>{m.metric}</div>
+<div style={{ display: “flex”, gap: 8, flexWrap: “wrap”, marginBottom: 8 }}>
+<Chip color={T.green}>✓ Meta: {m.target}</Chip>
+<Chip color={T.red}>⚠ Alerta: {m.alert}</Chip>
+</div>
+<div style={{ display: “flex”, gap: 8 }}>
+<div style={{ width: 8, height: 8, borderRadius: “50%”, background: T.gold, flexShrink: 0, marginTop: 5 }} />
+<span style={{ fontSize: 12, color: T.muted, lineHeight: 1.6, fontFamily: F.body }}><strong style={{ color: T.ink }}>Acción si está en alerta: </strong>{m.action}</span>
+</div>
+</Panel>
+))}
+</div>
+))}
+</div>
+);
+}
+
+/* ─────────────────────────────────────────────────────
+SECTION: PRECIOS
+───────────────────────────────────────────────────── */
+function PreciosSection() {
+const [selected, setSelected] = useState(“growth”);
+const [showSell, setShowSell] = useState(false);
+const tier = PRICING.find(p => p.id === selected);
+
+return (
+<div>
+<SectionTitle chip=“3 Opciones · Análisis de Mercado 2026” h2={<>Cómo Empaquetar<br /><span style={{ color: T.gold }}>y Cuánto Cobrar</span></>} sub={<>Los precios del mercado en 2026 para formación con IA en LATAM oscilan entre $47 y $2,000+. <strong>El sweet spot para este sistema es $97–$697</strong>, dependiendo del nivel de acompañamiento.</>} />
+{/* Market data box */}
+<Panel style={{ background: T.surfaceAlt, marginBottom: 20 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 12 }}>CONTEXTO DE MERCADO · ABRIL 2026</div>
+{[
+{ label: “Cursos IA genérica (Udemy/Hotmart)”, range: “$12–$97”, notes: “Alta competencia, bajo valor percibido” },
+{ label: “Cursos IA para marketing digital”, range: “$97–$297”, notes: “Mercado activo, diferenciación posible” },
+{ label: “Programas high-ticket con mentoría”, range: “$497–$2,000+”, notes: “Baja competencia, alto valor percibido” },
+{ label: “Claude + Infoproductos (español)”, range: “Sin competencia directa”, notes: “Oportunidad única — sos el primero” },
+].map((r, i) => (
+<div key={i} style={{ display: “flex”, justifyContent: “space-between”, alignItems: “flex-start”, padding: “8px 0”, borderBottom: i < 3 ? `1px solid ${T.border}` : “none” }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 600, color: T.ink, fontFamily: F.body }}>{r.label}</div>
+<div style={{ fontSize: 11, color: T.muted, fontFamily: F.body }}>{r.notes}</div>
+</div>
+<Chip color={i === 3 ? T.green : T.gold}>{r.range}</Chip>
+</div>
+))}
+</Panel>
+{/* Tier selector */}
+<div style={{ display: “flex”, flexDirection: “column”, gap: 10, marginBottom: 20 }}>
+{PRICING.map(p => (
+<div key={p.id} onClick={() => { setSelected(p.id); setShowSell(false); }} style={{ background: selected === p.id ? p.bg : T.surface, border: `2px solid ${selected === p.id ? p.color : T.border}`, borderRadius: 12, padding: “16px 18px”, cursor: “pointer”, transition: “all .15s” }}>
+<div style={{ display: “flex”, justifyContent: “space-between”, alignItems: “flex-start” }}>
+<div>
+<Chip color={p.badgeColor}>{p.badge}</Chip>
+<div style={{ fontSize: 18, fontWeight: 800, color: T.ink, marginTop: 6, fontFamily: F.body }}>{p.name}</div>
+<div style={{ fontSize: 12, color: T.muted, marginTop: 2, fontFamily: F.body }}>{p.tagline}</div>
+</div>
+<div style={{ fontSize: 30, fontWeight: 900, color: selected === p.id ? p.color : T.ink, fontFamily: F.body, lineHeight: 1 }}>{p.price}</div>
+</div>
+</div>
+))}
+</div>
+{/* Selected tier detail */}
+<Panel accent={tier.color} style={{ marginBottom: 12 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: tier.color, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 12 }}>PARA QUIÉN ES</div>
+<p style={{ margin: “0 0 14px”, fontSize: 13, lineHeight: 1.7, color: T.muted, fontFamily: F.body }}>{tier.forWho}</p>
+<Divider />
+<div style={{ fontSize: 11, fontWeight: 800, color: tier.color, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 10 }}>QUÉ INCLUYE</div>
+{tier.includes.map((item, i) => (
+<div key={i} style={{ display: “flex”, gap: 8, marginBottom: 6 }}>
+<span style={{ color: tier.color, flexShrink: 0 }}>✓</span>
+<span style={{ fontSize: 13, color: T.ink, fontFamily: F.body, lineHeight: 1.5 }}>{item}</span>
+</div>
+))}
+{tier.notIncludes.length > 0 && <>
+<Divider />
+{tier.notIncludes.map((item, i) => (
+<div key={i} style={{ display: “flex”, gap: 8, marginBottom: 6 }}>
+<span style={{ color: T.faint, flexShrink: 0 }}>—</span>
+<span style={{ fontSize: 12, color: T.faint, fontFamily: F.body }}>{item}</span>
+</div>
+))}
+</>}
+<Divider />
+<div style={{ fontSize: 11, fontWeight: 800, color: tier.color, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 6 }}>PROYECCIÓN DE INGRESOS</div>
+<div style={{ fontSize: 13, color: T.ink, fontFamily: F.body, background: tier.bg, padding: “10px 12px”, borderRadius: 8 }}>{tier.projection}</div>
+</Panel>
+{/* How to sell */}
+<button onClick={() => setShowSell(!showSell)} style={{ width: “100%”, padding: 14, background: tier.color, color: “#fff”, border: “none”, borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: “pointer”, fontFamily: F.body, marginBottom: showSell ? 0 : 16 }}>
+{showSell ? “▲ Ocultar estrategia de venta” : `▼ Cómo vender el ${tier.name}`}
+</button>
+{showSell && (
+<Panel style={{ borderTopLeftRadius: 0, borderTopRightRadius: 0, borderTop: “none”, marginBottom: 16, borderColor: tier.color }}>
+{[
+{ label: “Estrategia”, value: tier.howToSell.strategy },
+{ label: “Canal y flujo”, value: tier.howToSell.channels },
+{ label: “Mejor para”, value: tier.howToSell.bestFor },
+{ label: “Urgencia / Escasez”, value: tier.howToSell.urgency },
+{ label: “Publicidad”, value: tier.howToSell.ads },
+].map((r, i) => (
+<div key={i} style={{ marginBottom: 12 }}>
+<div style={{ fontSize: 10, fontWeight: 800, color: tier.color, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body }}>{r.label}</div>
+<div style={{ fontSize: 13, color: T.muted, fontFamily: F.body, lineHeight: 1.6, marginTop: 3 }}>{r.value}</div>
+</div>
+))}
+<Divider />
+<div style={{ fontSize: 10, fontWeight: 800, color: tier.color, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 6 }}>SCRIPT DE PRIMER MENSAJE</div>
+<div style={{ background: T.surfaceAlt, borderRadius: 8, padding: “12px 14px”, fontSize: 13, color: T.ink, fontFamily: F.body, lineHeight: 1.7, fontStyle: “italic”, border: `1px solid ${T.border}` }}>
+{tier.howToSell.script}
+</div>
+<div style={{ marginTop: 8, display: “flex”, justifyContent: “flex-end” }}><CopyBtn text={tier.howToSell.script} /></div>
+</Panel>
+)}
+{/* Comparison table */}
+<Panel style={{ marginTop: 8 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 12 }}>COMPARACIÓN RÁPIDA</div>
+<div style={{ display: “grid”, gridTemplateColumns: “2fr 1fr 1fr 1fr”, gap: 0 }}>
+{[””, “Starter”, “Pro”, “Elite”].map((h, i) => (
+<div key={i} style={{ padding: “8px 6px”, textAlign: “center”, background: i === 0 ? “transparent” : T.surfaceAlt, borderRadius: i === 1 ? “8px 0 0 0” : i === 3 ? “0 8px 0 0” : 0, fontSize: 11, fontWeight: 800, color: i === 0 ? T.muted : [T.gold, T.green, T.purple][i - 1], fontFamily: F.body }}>
+{h === “” ? “” : h}
+{h !== “” && <div style={{ fontSize: 13, fontWeight: 900, color: [T.gold, T.green, T.purple][i - 1] }}>{[”$97”, “$297”, “$697”][i - 1]}</div>}
+</div>
+))}
+{[
+[“12 Fases completas”, true, true, true],
+[“36+ Prompts”, true, true, true],
+[“Comunidad privada”, false, true, true],
+[“Sesiones grupales”, false, “2/mes”, “2/mes”],
+[“Sesiones 1:1”, false, false, “2/mes”],
+[“Soporte email”, false, “48hs”, “24hs”],
+[“WhatsApp directo”, false, false, true],
+[“Revisión de funnel”, false, “1 vez”, “Incluida”],
+].map((row, ri) => row.map((cell, ci) => (
+<div key={`${ri}-${ci}`} style={{ padding: “8px 6px”, textAlign: ci === 0 ? “left” : “center”, borderTop: `1px solid ${T.border}`, fontSize: ci === 0 ? 12 : 13, color: ci === 0 ? T.muted : cell === true ? T.green : cell === false ? T.faint : T.ink, fontWeight: ci > 0 && cell !== false && cell !== true ? 600 : 400, fontFamily: F.body }}>
+{cell === true ? “✓” : cell === false ? “—” : cell}
+</div>
+)))}
+</div>
+</Panel>
+</div>
+);
+}
+
+/* ─────────────────────────────────────────────────────
+SECTION: FREE KIT
+───────────────────────────────────────────────────── */
+function GratisSection() {
+const [activeTab, setActiveTab] = useState(“prompts”);
+const [checked, setChecked] = useState({});
+const [expanded, setExpanded] = useState(null);
+
+const toggle = id => setChecked(prev => ({ …prev, [id]: !prev[id] }));
+const doneCount = Object.values(checked).filter(Boolean).length;
+const pct = Math.round((doneCount / CHECKLIST_ITEMS.length) * 100);
+
+return (
+<div>
+<SectionTitle chip=“Acceso Gratuito · Sin Registro” h2={<>Kit de Inicio<br /><span style={{ color: T.gold }}>Persaltum</span></>} sub=“Tres herramientas gratuitas para que cualquier persona pueda dar sus primeros pasos antes de decidir si invertir en el sistema completo.” />
+<Panel style={{ background: T.goldBg, border: `1px solid ${T.gold}40`, marginBottom: 16 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.goldDark, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 6 }}>¿Para qué sirve este kit?</div>
+<p style={{ margin: 0, fontSize: 13, color: T.goldDark, lineHeight: 1.7, fontFamily: F.body }}>
+Este kit te da las herramientas básicas para validar que este sistema funciona <em>antes</em> de invertir en el acceso completo. Si aplicás los 10 prompts y el checklist, tendrás resultados concretos en 30 días.
+</p>
+</Panel>
+{/* Subtabs */}
+<div style={{ display: “grid”, gridTemplateColumns: “1fr 1fr 1fr”, gap: 8, marginBottom: 16 }}>
+{[{ id: “prompts”, label: “10 Prompts”, icon: “📋” }, { id: “checklist”, label: “Checklist 30d”, icon: “✅” }, { id: “brandbrief”, label: “Brand Brief”, icon: “🎯” }].map(t => (
+<button key={t.id} onClick={() => setActiveTab(t.id)} style={{ background: activeTab === t.id ? T.gold : T.surface, color: activeTab === t.id ? “#fff” : T.muted, border: `1.5px solid ${activeTab === t.id ? T.gold : T.border}`, borderRadius: 10, padding: “10px 6px”, cursor: “pointer”, fontSize: 11, fontWeight: 700, fontFamily: F.body, transition: “all .15s” }}>
+<div style={{ fontSize: 18, marginBottom: 2 }}>{t.icon}</div>
+{t.label}
+</button>
+))}
+</div>
+{activeTab === “prompts” && (
+<div>
+<p style={{ fontSize: 13, color: T.muted, marginBottom: 16, fontFamily: F.body, lineHeight: 1.7 }}>Los 10 prompts más importantes para cualquier infoproductor que está empezando. Copiá, completá los corchetes y usá directamente en Claude.</p>
+{FREE_PROMPTS.map((pr, i) => (
+<div key={i} style={{ marginBottom: 8 }}>
+<div onClick={() => setExpanded(expanded === i ? null : i)} style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: expanded === i ? “10px 10px 0 0” : 10, padding: “12px 14px”, cursor: “pointer”, display: “flex”, justifyContent: “space-between”, alignItems: “center” }}>
+<div>
+<span style={{ fontSize: 10, fontWeight: 800, color: T.gold, fontFamily: F.body, marginRight: 8 }}>{pr.n}</span>
+<span style={{ fontSize: 14, fontWeight: 600, color: T.ink, fontFamily: F.body }}>{pr.title}</span>
+</div>
+<span style={{ color: T.gold, fontSize: 18, transform: expanded === i ? “rotate(90deg)” : “none”, transition: “transform .2s” }}>›</span>
+</div>
+{expanded === i && (
+<div style={{ background: “#0f0f0e”, borderRadius: “0 0 10px 10px”, padding: “12px 14px”, border: `1px solid ${T.border}`, borderTop: “none” }}>
+<div style={{ display: “flex”, justifyContent: “flex-end”, marginBottom: 8 }}><CopyBtn text={pr.text} /></div>
+<pre style={{ margin: 0, fontSize: 11, lineHeight: 1.8, color: “#b8e8a8”, whiteSpace: “pre-wrap”, wordBreak: “break-word”, fontFamily: F.mono }}>{pr.text}</pre>
+</div>
+)}
+</div>
+))}
+</div>
+)}
+{activeTab === “checklist” && (
+<div>
+<Panel style={{ background: T.surfaceAlt, marginBottom: 16 }}>
+<div style={{ display: “flex”, justifyContent: “space-between”, alignItems: “center”, marginBottom: 8 }}>
+<div style={{ fontSize: 13, fontWeight: 700, color: T.ink, fontFamily: F.body }}>{doneCount}/{CHECKLIST_ITEMS.length} tareas completadas</div>
+<Chip color={T.gold}>{pct}%</Chip>
+</div>
+<div style={{ background: T.border, borderRadius: 6, height: 8 }}>
+<div style={{ background: `linear-gradient(90deg, ${T.gold}, ${T.goldDark})`, borderRadius: 6, height: 8, width: `${pct}%`, transition: “width .3s” }} />
+</div>
+</Panel>
+{[1, 2, 3, 4].map(week => (
+<div key={week} style={{ marginBottom: 16 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: “1.2px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 8 }}>SEMANA {week}</div>
+{CHECKLIST_ITEMS.filter(c => c.week === week).map((c, i) => {
+const id = `${week}-${i}`;
+return (
+<div key={id} onClick={() => toggle(id)} style={{ display: “flex”, gap: 12, padding: “12px 14px”, background: checked[id] ? T.greenBg : T.surface, border: `1px solid ${checked[id] ? T.green + "40" : T.border}`, borderRadius: 10, marginBottom: 6, cursor: “pointer”, transition: “all .15s” }}>
+<div style={{ width: 22, height: 22, borderRadius: 6, background: checked[id] ? T.green : T.surfaceAlt, border: `2px solid ${checked[id] ? T.green : T.borderStrong}`, display: “flex”, alignItems: “center”, justifyContent: “center”, fontSize: 12, color: “#fff”, flexShrink: 0 }}>
+{checked[id] ? “✓” : “”}
+</div>
+<div>
+<div style={{ fontSize: 10, color: checked[id] ? T.green : T.gold, fontWeight: 800, fontFamily: F.body, marginBottom: 2 }}>{c.day}</div>
+<div style={{ fontSize: 13, color: checked[id] ? T.green : T.ink, fontFamily: F.body, lineHeight: 1.5, textDecoration: checked[id] ? “line-through” : “none” }}>{c.task}</div>
+</div>
+</div>
+);
+})}
+</div>
+))}
+</div>
+)}
+{activeTab === “brandbrief” && (
+<div>
+<p style={{ fontSize: 13, color: T.muted, marginBottom: 14, fontFamily: F.body, lineHeight: 1.7 }}>Completá este Brand Brief y guardalo. Es lo primero que pegás en Claude antes de cualquier sesión de trabajo importante. Define todo tu negocio en menos de 300 palabras.</p>
+{[
+{ section: “Identidad”, fields: [”¿Quién soy? (nombre, profesión de origen, años de experiencia)”, “¿Qué enseño/vendo exactamente? (una oración)”, “Mi historia de transformación (2–3 oraciones: antes → momento clave → ahora)”, “¿Por qué soy la persona indicada para enseñar esto?”] },
+{ section: “Cliente Ideal”, fields: [“Nombre ficticio y edad:”, “Profesión o situación:”, “Mayor frustración con respecto a mi tema:”, “Lo que intenta antes de encontrarme:”, “El resultado específico que busca:”, “Dónde pasa el tiempo online:”] },
+{ section: “Voz y Tono”, fields: [“3 adjetivos que describen cómo comunicás:”, “3 palabras o frases que usás siempre:”, “3 palabras o frases que nunca usás:”, “Tu referente de comunicación (alguien cuyo estilo admirás):”] },
+{ section: “Productos y Precios”, fields: [“Lead magnet (gratis):”, “Producto de entrada ($): nombre + precio”, “Producto core ($): nombre + precio”, “Upsell ($): nombre + precio”] },
+].map((s, i) => (
+<div key={i} style={{ marginBottom: 14 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 8 }}>{s.section}</div>
+{s.fields.map((f, j) => (
+<div key={j} style={{ marginBottom: 8 }}>
+<div style={{ fontSize: 11, color: T.muted, fontFamily: F.body, marginBottom: 4 }}>{f}</div>
+<div style={{ width: “100%”, minHeight: 32, background: T.surface, border: `1px solid ${T.border}`, borderRadius: 6, padding: “6px 10px”, fontSize: 12, color: T.faint, fontFamily: F.body, fontStyle: “italic” }}>
+Tu respuesta aquí…
+</div>
+</div>
+))}
+</div>
+))}
+<Panel style={{ background: T.goldBg, border: `1px solid ${T.gold}40` }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.goldDark, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 8 }}>PROMPT: GENERAR TU BRAND BRIEF FINAL</div>
+<div style={{ background: “#0f0f0e”, borderRadius: 8, padding: “12px 14px” }}>
+<CopyBtn text={`Tomá esta información sobre mí y construime un Brand Brief profesional, conciso y poderoso, listo para pegar al inicio de cualquier prompt de marketing:\n\n[PEGÁ AQUÍ TUS RESPUESTAS DEL FORMULARIO]\n\nEl Brand Brief debe:\n- Tener máximo 300 palabras\n- Incluir: quién soy, a quién ayudo, qué resultado logran, mi tono y voz, mis productos con precios\n- Estar redactado en primera persona\n- Ser lo suficientemente específico para que Claude produzca contenido que suene exactamente como yo sin necesitar más contexto\n- Terminar con una lista de 5 palabras que no debo usar nunca y 5 que debo usar siempre`} />
+<pre style={{ margin: “8px 0 0”, fontSize: 11, lineHeight: 1.8, color: “#b8e8a8”, whiteSpace: “pre-wrap”, wordBreak: “break-word”, fontFamily: F.mono }}>
+{`Tomá esta información sobre mí y construime un Brand Brief profesional...\n[PEGÁ TUS RESPUESTAS DEL FORMULARIO ARRIBA]`}
+</pre>
+</div>
+</Panel>
+</div>
+)}
+</div>
+);
+}
+
+/* ─────────────────────────────────────────────────────
+SECTION: MAPA / ROADMAP
+───────────────────────────────────────────────────── */
+function MapaSection() {
+const [profile, setProfile] = useState(0);
+const profiles = [
+{
+icon: “🌱”, label: “Desde Cero”, color: T.blue, bg: T.blueBg,
+situation: “Sin producto, sin audiencia, sin lista de emails.”,
+goal: “$500–$1.500 en los primeros 30 días”,
+phases: [“Fase 1”, “Fase 2”, “Fase 3”],
+warning: “No intentés construir el funnel perfecto antes de vender. Vendé primero con lo mínimo viable.”,
+steps: [
+{ week: “Semana 1”, title: “Definición y validación”, tasks: [“Elegí UN tema en el que tenés expertise real o experiencia probada (Fase 1)”, “Definí tu cliente ideal con el Prompt de Validación”, “Creá el lead magnet en Claude en 48hs (Fase 2 · Prompt 1)”, “Abrí landing de captura en MailerLite (gratis hasta 500 suscriptores)”] },
+{ week: “Semana 2”, title: “Captación inicial”, tasks: [“Publicá 3 posts sobre el problema de tu cliente (sin vender)”, “Configurá la secuencia de 5 emails de bienvenida”, “DM personal a 20 personas que ya te conocen: ‘Tengo algo para vos’”] },
+{ week: “Semana 3”, title: “Construcción del producto”, tasks: [“Estructurá el índice del curso/producto con Claude (Fase 1 · Prompt 3)”, “Escribí la landing de ventas (Fase 3 · Prompt 1)”, “Configurá Hotmart con precio + order bump”] },
+{ week: “Semana 4”, title: “Lanzamiento Relámpago”, tasks: [“Ejecutá el Lanzamiento Relámpago de 5 días (Fase 4 · Prompt 1)”, “Respondé cada DM y WhatsApp manualmente”, “Meta: 5–15 ventas en la primera semana de carrito abierto”] },
+],
+},
+{
+icon: “⚙️”, label: “Tengo Producto, No Vendo”, color: T.gold, bg: T.goldBg,
+situation: “Producto creado. Menos de 10 ventas. No entiendo qué falla.”,
+goal: “Identificar el cuello de botella y hacer las primeras 20 ventas”,
+phases: [“Fase 1”, “Fase 2”, “Fase 3”, “Fase 4”],
+warning: “Antes de cambiar el producto, diagnosticá el funnel. El 80% de los problemas están en la captación o en el copy, no en el producto.”,
+steps: [
+{ week: “Paso 1”, title: “Diagnóstico brutal”, tasks: [“Hacé el diagnóstico con el Prompt de Business Intelligence (Fase 10)”, “Identificá si el problema es captación (¿tenés leads?) o conversión (¿los leads no compran?)”, “Revisá el copy de tu landing con el Prompt de Propuesta de Valor”] },
+{ week: “Paso 2”, title: “Corrección de la pieza rota”, tasks: [“Si no tenés lead magnet: crealo esta semana con los prompts de Fase 2”, “Si tenés lead magnet pero no leads: revisá el copy del anuncio/post de captación”, “Si tenés leads pero no ventas: reescribí el headline de la landing (Fase 3 · Prompt 1)”] },
+{ week: “Paso 3”, title: “Lanzamiento mini”, tasks: [“Hacé un mini-lanzamiento de 5 días a tu audiencia actual (Fase 4)”, “DM personal a quien mostró interés pero no compró: ‘¿Qué te frenó?’”, “Ajustá precio o propuesta según el feedback recibido”] },
+{ week: “Paso 4”, title: “Optimización post-venta”, tasks: [“Activá order bump y upsell (Fase 3 · Prompt 3)”, “Configurá la secuencia de emails de bienvenida para compradores”, “Pedí testimonio a los primeros compradores en el día 7”] },
+],
+},
+{
+icon: “📈”, label: “Vendo Pero No Escala”, color: T.green, bg: T.greenBg,
+situation: “$500–$2.000/mes. Ingresos esporádicos, no predecibles.”,
+goal: “$2.000–$5.000/mes recurrentes en 60 días”,
+phases: [“Fase 5”, “Fase 6”, “Fase 7”, “Fase 8”],
+warning: “El problema no es el producto. Es que dependés de lanzamientos manuales. Necesitás un funnel que trabaje mientras no estás.”,
+steps: [
+{ week: “Semana 1–2”, title: “Funnel evergreen”, tasks: [“Configurá el funnel evergreen completo: Lead Magnet → Secuencia email → Venta (Fase 4)”, “Empezá Meta Ads a $5/día al lead magnet (Fase 5 · Prompt 1 y 2)”, “Activá order bump si no está activo (+25% al ticket promedio)”] },
+{ week: “Semana 3–4”, title: “Escala de valor”, tasks: [“Lanzá la membresía/comunidad recurrente (Fase 6 · Prompt 1)”, “Reclutá los primeros 5 afiliados en tu nicho (Fase 6 · Prompt 2)”, “Diseñá la oferta high-ticket para el próximo trimestre (Fase 6 · Prompt 3)”] },
+{ week: “Mes 2”, title: “Automatización y optimización”, tasks: [“Creá tu agente de IA para atención al cliente (Fase 7 · Prompt 1)”, “Construí tu Claude Project con toda la información del negocio”, “Semana 1 de implementación de Business Intelligence (Fase 10)”] },
+{ week: “Mes 3”, title: “Posicionamiento”, tasks: [“Estrategia de Thought Leadership 90 días (Fase 8 · Prompt 1)”, “Primera colaboración con un creador complementario”, “Meta: 40% de los ingresos ya recurrente (membresía + evergreen)”] },
+],
+},
+{
+icon: “🏆”, label: “Escala Consolidada”, color: T.purple, bg: T.purpleBg,
+situation: “$3.000+/mes. Funnel activo, primeros 100 clientes.”,
+goal: “$8.000–$15.000/mes en 90 días”,
+phases: [“Fase 9”, “Fase 10”, “Fase 11”, “Fase 12”],
+warning: “El siguiente cuello de botella es tu tiempo. Automatizá antes de escalar. Escalar sin automatización solo te quema.”,
+steps: [
+{ week: “Mes 1”, title: “Comunidad y ecosistema”, tasks: [“Lanzá la comunidad formal con onboarding estructurado (Fase 9 · Prompt 1)”, “Creá el primer evento virtual para triplicar la lista (Fase 9 · Prompt 2)”, “Identificá y activá a tus primeros 5 embajadores naturales (Fase 9 · Prompt 3)”] },
+{ week: “Mes 2”, title: “Escala de ads y datos”, tasks: [“Escalá budget de ads de $10 a $50/día (incrementos semanales del 20%)”, “Implementá el dashboard completo de Business Intelligence (Fase 10 · Prompt 1)”, “Primer A/B test sistemático en landing y emails (Fase 10 · Prompt 2)”] },
+{ week: “Mes 3”, title: “Expansión LATAM”, tasks: [“Elegí UN país objetivo para expansión (México / Colombia / Chile recomendados)”, “Adaptá el copy de ventas para ese mercado (Fase 11 · Prompt 2)”, “Primera colaboración con un creador local del país objetivo”] },
+{ week: “Mes 4+”, title: “Activos y legado”, tasks: [“Diseñá el programa de certificación para escalar el método (Fase 12 · Prompt 1)”, “Valoración del negocio y estrategia de salida o reinversión (Fase 12 · Prompt 2)”, “Meta: 50% ingresos recurrentes, negocio funciona en 20hs/semana”] },
+],
+},
+];
+const p = profiles[profile];
+
+return (
+<div>
+<SectionTitle chip=“4 Perfiles · Plan Personalizado” h2={<>Tu Hoja de Ruta<br /><span style={{ color: T.gold }}>Paso a Paso</span></>} sub=“Identificá en qué etapa estás y seguí el plan desde ahí. No desde el principio. Desde tu punto de partida real.” />
+<div style={{ display: “grid”, gridTemplateColumns: “1fr 1fr”, gap: 8, marginBottom: 20 }}>
+{profiles.map((pr, i) => (
+<button key={i} onClick={() => setProfile(i)} style={{ background: profile === i ? pr.bg : T.surface, border: `2px solid ${profile === i ? pr.color : T.border}`, borderRadius: 12, padding: “12px”, cursor: “pointer”, textAlign: “center”, transition: “all .15s” }}>
+<div style={{ fontSize: 22, marginBottom: 4 }}>{pr.icon}</div>
+<div style={{ fontSize: 11, fontWeight: 800, color: profile === i ? pr.color : T.muted, fontFamily: F.body, lineHeight: 1.3 }}>{pr.label}</div>
+</button>
+))}
+</div>
+{/* Profile header */}
+<Panel style={{ background: p.bg, border: `1px solid ${p.color}30`, marginBottom: 16 }}>
+<div style={{ display: “flex”, justifyContent: “space-between”, alignItems: “flex-start”, marginBottom: 10 }}>
+<div>
+<div style={{ fontSize: 24 }}>{p.icon}</div>
+<div style={{ fontSize: 18, fontWeight: 800, color: T.ink, fontFamily: F.body, marginTop: 4 }}>{p.label}</div>
+<div style={{ fontSize: 12, color: T.muted, fontFamily: F.body }}>{p.situation}</div>
+</div>
+<Chip color={p.color}>{p.goal}</Chip>
+</div>
+<div style={{ background: `${p.color}15`, border: `1px solid ${p.color}30`, borderRadius: 8, padding: “10px 12px” }}>
+<div style={{ fontSize: 10, fontWeight: 800, color: p.color, letterSpacing: “1px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 4 }}>⚠ TRAMPA A EVITAR</div>
+<p style={{ margin: 0, fontSize: 12, color: T.ink, lineHeight: 1.6, fontFamily: F.body }}>{p.warning}</p>
+</div>
+</Panel>
+{/* Steps */}
+{p.steps.map((step, i) => (
+<Panel key={i} accent={p.color} style={{ marginBottom: 10 }}>
+<div style={{ display: “flex”, gap: 12, alignItems: “flex-start” }}>
+<div style={{ width: 32, height: 32, borderRadius: “50%”, background: `${p.color}20`, border: `2px solid ${p.color}`, display: “flex”, alignItems: “center”, justifyContent: “center”, fontSize: 13, fontWeight: 900, color: p.color, flexShrink: 0, fontFamily: F.body }}>{i + 1}</div>
+<div style={{ flex: 1 }}>
+<div style={{ fontSize: 10, color: p.color, fontWeight: 800, letterSpacing: “1px”, fontFamily: F.body }}>{step.week.toUpperCase()}</div>
+<div style={{ fontSize: 15, fontWeight: 700, color: T.ink, fontFamily: F.body, marginBottom: 8 }}>{step.title}</div>
+{step.tasks.map((t, j) => (
+<div key={j} style={{ display: “flex”, gap: 8, marginBottom: 6 }}>
+<span style={{ color: p.color, flexShrink: 0, fontSize: 12 }}>→</span>
+<span style={{ fontSize: 12, color: T.muted, lineHeight: 1.6, fontFamily: F.body }}>{t}</span>
+</div>
+))}
+</div>
+</div>
+</Panel>
+))}
+<Panel style={{ background: T.dark, border: “none”, marginTop: 12 }}>
+<div style={{ fontSize: 11, fontWeight: 800, color: T.gold, letterSpacing: “1.2px”, textTransform: “uppercase”, fontFamily: F.body, marginBottom: 10 }}>EL PRINCIPIO QUE LO UNIFICA TODO</div>
+<p style={{ margin: “0 0 14px”, color: “#ccc”, fontSize: 14, lineHeight: 1.9, fontStyle: “italic”, fontFamily: F.display }}>“Un sistema de ventas no es lo que hacés cuando querés vender. Es lo que construís para que las ventas ocurran sin que tengas que iniciar cada una manualmente.”</p>
+<Divider />
+<div style={{ display: “grid”, gridTemplateColumns: “1fr 1fr”, gap: 8 }}>
+{[[“Captación constante”, “Leads que entran solos”], [“Conversión probada”, “Páginas y scripts que cierran”], [“Automatización activa”, “Emails que nutren sin vos”], [“LTV maximizado”, “Cada cliente vale más de una compra”]].map(([title, desc], i) => (
+<div key={i} style={{ background: “#1e1c18”, borderRadius: 8, padding: “10px 12px” }}>
+<div style={{ fontSize: 11, fontWeight: 700, color: T.gold, fontFamily: F.body }}>{title}</div>
+<div style={{ fontSize: 11, color: “#666”, marginTop: 2, fontFamily: F.body }}>{desc}</div>
+</div>
+))}
+</div>
+</Panel>
+</div>
+);
+}
+
+/* ─────────────────────────────────────────────────────
+MAIN APP
+───────────────────────────────────────────────────── */
+const TABS = [
+{ id: “sistema”, icon: “⚙️”, label: “Sistema” },
+{ id: “prompts”, icon: “📋”, label: “Prompts” },
+{ id: “datos”, icon: “📊”, label: “Datos” },
+{ id: “precios”, icon: “💰”, label: “Precios” },
+{ id: “gratis”, icon: “🎁”, label: “Gratis” },
+{ id: “mapa”, icon: “🗺️”, label: “Mapa” },
+];
+
+export default function PersaltumSistema() {
+const [tab, setTab] = useState(“sistema”);
+
+const sections = { sistema: <SistemaSection />, prompts: <PromptsSection />, datos: <MetricasSection />, precios: <PreciosSection />, gratis: <GratisSection />, mapa: <MapaSection /> };
+
+return (
+<div style={{ fontFamily: F.body, background: T.bg, minHeight: “100vh”, color: T.ink }}>
+<style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap'); * { box-sizing: border-box; } ::-webkit-scrollbar { display: none; }`}</style>
+{/* HEADER */}
+<div style={{ background: T.dark, padding: “24px 20px 20px”, position: “relative”, overflow: “hidden” }}>
+<div style={{ position: “absolute”, top: -50, right: -50, width: 180, height: 180, background: `radial-gradient(circle, ${T.gold}18 0%, transparent 70%)`, borderRadius: “50%” }} />
+<div style={{ fontSize: 10, color: T.gold, letterSpacing: “2px”, textTransform: “uppercase”, fontWeight: 700, fontFamily: F.body, marginBottom: 8 }}>PERSALTUM · UNIVERSIDAD DIGITAL DEL INFOPRODUCTO</div>
+<h1 style={{ margin: “0 0 4px”, fontSize: 26, fontWeight: 900, color: “#fff”, lineHeight: 1.15, fontFamily: F.display }}>
+Sistema de Ventas<br /><span style={{ color: T.gold }}>Escalable</span>
+</h1>
+<p style={{ margin: “0 0 18px”, color: “#888”, fontSize: 12, fontFamily: F.body }}>12 Fases · 36+ Prompts · Calculadora · 3 Opciones de Precio · Kit Gratis</p>
+<div style={{ display: “grid”, gridTemplateColumns: “repeat(4, 1fr)”, background: “#1e1c18”, borderRadius: 10, overflow: “hidden”, border: “1px solid #333” }}>
+{[{ v: “12”, l: “Fases” }, { v: “36+”, l: “Prompts” }, { v: “$97–$697”, l: “Precio” }, { v: “∞”, l: “Nichos” }].map((s, i) => (
+<div key={i} style={{ padding: “12px 6px”, textAlign: “center”, borderRight: i < 3 ? “1px solid #333” : “none” }}>
+<div style={{ fontSize: i === 2 ? 14 : 22, fontWeight: 900, color: T.gold, fontFamily: F.body, lineHeight: 1 }}>{s.v}</div>
+<div style={{ fontSize: 10, color: “#888”, fontFamily: F.body, marginTop: 3 }}>{s.l}</div>
+</div>
+))}
+</div>
+</div>
+{/* TAB BAR */}
+<div style={{ display: “flex”, background: T.surface, borderBottom: `1px solid ${T.border}`, overflowX: “auto”, scrollbarWidth: “none” }}>
+{TABS.map(t => (
+<button key={t.id} onClick={() => setTab(t.id)} style={{ flex: “0 0 auto”, padding: “10px 14px”, background: “none”, border: “none”, borderBottom: tab === t.id ? `3px solid ${T.gold}` : “3px solid transparent”, color: tab === t.id ? T.gold : T.faint, cursor: “pointer”, fontFamily: F.body, fontSize: 11, fontWeight: tab === t.id ? 800 : 500, whiteSpace: “nowrap”, display: “flex”, flexDirection: “column”, alignItems: “center”, gap: 2, transition: “all .15s” }}>
+<span style={{ fontSize: 16 }}>{t.icon}</span>
+<span>{t.label}</span>
+</button>
+))}
+</div>
+{/* CONTENT */}
+<div style={{ padding: “20px 16px”, maxWidth: 720, margin: “0 auto” }}>
+{sections[tab]}
+<div style={{ height: 40 }} />
+</div>
+</div>
+);
+}
