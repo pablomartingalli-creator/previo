@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creá Tu Infoproducto en 6 Horas con Claude — Persaltum</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#F8F5EE;color:#141210;min-height:100vh}
+h1,h2,h3{font-family:Georgia,serif}
+button{font-family:inherit;cursor:pointer}
+pre{white-space:pre-wrap;word-break:break-word;font-family:'Courier New',monospace}
+input[type=range]{width:100%;accent-color:#C8952A}
+
+/* HEADER */
+#hdr{background:#141210;padding:24px 16px 20px;position:relative;overflow:hidden}
+#hdr::after{content:’’;position:absolute;top:-50px;right:-50px;width:180px;height:180px;background:radial-gradient(circle,rgba(200,149,42,.12) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.hdr-brand{font-size:9px;color:#C8952A;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:10px}
+#hdr h1{font-size:22px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:4px}
+#hdr h1 em{color:#C8952A;font-style:normal}
+#hdr p{color:#888;font-size:11px;margin-bottom:18px}
+.hdr-stats{display:grid;grid-template-columns:repeat(4,1fr);background:#1e1c18;border-radius:10px;overflow:hidden;border:1px solid #333}
+.hs{padding:10px 4px;text-align:center;border-right:1px solid #333}
+.hs:last-child{border-right:none}
+.hs-v{font-size:16px;font-weight:900;color:#C8952A;line-height:1}
+.hs-l{font-size:9px;color:#888;margin-top:3px}
+
+/* TABS */
+#tabs{display:flex;background:#fff;border-bottom:1px solid #E2DED6;overflow-x:auto}
+#tabs::-webkit-scrollbar{display:none}
+.tb{flex:0 0 auto;padding:10px 12px;background:none;border:none;border-bottom:3px solid transparent;color:#B2AFA9;font-size:10px;font-weight:500;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:2px}
+.tb.on{color:#C8952A;border-bottom-color:#C8952A;font-weight:800}
+.tb-ic{font-size:15px}
+
+/* CONTENT */
+#content{padding:18px 14px;max-width:720px;margin:0 auto}
+.sec{display:none}
+.sec.on{display:block}
+
+/* TYPOGRAPHY */
+.ey{display:inline-block;background:rgba(200,149,42,.1);color:#C8952A;border:1px solid rgba(200,149,42,.35);border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;margin-bottom:8px}
+.st{font-size:21px;font-weight:900;color:#141210;line-height:1.2;margin-bottom:6px}
+.st em{color:#C8952A;font-style:normal}
+.ss{font-size:13px;color:#6B6860;line-height:1.7;margin-bottom:18px}
+
+/* STAT ROW */
+.srow{display:grid;background:#F1EDE4;border-radius:12px;overflow:hidden;border:1px solid #E2DED6;margin-bottom:16px}
+.scl{padding:12px 6px;text-align:center;border-right:1px solid #E2DED6}
+.scl:last-child{border-right:none}
+.sv{font-size:20px;font-weight:900;color:#C8952A;line-height:1}
+.sl{font-size:10px;color:#6B6860;margin-top:3px}
+
+/* CARD */
+.card{background:#fff;border:1px solid #E2DED6;border-radius:12px;padding:14px;margin-bottom:10px}
+.card.gold{background:#FBF0D0;border-color:rgba(200,149,42,.4)}
+.card.alt{background:#F1EDE4}
+
+/* TAG */
+.tag{display:inline-block;border-radius:4px;padding:2px 8px;font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase}
+
+/* DIVIDER */
+.div{height:1px;background:#E2DED6;margin:10px 0}
+
+/* PHASE GRID */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.pbtn{background:#fff;border:2px solid #E2DED6;border-radius:10px;padding:8px 4px;cursor:pointer;text-align:center;transition:all .15s}
+.pbtn-ic{font-size:15px;margin-bottom:2px}
+.pbtn-n{font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#B2AFA9;margin-bottom:1px}
+.pbtn-t{font-size:10px;font-weight:700;color:#141210;line-height:1.2}
+
+/* PHASE DETAIL */
+.pdet{border:2px solid #E2DED6;border-radius:14px;overflow:hidden;margin-bottom:10px}
+.phdr{padding:14px 16px}
+.phdr-row{display:flex;justify-content:space-between;align-items:flex-start}
+.phdr-n{font-size:10px;color:rgba(255,255,255,.75);font-weight:700;letter-spacing:1px;margin-bottom:3px}
+.phdr-t{font-size:18px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:3px}
+.phdr-s{font-size:12px;color:rgba(255,255,255,.85)}
+.phdr-kpi{background:rgba(255,255,255,.2);border-radius:8px;padding:6px 8px;text-align:center;flex-shrink:0;max-width:80px}
+.phdr-kpi-l{font-size:9px;color:rgba(255,255,255,.7);font-weight:700}
+.phdr-kpi-v{font-size:10px;color:#fff;font-weight:800;line-height:1.3;margin-top:1px}
+
+/* CONTENT TABS */
+.ctbar{display:flex;border-bottom:1px solid #E2DED6;background:#F1EDE4}
+.ctb{flex:1;padding:9px 2px;background:none;border:none;border-bottom:3px solid transparent;color:#B2AFA9;font-size:9px;font-weight:500;cursor:pointer;white-space:nowrap}
+.ctb.on{font-weight:800}
+.ctbody{padding:16px 14px}
+.ctp{display:none}
+.ctp.on{display:block}
+
+/* PROMPT CARD */
+.pc{margin-bottom:8px;border:1px solid #E2DED6;border-radius:10px;overflow:hidden}
+.pch{display:flex;justify-content:space-between;align-items:center;padding:11px 12px;background:#F1EDE4;cursor:pointer}
+.pch-l{display:flex;gap:8px;align-items:center}
+.pcnum{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+.pclbl{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.pctxt{font-size:13px;font-weight:700;color:#141210}
+.pcarr{font-size:18px;transition:transform .2s}
+.pcbody{display:none;padding:0 12px 12px}
+.pcbody.on{display:block}
+.pcmeta{display:flex;justify-content:space-between;align-items:center;padding:8px 0 6px}
+.pcmeta-h{font-size:11px;color:#6B6860}
+.pctbox{background:#111;border-radius:8px;padding:12px;border:1px solid #333}
+.pctbox pre{font-size:11px;line-height:1.85;color:#c8f0b8}
+
+/* COPY BTN */
+.cp{background:#141210;color:#fff;border:none;border-radius:6px;padding:5px 10px;font-size:10px;font-weight:700;cursor:pointer}
+
+/* NAV BTNS */
+.navbtns{display:flex;gap:8px;margin-top:8px}
+.nbtn{flex:1;padding:10px;border-radius:10px;font-size:12px;font-weight:700;cursor:pointer;border:none}
+.nbtn.prev{background:#fff;border:1px solid #E2DED6;color:#6B6860}
+.nbtn.next{color:#fff}
+
+/* SEARCH */
+.srch{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #E2DED6;font-size:13px;font-family:inherit;background:#fff;color:#141210;margin-bottom:8px;outline:none}
+.fscroll{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}
+.fscroll::-webkit-scrollbar{display:none}
+.fbtn{background:#fff;border:1px solid #E2DED6;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;color:#B2AFA9}
+
+/* CALC */
+.slrow{margin-bottom:10px}
+.sllbls{display:flex;justify-content:space-between;margin-bottom:3px}
+.sll{font-size:11px;color:#8A6418}
+.slv{font-size:11px;color:#8A6418;font-weight:700}
+.cres{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cr{background:#fff;border-radius:8px;padding:10px 10px;border:1px solid #E2DED6}
+.cr-l{font-size:10px;color:#6B6860}
+.cr-v{font-size:18px;font-weight:900;line-height:1.1;color:#141210}
+.cr-s{font-size:10px;color:#6B6860}
+.cr.hl .cr-v{color:#C8952A}
+
+/* METRICS */
+.mgt{font-size:11px;font-weight:800;color:#6B6860;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px;padding-left:2px}
+
+/* PRICING */
+.pricard{background:#fff;border:2px solid #E2DED6;border-radius:12px;padding:12px 14px;cursor:pointer;margin-bottom:8px;transition:all .15s}
+.pricard-top{display:flex;justify-content:space-between;align-items:flex-start}
+.pricard-price{font-size:26px;font-weight:900;line-height:1;font-family:Georgia,serif}
+.pricard-name{font-size:16px;font-weight:800;margin:4px 0 2px}
+.pricard-tag{font-size:12px;color:#6B6860}
+
+/* CHECKLIST */
+.chi{display:flex;gap:10px;padding:11px 12px;background:#fff;border:1px solid #E2DED6;border-radius:10px;margin-bottom:5px;cursor:pointer}
+.chi.dn{background:#E6F4EE;border-color:rgba(26,94,60,.25)}
+.chbox{width:20px;height:20px;border-radius:5px;background:#F1EDE4;border:2px solid #C4C1B8;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex-shrink:0}
+.chi.dn .chbox{background:#1A5E3C;border-color:#1A5E3C}
+.ch-d{font-size:10px;font-weight:800;margin-bottom:2px}
+.ch-t{font-size:12px;line-height:1.5}
+.chi.dn .ch-t{text-decoration:line-through;color:#1A5E3C}
+
+/* PROGRESS */
+.pbg{background:#E2DED6;border-radius:6px;height:8px}
+.pfill{background:linear-gradient(90deg,#C8952A,#8A6418);border-radius:6px;height:8px;transition:width .3s}
+
+/* PRINCIPLE */
+.prin{display:flex;gap:12px;margin-bottom:12px;padding:12px;border-left:4px solid;border-radius:10px}
+.prinn{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0}
+
+/* PROFILE */
+.profgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.profbtn{background:#fff;border:2px solid #E2DED6;border-radius:12px;padding:12px;cursor:pointer;text-align:center}
+.prof-ic{font-size:20px;margin-bottom:3px}
+.prof-l{font-size:11px;font-weight:800;line-height:1.3}
+
+/* STEP */
+.step{margin-bottom:8px;padding:12px;background:#fff;border:1px solid #E2DED6;border-radius:12px;border-left:4px solid}
+.step-in{display:flex;gap:10px;align-items:flex-start}
+.step-n{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;border:2px solid}
+.step-wk{font-size:9px;font-weight:800;letter-spacing:1px}
+.step-tit{font-size:13px;font-weight:700;color:#141210;margin-bottom:6px}
+.step-tsk{display:flex;gap:6px;margin-bottom:5px}
+.step-tsk-t{font-size:12px;color:#6B6860;line-height:1.5}
+
+/* DARK BOX */
+.dbox{background:#141210;border-radius:14px;padding:18px 14px;margin-top:10px}
+.dbox p{color:#ccc;font-size:13px;line-height:1.9;font-style:italic;font-family:Georgia,serif;margin-bottom:12px}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dcell{background:#1e1c18;border-radius:8px;padding:9px 10px}
+.dc-t{font-size:11px;font-weight:700;color:#C8952A}
+.dc-s{font-size:10px;color:#666;margin-top:2px}
+
+/* SELL */
+.sell-f{margin-bottom:10px}
+.sell-fl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.sell-fv{font-size:13px;color:#6B6860;line-height:1.5}
+.scrbox{background:#F1EDE4;border-radius:8px;padding:11px 12px;font-size:12px;color:#141210;line-height:1.7;font-style:italic;border:1px solid #E2DED6}
+
+/* BRIEF FIELD */
+.bf{margin-bottom:7px}
+.bf-l{font-size:11px;color:#6B6860;margin-bottom:3px}
+.bf-p{width:100%;min-height:30px;background:#fff;border:1px solid #E2DED6;border-radius:6px;padding:5px 8px;font-size:11px;color:#B2AFA9;font-style:italic}
+
+/* MARKET ROW */
+.mrow{display:flex;justify-content:space-between;align-items:flex-start;padding:7px 0;border-bottom:1px solid #E2DED6}
+.mrow:last-child{border-bottom:none}
+.mrow-l{font-size:12px;font-weight:600;color:#141210}
+.mrow-n{font-size:11px;color:#6B6860}
+
+/* WARN */
+.wbox{border-radius:8px;padding:9px 10px;margin-top:8px}
+.wbox-l{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.wbox-t{font-size:12px;line-height:1.5}
+
+@media(max-width:380px){.pgrid{grid-template-columns:repeat(2,1fr)}.hs-v{font-size:13px}}
+</style>
+
+</head>
+<body>
+
+<div id="hdr">
+<div class="hdr-brand">PERSALTUM · FÁBRICA DE INFOPRODUCTOS CON IA</div>
+<h1>Creá Tu Infoproducto<br>en <em>6 Horas con Claude</em></h1>
+<p>De la idea al producto listo para vender — 12 fases · 36+ prompts · Sistema completo</p>
+<div class="hdr-stats">
+<div class="hs"><div class="hs-v">12</div><div class="hs-l">Fases</div></div>
+<div class="hs"><div class="hs-v">36+</div><div class="hs-l">Prompts</div></div>
+<div class="hs"><div class="hs-v" style="font-size:11px">$97–$697</div><div class="hs-l">Precio</div></div>
+<div class="hs"><div class="hs-v">6hs</div><div class="hs-l">Resultado</div></div>
+</div>
+</div>
+
+<div id="tabs">
+<button class="tb on" onclick="switchTab('sistema')"><span class="tb-ic">⚙️</span>Sistema</button>
+<button class="tb" onclick="switchTab('prompts')"><span class="tb-ic">📋</span>Prompts</button>
+<button class="tb" onclick="switchTab('datos')"><span class="tb-ic">📊</span>Datos</button>
+<button class="tb" onclick="switchTab('precios')"><span class="tb-ic">💰</span>Precios</button>
+<button class="tb" onclick="switchTab('gratis')"><span class="tb-ic">🎁</span>Gratis</button>
+<button class="tb" onclick="switchTab('mapa')"><span class="tb-ic">🗺️</span>Mapa</button>
+</div>
+
+<div id="content">
+
+<!-- SISTEMA -->
+
+<div id="sec-sistema" class="sec on">
+<div class="ey">12 Fases · 4 Bloques Estratégicos</div>
+<h2 class="st">El Sistema Completo de <em>Ventas Escalable</em></h2>
+<p class="ss">Tocá cualquier fase para ver su contenido completo: descripción, principios clave, prompts listos para Claude y métricas de éxito.</p>
+<div class="srow" style="grid-template-columns:repeat(4,1fr)">
+<div class="scl"><div class="sv">12</div><div class="sl">Fases</div></div>
+<div class="scl"><div class="sv">36+</div><div class="sl">Prompts</div></div>
+<div class="scl"><div class="sv">4</div><div class="sl">Bloques</div></div>
+<div class="scl"><div class="sv">∞</div><div class="sl">Nichos</div></div>
+</div>
+<div style="font-size:10px;font-weight:800;color:#6B6860;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px">SELECCIONÁ UNA FASE</div>
+<div class="pgrid" id="phase-grid"></div>
+<div id="phase-detail"></div>
+</div>
+
+<!-- PROMPTS -->
+
+<div id="sec-prompts" class="sec">
+<div class="ey" id="prom-ey">36 Prompts</div>
+<h2 class="st">Biblioteca de <em>Prompts de Claude</em></h2>
+<p class="ss">Copiá, reemplazá los [CORCHETES] con tu información y pegá directamente en Claude.</p>
+<input class="srch" id="psearch" placeholder="Buscar prompt..." oninput="renderPromptsList()">
+<div class="fscroll" id="pfilters"></div>
+<div id="plist"></div>
+</div>
+
+<!-- DATOS -->
+
+<div id="sec-datos" class="sec">
+<div class="ey">Calculadora + 12 KPIs</div>
+<h2 class="st">Dashboard de <em>Métricas y Proyección</em></h2>
+<p class="ss">Calculá el potencial de tu lanzamiento y monitoreá los KPIs de tu sistema.</p>
+<div class="card gold" style="margin-bottom:18px">
+<div style="font-size:11px;font-weight:800;color:#8A6418;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px">🧮 CALCULADORA DE LANZAMIENTO</div>
+<div class="slrow"><div class="sllbls"><span class="sll">Audiencia:</span><span class="slv" id="l-aud">300 personas</span></div><input type="range" min="50" max="10000" step="50" value="300" oninput="calc()" id="s-aud"></div>
+<div class="slrow"><div class="sllbls"><span class="sll">Precio del producto:</span><span class="slv" id="l-pri">$97 USD</span></div><input type="range" min="27" max="997" step="10" value="97" oninput="calc()" id="s-pri"></div>
+<div class="slrow"><div class="sllbls"><span class="sll">Tasa de conversión:</span><span class="slv" id="l-con">2%</span></div><input type="range" min="0.5" max="10" step="0.5" value="2" oninput="calc()" id="s-con"></div>
+<div class="slrow"><div class="sllbls"><span class="sll">Order bump (tasa):</span><span class="slv" id="l-bum">25%</span></div><input type="range" min="0" max="60" step="5" value="25" oninput="calc()" id="s-bum"></div>
+<div class="slrow"><div class="sllbls"><span class="sll">Upsell (tasa):</span><span class="slv" id="l-ups">15%</span></div><input type="range" min="0" max="40" step="5" value="15" oninput="calc()" id="s-ups"></div>
+<div class="div"></div>
+<div class="cres">
+<div class="cr"><div class="cr-l">Core product</div><div class="cr-v" id="r-cor">$2,910</div><div class="cr-s" id="r-cors">30 ventas</div></div>
+<div class="cr"><div class="cr-l">Order bumps</div><div class="cr-v" id="r-bum">$203</div><div class="cr-s" id="r-bums">7 compras</div></div>
+<div class="cr"><div class="cr-l">Upsells</div><div class="cr-v" id="r-ups">$886</div><div class="cr-s" id="r-upss">4 compras</div></div>
+<div class="cr hl"><div class="cr-l">NETO EST. (−10%)</div><div class="cr-v" id="r-net">$3,599</div><div class="cr-s">USD</div></div>
+</div>
+</div>
+<div id="kpis"></div>
+</div>
+
+<!-- PRECIOS -->
+
+<div id="sec-precios" class="sec">
+<div class="ey">3 Opciones · Análisis 2026</div>
+<h2 class="st">Cómo Empaquetar y <em>Cuánto Cobrar</em></h2>
+<p class="ss">El sweet spot para este sistema es $97–$697 según el nivel de acompañamiento.</p>
+<div class="card alt" style="margin-bottom:18px">
+<div style="font-size:11px;font-weight:800;color:#C8952A;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">CONTEXTO DE MERCADO · 2026</div>
+<div class="mrow"><div><div class="mrow-l">Cursos IA genérica (Udemy/Hotmart)</div><div class="mrow-n">Alta competencia, bajo valor percibido</div></div><span class="tag" style="background:rgba(200,149,42,.1);color:#C8952A;border:1px solid rgba(200,149,42,.35)">$12–$97</span></div>
+<div class="mrow"><div><div class="mrow-l">Cursos IA para marketing digital</div><div class="mrow-n">Mercado activo, diferenciación posible</div></div><span class="tag" style="background:rgba(200,149,42,.1);color:#C8952A;border:1px solid rgba(200,149,42,.35)">$97–$297</span></div>
+<div class="mrow"><div><div class="mrow-l">Programas high-ticket con mentoría</div><div class="mrow-n">Baja competencia, alto valor percibido</div></div><span class="tag" style="background:rgba(200,149,42,.1);color:#C8952A;border:1px solid rgba(200,149,42,.35)">$497–$2,000+</span></div>
+<div class="mrow"><div><div class="mrow-l">Claude + Infoproductos en español</div><div class="mrow-n">Oportunidad única — sos el primero</div></div><span class="tag" style="background:rgba(26,94,60,.1);color:#1A5E3C;border:1px solid rgba(26,94,60,.35)">Sin competencia</span></div>
+</div>
+<div id="prilist"></div>
+<div id="pridet"></div>
+</div>
+
+<!-- GRATIS -->
+
+<div id="sec-gratis" class="sec">
+<div class="ey">Acceso Gratuito · Sin Registro</div>
+<h2 class="st">Kit de Inicio <em>Persaltum</em></h2>
+<p class="ss">3 herramientas gratuitas para dar los primeros pasos antes de invertir en el sistema completo.</p>
+<div class="card gold" style="margin-bottom:14px">
+<div style="font-size:10px;font-weight:800;color:#8A6418;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px">PARA QUÉ SIRVE</div>
+<p style="font-size:13px;color:#8A6418;line-height:1.7;margin:0">Aplicá los 10 prompts y el checklist. En 30 días tenés resultados concretos. Es la prueba de que el sistema funciona antes de invertir.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:14px">
+<button id="kt-p" onclick="kitTab('p')" style="background:#C8952A;color:#fff;border:1.5px solid #C8952A;border-radius:10px;padding:9px 4px;font-size:10px;font-weight:700"><div style="font-size:17px;margin-bottom:2px">📋</div>10 Prompts</button>
+<button id="kt-c" onclick="kitTab('c')" style="background:#fff;color:#B2AFA9;border:1.5px solid #E2DED6;border-radius:10px;padding:9px 4px;font-size:10px;font-weight:700"><div style="font-size:17px;margin-bottom:2px">✅</div>Checklist 30d</button>
+<button id="kt-b" onclick="kitTab('b')" style="background:#fff;color:#B2AFA9;border:1.5px solid #E2DED6;border-radius:10px;padding:9px 4px;font-size:10px;font-weight:700"><div style="font-size:17px;margin-bottom:2px">🎯</div>Brand Brief</button>
+</div>
+<div id="kit-p"></div>
+<div id="kit-c" style="display:none"></div>
+<div id="kit-b" style="display:none"></div>
+</div>
+
+<!-- MAPA -->
+
+<div id="sec-mapa" class="sec">
+<div class="ey">4 Perfiles · Plan Personalizado</div>
+<h2 class="st">Tu Hoja de Ruta <em>Paso a Paso</em></h2>
+<p class="ss">Identificá en qué etapa estás y seguí el plan desde ahí. No desde el principio. Desde tu punto de partida real.</p>
+<div class="profgrid" id="profgrid"></div>
+<div id="profdet"></div>
+</div>
+
+<div style="height:40px"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// DATA — all text stored here, never in onclick
+// ═══════════════════════════════════════════
+
+var PH = [
+{id:"p1",n:1,icon:"🏗️",col:"#1B3D70",bg:"#E7EDF8",
+title:"Arquitectura de Producto",sub:"Construís sobre cimientos sólidos o construís para derrumbar.",
+dur:"Semanas 1–2",kpi:"Producto validado listo para vender",
+desc:"El 80% de los infoproductos que no venden tienen un problema de producto, no de marketing. Un producto bien arquitectado se vende casi solo porque resuelve un dolor específico, a una persona específica, con un resultado medible. Esta fase establece los cimientos irreemplazables.",
+prins:["Un producto que intenta servir a todos, no sirve a nadie. La riqueza está en el nicho dentro del nicho.","El precio es un mensaje de posicionamiento. Cobrar barato no atrae más clientes, atrae peores clientes.","Vendé el resultado, no el contenido. A nadie le importan tus módulos; les importa en qué se convierte su vida.","Validá con dinero, no con opiniones. Un presale de 5 personas vale más que 50 encuestas gratuitas."],
+mets:["Cliente ideal definido (1 persona concreta)","Propuesta de valor en 20 palabras o menos","1 victoria rápida definida (primeros 30 min)"],
+proms:[
+{t:"Validación de Idea (Anti-fracaso)",
+x:"Actúa como investigador de mercado especialista en infoproductos LATAM.\nTengo esta idea de producto: [DESCRIPCIÓN DETALLADA]\nPrecio tentativo: $[PRECIO] USD\nCliente ideal: [DESCRIPCIÓN]\n\nAnalizá:\n1. Existe demanda real o estoy inventando una necesidad? Señales concretas.\n2. Quiénes son los 3 competidores directos y qué GAPS dejan sin cubrir?\n3. Cuál es el ángulo diferenciador más potente disponible para mí?\n4. Dame 5 nombres posibles (cortos, memorables, orientados a resultado).\n5. Calificá la idea del 1 al 10 con justificación honesta.\n6. Si el número es menor a 7, decime exactamente cómo la pivotearías.\nSé brutalmente honesto. No necesito que me digas lo que quiero escuchar."},
+{t:"Propuesta de Valor Irresistible",
+x:"Soy [NOMBRE], [PROFESION/EXPERIENCIA].\nCreé un producto llamado [NOMBRE] que ayuda a [CLIENTE IDEAL] a lograr [RESULTADO CONCRETO] en [PLAZO REALISTA].\nEl mayor obstáculo que supera mi cliente: [OBSTÁCULO].\nMis credenciales: [DATOS CONCRETOS].\n\nEscribí:\n1. Propuesta de valor en UNA oración de 20 palabras máximo.\n2. Párrafo Para quién es (5 SÍ + 3 NO específicos).\n3. Los 5 dolores en primera persona que siente mi cliente antes de encontrarme.\n4. Las 3 victorias que celebra después de usar mi producto.\n5. Headline principal y subheadline para mi landing page."},
+{t:"Estructura de Producto Escalable",
+x:"Tengo este concepto de producto: [DESCRIPCIÓN].\nFormato: [CURSO VIDEO / PDF / MENTORÍA / HÍBRIDO]\nDuración objetivo: [X horas / X módulos]\nNivel del cliente: [PRINCIPIANTE / INTERMEDIO]\n\nDiseñame la estructura completa:\n1. Índice con módulos y lecciones (cada lección = UN resultado concreto).\n2. Victoria rápida en los primeros 30 minutos de consumir el producto.\n3. Orden pedagógico correcto para que todo tenga sentido.\n4. Materiales complementarios que multiplican el valor sin añadir horas.\n5. Cómo estructurar para que el 80% del valor venga del 20% del contenido.\n6. Cómo diseñarlo para que exista un upsell natural al siguiente nivel."}
+]},
+{id:"p2",n:2,icon:"🎣",col:"#1A5E3C",bg:"#E6F4EE",
+title:"Máquina de Captación",sub:"Construís un flujo constante de personas que ya confían antes de comprar.",
+dur:"Semanas 2–4",kpi:"100 a 500 leads activos",
+desc:"La captación es el oxígeno de cualquier negocio digital. Sin un flujo constante de personas nuevas descubriéndote, vivís en ciclos de escasez. Esta fase construye la infraestructura que atrae, califica y nutre prospectos de forma predecible.",
+prins:["El lead magnet no es para captar emails. Es la primera experiencia de tu cliente contigo. Si es mediocre, ya empezaste mal.","El contenido que vende habla del problema de tu cliente, no de vos. El 80/20: 80% sobre ellos, 20% sobre vos.","El email es el único canal donde la audiencia es tuya. Instagram puede desaparecer mañana. Tu lista, no.","WhatsApp en LATAM convierte 3 a 5 veces más que cualquier otro canal. Usarlo mal es dejar dinero sobre la mesa."],
+mets:["Conversión landing captura mayor a 35%","Tasa apertura email mayor a 28%","Tasa click email mayor a 3.5%"],
+proms:[
+{t:"Lead Magnet que Pre-Vende",
+x:"Creá un lead magnet tipo [CHECKLIST / GUÍA RÁPIDA / TEMPLATE] para [CLIENTE IDEAL].\nTítulo: número + resultado específico + tiempo.\nResuelve: [PROBLEMA CONCRETO] en menos de 10 minutos.\nMi producto de pago relacionado: [PRODUCTO] a $[PRECIO].\n\nDame:\n1. El título ganador + 3 alternativas.\n2. Estructura completa (máximo 5 páginas, UN punto accionable por página).\n3. CTA final que lleva naturalmente hacia mi producto sin sonar forzado.\n4. Descripción de 2 líneas para la landing de captura.\n5. Texto del botón de descarga.\n\nEl lead magnet debe hacer que quien lo descargue piense: si esto es gratis, imaginate lo que paga."},
+{t:"Sistema de Contenido 3-3-3",
+x:"[BRAND BRIEF COMPLETO]\nObjetivo de este mes: [OBJETIVO ESPECÍFICO]\n\nCreá el plan de contenido mensual:\n- 3 posts DESPERTAR por semana: hacen consciente el problema\n- 3 posts EDUCACIÓN por semana: demuestran expertise con valor accionable\n- 3 posts AUTORIDAD por semana: construyen confianza personal\n\nPara cada post: TEMA - HOOK - 3 BULLETS - CTA.\nPara stories diarias: 5 tipos rotativos (encuesta / detrás de escena / tip / pregunta / teaser).\nTono: [TONO]. Prohibido: [PALABRAS QUE NO USÁS]."},
+{t:"Secuencia Email de Bienvenida (5 emails)",
+x:"[BRAND BRIEF]\nEl suscriptor descargó: [NOMBRE DEL LEAD MAGNET]\nProducto de destino: [PRODUCTO] a $[PRECIO]\n\nEscribí los 5 emails completos:\nEmail 1 (inmediato): Entrega del lead magnet + quién soy + qué esperar.\nEmail 2 (24h): Mi historia de transformación (antes - momento clave - después).\nEmail 3 (48h): El error 1 que comete [CLIENTE IDEAL].\nEmail 4 (72h): Caso de éxito real o construido.\nEmail 5 (96h): Oferta directa a [PRODUCTO] con escasez suave y garantía.\n\nPara cada email:\n- Asunto + 2 variantes A/B\n- Preview text (máx 50 caracteres)\n- Cuerpo completo (300 a 450 palabras)\n- Un solo CTA claro\n- P.D. que genera curiosidad (excepto el último)"}
+]},
+{id:"p3",n:3,icon:"💡",col:"#C8952A",bg:"#FBF0D0",
+title:"Sistema de Conversión",sub:"Transformás el interés en decisión de compra con estructura, no con suerte.",
+dur:"Semanas 3–5",kpi:"Primera venta + order bump activo",
+desc:"La conversión es el punto donde el dinero entra. La mayoría de los infoproductores invierte el 90% del tiempo en crear contenido y el 10% en el sistema de ventas. Esta fase invierte esa proporción donde realmente importa.",
+prins:["Una landing page de ventas no vende tu producto. Vende la decisión de comprarlo. Hay una diferencia enorme.","El copy debe sonar como la voz de tu cliente describiendo su propio problema, no como un vendedor describiendo su solución.","El Order Bump es el cambio con mayor ROI en todo el funnel. 5 minutos de trabajo, 25 a 40% más de ingresos.","La garantía no cuesta dinero: reduce la fricción de decisión y aumenta las ventas más de lo que incrementa los reembolsos."],
+mets:["Conversión landing mayor a 2.5%","Tasa order bump mayor a 22%","Reembolsos menor a 4%"],
+proms:[
+{t:"Landing Page Completa (12 secciones)",
+x:"[BRAND BRIEF COMPLETO]\nProducto: [NOMBRE] a $[PRECIO] USD\nDolores del cliente en primera persona: [LISTA DE 6 A 8]\nResultados concretos prometidos: [LISTA DE 4 A 5]\n\nEscribí la landing page completa:\n1. HEADLINE: La promesa más poderosa en 12 palabras.\n2. SUBHEADLINE: Amplía la promesa + menciona al cliente ideal.\n3. EL PROBLEMA: Agitá el dolor (3 párrafos que hagan sentir esto es lo que me pasa).\n4. LA PROMESA: Qué cambia cuando tienen tu producto.\n5. CREDENCIALES: Por qué sos la persona indicada.\n6. QUÉ INCLUYE: Features convertidas en beneficios.\n7. PARA QUIÉN ES / NO ES: 5 SÍ + 3 NO específicos.\n8. TESTIMONIOS: 3 plantillas que cualquier alumno pueda completar.\n9. FAQ: 8 preguntas que eliminan objeciones.\n10. GARANTÍA: Texto de la garantía de satisfacción.\n11. PRECIO Y BONOS: Presentación con anclaje de valor.\n12. CTA FINAL: El cierre con urgencia real."},
+{t:"Script WhatsApp que Convierte",
+x:"[BRAND BRIEF]\nContexto: el prospecto llegó porque [VIO MI STORY / DESCARGÓ EL LEAD MAGNET / ME PREGUNTÓ POR DM]\nProducto: [NOMBRE] a $[PRECIO]\n\nEscribí el script completo:\n- Apertura cálida sin vender (2 mensajes de rapport)\n- 3 preguntas de diagnóstico que revelan el dolor real\n- Reconocimiento empático de su situación\n- Transición natural hacia la oferta\n- Presentación del producto en 4 líneas\n- Respuestas pre-escritas para objeciones:\n Está caro / Lo tengo que pensar / No tengo tiempo / Ya probé algo similar / Mandame más info\n- Cierre con CTA y link de pago\n- Seguimiento a las 24hs si no responde"},
+{t:"Order Bump + Upsell + Downsell",
+x:"Producto core: [NOMBRE] a $[PRECIO]\n\nDiseñame la arquitectura completa del backend:\n\nORDER BUMP (20 a 30% del precio core):\n- Nombre del producto\n- Qué problema específico resuelve\n- Texto del checkbox en el checkout (máx 80 palabras)\n\nUPSELL POST-COMPRA (2 a 3 veces el precio core):\n- Nombre del producto\n- Por qué es la evolución lógica inmediata\n- Página de upsell completa (300 palabras)\n- CTA de rechazo natural\n\nDOWNSELL (50 a 60% del precio del upsell rechazado):\n- Versión reducida del upsell\n- Texto de la oferta (150 palabras)\n\nProyección de ticket promedio con esta arquitectura activada."}
+]},
+{id:"p4",n:4,icon:"🚀",col:"#A32018",bg:"#FDEEE7",
+title:"Lanzamiento Estratégico",sub:"El evento que concentra ventas, prueba el mercado y construye momentum.",
+dur:"5 a 7 días activos",kpi:"Primer pico de caja",
+desc:"Un lanzamiento no es improvisación. Es una partitura con roles y tiempos definidos. El Lanzamiento Relámpago de Persaltum genera el 70% de las ventas de un período comprimido en 5 días, sin importar el tamaño de la audiencia.",
+prins:["El 40% de las ventas ocurre en las primeras 24hs (apertura). El 35% en las últimas 24hs (urgencia). Nunca abandones el cierre.","La escasez falsa destruye confianza para siempre. La urgencia real construye autoridad.","Lanzar sin haber calentado la audiencia es como pedirle matrimonio a alguien que acabas de conocer.","El webinar multiplica la conversión por 3 a 5 veces para audiencias medianas. El ROI de prepararlo es enorme."],
+mets:["Ventas día 1 mayor a 40% del total","Ventas día 5 mayor a 30% del total","Apertura emails lanzamiento mayor a 35%"],
+proms:[
+{t:"Plan Lanzamiento Relámpago 5 Días",
+x:"[BRAND BRIEF]\nProducto: [NOMBRE] a $[PRECIO]\nCanales: [INSTAGRAM / EMAIL / WHATSAPP]\nAudiencia: [X seguidores / X suscriptores]\nUrgencia real: [PRECIO SUBE / CUPOS LIMITADOS / BONUS que desaparece]\n\nDame el plan DÍA POR DÍA con textos completos:\n\nDÍA 1 - PRE-CALENTAMIENTO:\nPost de valor que toca el problema + story de algo viene\n\nDÍA 2 - CALENTAMIENTO:\nContenido de autoridad + story de expectativa + DM personal a 20 contactos cálidos\n\nDÍA 3 - APERTURA:\nEmail de apertura + post de anuncio + 5 stories + broadcast WhatsApp\n\nDÍA 4 - MITAD + OBJECIONES:\nEmail de objeciones + story de FAQ + respuesta a quienes preguntaron\n\nDÍA 5 - CIERRE:\nEmail last call + post urgencia + stories countdown + último WhatsApp\n\nTextos completos listos para publicar/enviar."},
+{t:"Guión Webinar de Lanzamiento (60 min)",
+x:"[BRAND BRIEF]\nProducto que vendo al final: [NOMBRE] a $[PRECIO]\n\nGuión completo:\n0 a 5 min - APERTURA: Hook + promesa de la sesión + credencial en una oración.\n5 a 15 min - EL MITO: La gran creencia errónea que frena a [CLIENTE IDEAL].\n15 a 35 min - EL SISTEMA: Los 3 pilares del método. Por pilar: concepto + ejemplo real + micro-victoria implementable hoy.\n35 a 40 min - CASO DE ÉXITO: Historia de transformación con números.\n40 a 50 min - PRESENTACIÓN DE OFERTA: Producto, precio normal, precio especial, bonos, garantía, urgencia.\n50 a 55 min - Q&A ESTRATÉGICO: Las 5 preguntas que más objeciones esconden.\n55 a 60 min - CIERRE: Costo de no actuar + CTA final directo.\n\nIncluí las transiciones exactas entre secciones."},
+{t:"Secuencia de Emails de Lanzamiento (7)",
+x:"[BRAND BRIEF]\nProducto: [NOMBRE] a $[PRECIO]\nCarrito: Lunes a Viernes 23:59\nUrgencia: [PRECIO SUBE / BONOS DESAPARECEN / CUPOS LIMITADOS]\n\nEMAIL 1 - Lunes: Historia de origen + la promesa + CTA.\nEMAIL 2 - Martes: El problema profundo + prueba social.\nEMAIL 3 - Miércoles: Las 3 objeciones respondidas + FAQ.\nEMAIL 4 - Jueves am: Caso de éxito detallado.\nEMAIL 5 - Jueves pm: Urgencia real, mañana cierra.\nEMAIL 6 - Viernes 9am: LAST CALL, abre hoy, cierra esta noche.\nEMAIL 7 - Viernes 20hs: Cierra en 4 horas. Corto, directo, emocional.\n\nPara cada email: Asunto + 2 variantes A/B + Preview text + Cuerpo completo + CTA."}
+]},
+{id:"p5",n:5,icon:"📢",col:"#5A2D90",bg:"#EFE7FA",
+title:"Tráfico y Publicidad Paga",sub:"Invertís dinero para generar más dinero de forma predecible y escalable.",
+dur:"Desde mes 2",kpi:"ROAS sostenido mayor a 3x",
+desc:"Los ads no crean negocios, los amplifican. Primero validás orgánico (que el funnel convierte), después escalás con publicidad. Con $5 a $10 por día podés testear 3 creativos en 5 días y saber exactamente qué funciona antes de escalar.",
+prins:["Nunca pongas publicidad a un funnel que no convierte orgánicamente. Los ads amplifican lo que ya existe, no lo crean.","Un solo cambio por semana en los ads. Si cambiás todo a la vez, no sabés qué funcionó.","El creativo (imagen/video) hace el 70% del trabajo en Meta Ads. El copy es importante; el creativo es crítico.","La audiencia de remarketing convierte 5 a 10 veces más que la audiencia fría. Priorizala siempre."],
+mets:["CPL menor a $5 USD","CTR anuncio mayor a 1.5%","ROAS funnel completo mayor a 3x"],
+proms:[
+{t:"Copy de Anuncios (3 ángulos)",
+x:"[BRAND BRIEF]\nProducto/Lead Magnet: [NOMBRE]\nObjetivo: [CAPTACIÓN DE LEADS / VENTA DIRECTA]\nCliente ideal: [DESCRIPCIÓN DETALLADA]\n\nEscribí 3 variantes completas de anuncio:\n\nANUNCIO A - ÁNGULO DOLOR:\nHook visual + Título (40 chars) + Cuerpo (150 a 200 palabras) + CTA.\n\nANUNCIO B - ÁNGULO RESULTADO:\nMisma estructura abriendo con el estado deseado.\n\nANUNCIO C - ÁNGULO HISTORIA:\nMisma estructura con historia personal de 3 oraciones.\n\nPara cada variante: qué audiencia funcionaría mejor y por qué."},
+{t:"Estrategia de Segmentación Meta Ads",
+x:"Quiero llegar a [CLIENTE IDEAL] con Meta Ads para [PRODUCTO/LEAD MAGNET].\nUbicación: [ARGENTINA / MÉXICO / COLOMBIA / LATAM]\nPresupuesto: $5 a $15 por día.\n\n1. 8 intereses específicos para targetear (no genéricos).\n2. Datos demográficos + comportamientos a incluir y excluir.\n3. Audiencias personalizadas de retargeting.\n4. Audiencia origen para el 1% y 3% lookalike.\n5. Exclusiones críticas para no desperdiciar presupuesto.\n6. Estructura de campaña (campañas / conjuntos / anuncios).\n7. Cómo pasar de $10/día a $50/día sin romper el rendimiento.\n8. KPIs mínimos aceptables (CPL, CTR, CPC, ROAS)."},
+{t:"Diagnóstico de Ads con Datos Reales",
+x:"Actúa como media buyer experto en infoproductos LATAM.\n\nDatos de los últimos 7 días:\nCampaña: [NOMBRE] - Objetivo: [LEADS / VENTAS]\nPresupuesto gastado: $[X] - Clicks: [X] - CTR: [X%] - CPC: $[X]\nLeads o ventas: [X] - CPL: $[X] - ROAS: [X]\n\nAnalizá:\n1. Diagnóstico honesto: qué está roto y qué funciona.\n2. Dónde se rompe el flujo: en el anuncio, la landing, o el funnel post-lead.\n3. Los 3 cambios con mayor impacto inmediato.\n4. Qué testear esta semana (máximo UN elemento).\n5. Si el ROAS es menor a 2x: qué hacer antes de escalar."}
+]},
+{id:"p6",n:6,icon:"🪜",col:"#2D6A4F",bg:"#E6F4EE",
+title:"Escalera de Valor y Backend",sub:"Cada cliente que conseguís vale mucho más de lo que te pagó la primera vez.",
+dur:"Mes 2 a 3",kpi:"LTV 3x mayor al ticket inicial",
+desc:"La diferencia entre un negocio que sobrevive y uno que prospera está en el LTV (valor de vida del cliente). Conseguir un cliente nuevo cuesta 5 veces más que retener uno existente. La escalera de valor convierte cada comprador en múltiples flujos de ingresos.",
+prins:["El backend (membresía, high-ticket, afiliados) es donde vive el dinero real. El frontend solo paga los ads.","Una membresía de $37/mes con 100 miembros activos vale más que 10 lanzamientos anuales de $97.","Los afiliados son tu equipo de ventas sin sueldo fijo. Con el 40% de comisión, generan el 30% de ventas adicionales.","El high-ticket se vende en llamadas, no en landing pages. El precio justifica el tiempo de conversación."],
+mets:["Membresía post-compra mayor a 15% de aceptación","Churn mensual membresía menor a 6%","Conversión llamada high-ticket mayor a 30%"],
+proms:[
+{t:"Diseño de Membresía Recurrente",
+x:"Tengo un producto core: [NOMBRE] a $[PRECIO].\nQuiero crear una membresía recurrente como backend natural.\n\nDiseñame la estructura completa:\n1. NOMBRE y PROPUESTA DE VALOR (qué obtiene el miembro que no puede conseguir solo).\n2. PRECIO mensual/anual que justifica la permanencia.\n3. CONTENIDO MENSUAL: qué entregás cada semana para que nadie cancele.\n4. ONBOARDING: Los primeros 7 días de un nuevo miembro.\n5. RETENCIÓN: 3 estrategias para bajar el churn por debajo del 5%.\n6. CÓMO VENDERLA: cuándo y cómo presentarla después de la compra del core.\n7. PROYECCIÓN: ingresos con 50 / 100 / 200 / 500 miembros.\n8. HERRAMIENTA RECOMENDADA: Circle / Telegram / Hotmart Club y por qué."},
+{t:"Programa de Afiliados Estratégico",
+x:"Producto: [NOMBRE] a $[PRECIO]. Plataforma: Hotmart / [OTRA].\n\n1. COMISIÓN recomendada y justificación.\n2. CRITERIOS DE SELECCIÓN del afiliado ideal.\n3. KIT DE AFILIADO completo:\n - Email de captación de afiliados\n - 3 posts de Instagram listos para usar\n - 2 emails de venta para su lista\n4. ONBOARDING: qué enviarle en los primeros 3 días.\n5. RETENCIÓN: cómo mantener activos a los mejores afiliados.\n6. PROYECCIÓN: con 10 afiliados activos que venden 5 unidades/mes."},
+{t:"Oferta High-Ticket de $497 a $997",
+x:"Producto core: [NOMBRE] a $[PRECIO].\n\n1. DISEÑO: qué incluye que el core no incluye (acompañamiento, no más contenido).\n2. PRECIO: cómo calcularlo basado en el resultado que prometo.\n3. PROCESO DE VENTA:\n - Página de aplicación: qué preguntar para pre-calificar.\n - Email de seguimiento post-aplicación.\n4. GUIÓN DE LLAMADA DE VENTAS (45 min):\n - Apertura (5 min): rapport + agenda\n - Diagnóstico (15 min): preguntas que revelan el dolor real\n - Visión (5 min): el futuro posible\n - Presentación (10 min): oferta, resultados, precio\n - Objeciones (5 min): precio / tiempo / confianza\n - Cierre (5 min): decisión y próximos pasos\n5. SEGUIMIENTO si no deciden en la llamada."}
+]},
+{id:"p7",n:7,icon:"🤖",col:"#0D6B6B",bg:"#E5F5F5",
+title:"Automatización IA-First",sub:"Construís sistemas que trabajan mientras dormís y piensan como vos.",
+dur:"Mes 2 a 3",kpi:"10 o más horas semanales liberadas",
+desc:"La automatización real no es solo programar emails. Es construir sistemas inteligentes donde Claude actúa como el cerebro, y herramientas como n8n o Make actúan como el cuerpo. Juntos crean un negocio que funciona sin supervisión constante.",
+prins:["Automatizá procesos repetibles, no procesos creativos. Claude hace el 80% del trabajo intelectual; vos ponés el 20% de dirección.","Antes de automatizar algo, optimizalo manualmente. Automatizar un proceso roto solo lo rompe más rápido.","Un agente de IA mal diseñado daña la relación con el cliente. La personalidad del agente es tan importante como su funcionalidad.","Los workflows de n8n/Make no requieren programación. Requieren pensamiento sistémico."],
+mets:["Tareas repetibles menor a 2hs/semana","Respuesta automática en menos de 5 min","Satisfacción atención al cliente mayor a 90%"],
+proms:[
+{t:"System Prompt de Agente IA",
+x:"Quiero crear un agente de IA para [FUNCIÓN: atención al cliente / soporte a alumnos / contenido].\n\n[BRAND BRIEF COMPLETO]\n\nEscribí el system prompt completo:\n1. IDENTIDAD: quién es, cómo se llama, su función principal.\n2. PERSONALIDAD: tono, estilo, adjetivos que describen cómo interactúa.\n3. CAPACIDADES: qué puede hacer y cómo.\n4. LÍMITES: qué no puede hacer y cómo escalar al humano.\n5. CONOCIMIENTO: todos los productos, precios, links y descripciones.\n6. FAQ INCORPORADO: las 15 preguntas frecuentes con respuestas exactas.\n7. PROTOCOLO DE OBJECIONES: cómo responder a cada objeción de venta.\n8. FORMATO: longitud de respuestas, emojis, lenguaje.\n\nEl agente debe sonar exactamente como yo."},
+{t:"Workflow de Automatización Completa",
+x:"Necesito automatizar este proceso: [DESCRIPCIÓN DEL PROCESO].\nHerramientas: [MAILERLITE / HOTMART / INSTAGRAM / WHATSAPP / NOTION]\nHerramienta de automatización: [N8N / MAKE / ZAPIER]\n\n1. TRIGGER: qué evento lo activa.\n2. PASOS DEL FLUJO: secuencia exacta de acciones.\n3. PUNTOS DE DECISIÓN: dónde el flujo se bifurca.\n4. INTEGRACIONES NECESARIAS: qué APIs o conexiones necesito.\n5. MANEJO DE ERRORES: qué pasa si algo falla.\n6. CÓMO IMPLEMENTARLO en la herramienta elegida: pasos concretos sin programar.\n7. TIEMPO DE IMPLEMENTACIÓN estimado sin experiencia técnica."},
+{t:"Claude Projects: Base de Conocimiento",
+x:"Necesito construir mi Claude Project.\n\n[BRAND BRIEF]\n[TODOS LOS PRODUCTOS CON PRECIOS Y LINKS]\n[TESTIMONIOS DE CLIENTES]\n[MEJORES EMAILS QUE CONVIRTIERON]\n\nEscribí:\n1. INSTRUCCIONES PERMANENTES del Project.\n2. ÍNDICE DE DOCUMENTOS que debo subir y en qué orden.\n3. CÓMO ESTRUCTURAR cada documento para uso eficiente de Claude.\n4. LOS 10 PROMPTS MAESTROS para las tareas más frecuentes.\n5. FLUJO DE TRABAJO SEMANAL (lunes / miércoles / viernes).\n6. CÓMO MANTENERLO ACTUALIZADO mensualmente."}
+]},
+{id:"p8",n:8,icon:"⭐",col:"#5A2D90",bg:"#EFE7FA",
+title:"Posicionamiento y Marca Personal",sub:"Construís autoridad que atrae en lugar de perseguir.",
+dur:"Proceso continuo",kpi:"Referente reconocido en el nicho",
+desc:"El posicionamiento no es lo que vos decís sobre vos mismo, es lo que otros dicen cuando no estás en la sala. Una marca personal fuerte convierte el marketing en atracción: la gente viene a vos en lugar de que tengas que ir a buscarlos.",
+prins:["Ser el experto en TODO es ser experto en NADA. La autoridad más poderosa viene de posicionarte en un nicho específico.","El contenido pilar (un video o artículo profundo por mes) vale más que 30 posts superficiales diarios.","Las colaboraciones multiplican tu audiencia sin costo. Un podcast en la audiencia de otra persona es el ad más eficiente.","La consistencia supera a la perfección. Publicar bien por 12 meses construye más que publicar brillantemente durante 3."],
+mets:["Menciones espontáneas de la marca por semana","Invitaciones a podcasts/eventos por mes","Seguidores nuevos orgánicos por semana"],
+proms:[
+{t:"Estrategia Thought Leadership 90 días",
+x:"[BRAND BRIEF]\nNicho específico: [NICHO PRECISO]\nAudiencia actual: [X seguidores / X suscriptores]\nObjetivo a 90 días: [RESULTADO CONCRETO]\n\n1. LOS 3 TEMAS PILARES en los que construiré autoridad.\n2. CONTENIDO PILAR: un contenido extenso por mes que establece mi posición.\n3. ÁNGULO ÚNICO: la perspectiva que solo yo puedo ofrecer.\n4. FRASE DE POSICIONAMIENTO: una oración que me ubica en el mercado.\n5. COLABORACIONES ESTRATÉGICAS: 5 personas con quienes colaborar y cómo acercarme.\n6. PLAN SEMANA A SEMANA para los 90 días."},
+{t:"Pitch para Podcasts y Medios",
+x:"[BRAND BRIEF]\nTema del que puedo hablar con máxima autoridad: [TEMA]\nResultados concretos: [DATOS]\n\n1. PITCH PARA PODCAST (200 palabras): por qué soy el invitado ideal.\n2. 5 TÍTULOS de episodios que yo podría protagonizar.\n3. BIO PARA PRESENTACIÓN (100 palabras).\n4. LISTA DE 10 PODCASTS en español que tienen mi audiencia ideal.\n5. SECUENCIA DE ACERCAMIENTO:\n - DM de presentación inicial\n - Seguimiento a 7 días\n - Segundo seguimiento a 14 días\n6. LOS 3 PUNTOS CLAVE que siempre comunicaré en cualquier entrevista."},
+{t:"Sistema de Contenido Pilar Mensual",
+x:"[BRAND BRIEF]\nTema del contenido pilar de este mes: [TEMA]\nFormato: [REEL LARGO / VIDEO YOUTUBE / ARTÍCULO / PODCAST / LIVE]\n\n1. TÍTULO: irresistible para quien tiene el problema.\n2. ESTRUCTURA COMPLETA: narración de principio a fin.\n3. GANCHO DE APERTURA: los primeros 10 segundos o primeras 2 oraciones.\n4. LOS 3 PUNTOS CLAVE que cada persona se lleva al terminar.\n5. LA HISTORIA PERSONAL que valida los puntos.\n6. EL CIERRE: cómo terminar generando acción.\n7. CÓMO REPURPOSEAR en: 5 posts + 3 stories + 1 email + 1 reel de 30 seg."}
+]},
+{id:"p9",n:9,icon:"🌐",col:"#0D6B6B",bg:"#E5F5F5",
+title:"Comunidad y Ecosistema",sub:"Construís un activo que crece solo porque la gente se queda por las personas.",
+dur:"Mes 3 a 6",kpi:"Comunidad activa con efecto red",
+desc:"Una comunidad bien construida es el activo más defensible en el mundo digital. Las plataformas cambian, los algoritmos cambian, los competidores aparecen, pero una comunidad con identidad, líderes internos y cultura propia es casi imposible de replicar.",
+prins:["La comunidad no es un grupo de WhatsApp. Es una identidad compartida con nombre, valores, lenguaje y rituales propios.","El churn de membresía baja drásticamente cuando los miembros forman relaciones entre sí, no solo con vos.","Los embajadores son los miembros que ya hablan de vos sin que se los pidas. Identificarlos y empoderarlos vale más que cualquier programa de afiliados.","Un evento virtual bien ejecutado puede triplicar el tamaño de tu comunidad en 72 horas."],
+mets:["Participación semanal mayor a 20% de miembros","NPS de la comunidad mayor a 60","Nuevos miembros por referidos mayor a 30%"],
+proms:[
+{t:"Estructura y Cultura de Comunidad",
+x:"Quiero lanzar mi comunidad para alumnos de [PRODUCTO/PROGRAMA].\nPlataforma: [CIRCLE / SLACK / TELEGRAM / DISCORD / HOTMART CLUB]\nPrecio: $[PRECIO]/mes\n\n1. NOMBRE Y TAGLINE (que genere pertenencia e identidad).\n2. VALORES DECLARADOS (3 a 5 que definen la cultura).\n3. CANALES/ESPACIOS: cómo organizar los temas (máx 8 espacios).\n4. RITUALES: actividades semanales/mensuales que generan hábito.\n5. ONBOARDING: los primeros 7 días de un nuevo miembro.\n6. RECONOCIMIENTO: cómo celebrar los logros públicamente.\n7. MODERACIÓN: cómo mantener la calidad cuando crece.\n8. ESCALA: cómo identificar y empoderar líderes internos."},
+{t:"Evento Virtual de Crecimiento",
+x:"Tipo de evento: [CHALLENGE 5 DÍAS / MASTERCLASS / SUMMIT / WORKSHOP]\nTema: [TEMA QUE RESUELVE EL DOLOR PRINCIPAL DE MI CLIENTE]\nFecha: [FECHA]\n\n1. NOMBRE DEL EVENTO: con resultado específico en el título.\n2. ESTRUCTURA DÍA A DÍA o AGENDA.\n3. PÁGINA DE REGISTRO: headline + promesa + formulario.\n4. SECUENCIA PRE-EVENTO (5 emails): para maximizar el show-up rate.\n5. CÓMO MONETIZARLO: dónde y cómo presentar la oferta de pago.\n6. SEGUIMIENTO POST-EVENTO para asistentes y no asistentes.\n7. CÓMO REPROGRAMARLO como evento evergreen."},
+{t:"Programa de Embajadores",
+x:"Tengo una base de clientes de [NÚMERO] personas.\n\n1. CRITERIOS: qué señales indican un embajador natural.\n2. ESTRUCTURA DEL PROGRAMA:\n - Nombre del programa (exclusivo, aspiracional)\n - Beneficios para los embajadores\n - Compromisos que se les pide\n3. PROCESO DE INVITACIÓN: el mensaje personal para invitarlos.\n4. ACTIVACIÓN: cómo involucrarlos en el primer mes.\n5. RECONOCIMIENTO PÚBLICO frente a la comunidad.\n6. IMPACTO ESTIMADO: con 10 embajadores activos que traen 3 leads/mes."}
+]},
+{id:"p10",n:10,icon:"📊",col:"#7A4010",bg:"#FDF2E7",
+title:"Business Intelligence",sub:"Tomás decisiones con datos, no con intuición ni con miedo.",
+dur:"Proceso continuo",kpi:"Dashboard activo con decisiones semanales",
+desc:"El 90% de los infoproductores toman decisiones de marketing basándose en sensaciones. El 10% que domina los datos toma el 90% del mercado. Esta fase te convierte en el segundo grupo sin necesidad de ser analista de datos.",
+prins:["Una sola métrica mejorada por semana es más poderosa que cambiar todo el funnel mensualmente.","El A/B testing no es para grandes empresas. Es para cualquiera que quiera saber qué funciona antes de apostar más.","El análisis de cohortes revela los patrones de oro de tu negocio: quiénes compran, cuándo, de dónde vienen.","Si no podés medir el impacto de una acción, todavía no sabés si vale la pena repetirla."],
+mets:["Reunión de métricas semanal de 30 min","1 A/B test activo por semana","Dashboard actualizado cada lunes"],
+proms:[
+{t:"Dashboard de KPIs del Negocio",
+x:"Actúa como analista de negocios digitales.\n\nMi negocio tiene: [FUENTES DE INGRESOS]\nCanales de captación: [LISTA]\nHerramientas: [MAILERLITE / HOTMART / META ADS / etc.]\n\n1. LAS 15 MÉTRICAS ESENCIALES a rastrear semanalmente (con fórmula y benchmarks).\n2. DASHBOARD en Google Sheets: columnas, qué actualizar, qué revisar mensualmente.\n3. LAS 3 MÉTRICAS NORTE que, si mejoran, mejoran todo lo demás.\n4. SEÑALES DE ALERTA: qué número indica que algo está roto urgentemente.\n5. RUTINA SEMANAL DE ANÁLISIS: qué revisar los lunes y qué decisión tomar."},
+{t:"Plan de A/B Testing Sistemático",
+x:"Quiero implementar A/B testing.\nElementos a testear: [ASUNTOS EMAIL / HEADLINES / COPY ADS / PRECIOS / CTAs]\n\n1. PRIORIZACIÓN: qué testear primero según impacto vs. facilidad.\n2. PROTOCOLO POR ELEMENTO:\n - Email: cómo testear asuntos (tamaño de lista, duración, cuándo declarar ganador)\n - Landing: cómo testear headlines sin herramientas caras\n - Ads: estructura de campaign test en Meta\n3. CÓMO SABER si el resultado es estadísticamente válido.\n4. PLANTILLA para trackear tests, resultados y aprendizajes.\n5. LOS 5 TESTS CON MAYOR ROI para empezar."},
+{t:"Análisis Post-Lanzamiento Profundo",
+x:"Acabo de cerrar un lanzamiento. Analizá estos datos:\n\nLeads captados: [X] / Emails en lista: [X]\nApertura promedio: [X%] / Click rate: [X%]\nVisitas landing: [X] / Ventas totales: [X]\nIngresos brutos: $[X] / Order bumps: [X] / Upsells: [X] / Reembolsos: [X]\nFuente principal: [ORGÁNICO / ADS / REFERIDOS]\n\n1. Diagnóstico de cada etapa del funnel.\n2. Las 3 palancas con mayor impacto para el próximo lanzamiento.\n3. Benchmarks del sector vs. mis números.\n4. Proyección si mejoro X, Y, Z.\n5. Las 3 acciones para capturar valor residual esta semana."}
+]},
+{id:"p11",n:11,icon:"🌎",col:"#1B3D70",bg:"#E7EDF8",
+title:"Expansión LATAM e Internacional",sub:"Tu método no tiene por qué quedarse en un solo mercado.",
+dur:"Mes 6 a 12",kpi:"2 o más mercados activos",
+desc:"El mercado hispanohablante tiene 500 millones de personas. Si tu negocio solo está optimizado para un país, estás ignorando el 80% de tu mercado natural. La expansión regional no requiere reinventar, requiere adaptar estratégicamente.",
+prins:["Cada mercado LATAM tiene su código cultural específico. El mismo mensaje vende diferente en Argentina que en México o Colombia.","El pricing debe ajustarse al poder adquisitivo local pero también al costo percibido de la solución.","Los partnerships con creadores locales son el atajo más eficiente para entrar a un nuevo mercado.","Hotmart te da acceso nativo a Brasil, México, Colombia y toda LATAM sin infraestructura adicional."],
+mets:["Ventas fuera del mercado principal mayor a 20%","Partners activos en al menos 2 países","Copy adaptado para 3 mercados"],
+proms:[
+{t:"Estrategia de Entrada a Nuevo Mercado",
+x:"Quiero expandir mi negocio al mercado de [PAÍS: MÉXICO / COLOMBIA / CHILE / PERÚ / BRASIL].\nMi producto: [NOMBRE] a $[PRECIO] - Mi mercado actual: [PAÍS]\n\n1. Características culturales que afectan el mensaje de venta en ese país.\n2. Qué cambiar en mi landing para que suene local.\n3. Precio recomendado en moneda local y USD.\n4. Canales que dominan en ese mercado.\n5. Tipo de creador/influencer con quien colaborar y cómo encontrarlo.\n6. Cómo testear el mercado nuevo con inversión mínima.\n7. Cómo configurar el producto en Hotmart para ese mercado.\n8. Plan concreto para las primeras ventas en ese país."},
+{t:"Adaptación Cultural del Marketing",
+x:"Tengo este copy que funciona en [PAÍS ORIGEN]:\n[INSERTAR COPY ORIGINAL]\n\nAdaptalo para [PAÍS DESTINO] considerando:\n1. Vocabulario y expresiones locales.\n2. Referencias culturales que resuenen.\n3. Nivel de formalidad adecuado.\n4. Tono predominante en ese mercado.\n5. La objeción específica más común para mi tipo de producto.\n6. CTA de la forma que más convierte localmente.\n\nDame la versión adaptada completa, no solo recomendaciones."},
+{t:"Plan de Partnerships Regionales",
+x:"Quiero construir partnerships estratégicos en LATAM para distribuir [PRODUCTO].\n\n1. TIPOS DE PARTNER: quién tiene mi audiencia ideal en LATAM.\n2. MODELOS: afiliado / co-creador / distribución B2B - cuándo usar cada uno.\n3. CÓMO ENCONTRARLOS: metodología para identificar los 10 mejores partners por país.\n4. CÓMO ACERCARSE: el primer mensaje que genera conversación.\n5. LA PROPUESTA: qué ofrecerle a cada tipo de partner.\n6. TÉRMINOS BÁSICOS que deben quedar claros antes de empezar.\n7. GESTIÓN: cómo mantener activos a los partners sin consumir todo tu tiempo."}
+]},
+{id:"p12",n:12,icon:"🏆",col:"#1A2A40",bg:"#E8ECF2",
+title:"Activos Digitales y Legado",sub:"Construís un negocio que vale sin vos presente y puede crecer infinitamente.",
+dur:"Mes 12 en adelante",kpi:"Negocio escalable e independiente",
+desc:"La diferencia entre un trabajo y un activo es que el activo funciona cuando no estás. Esta fase transforma tu infoproducto en un negocio que puede ser licenciado, vendido, o que puede crecer con formadores certificados sin que vos pongas el 100% del tiempo.",
+prins:["Un método bien documentado puede ser licenciado, enseñado por otros, o vendido como franquicia digital.","Las certificaciones crean un ejército de distribuidores que pagan por el privilegio de difundir tu método.","El contenido evergreen que creaste hace 3 años sigue generando ingresos hoy. Eso es un activo real.","La valoración de un negocio digital se basa en ingresos recurrentes, no en ingresos de lanzamiento."],
+mets:["Ingresos recurrentes mayor a 50% del total","Certificados activos mayor a 10","Negocio funciona en 20hs o menos por semana"],
+proms:[
+{t:"Modelo de Certificación y Licenciamiento",
+x:"Tengo un método propio llamado [NOMBRE] que enseño en [PRODUCTO].\nResultados comprobables: [DATOS]\n\n1. NOMBRE del programa de certificación (aspiracional).\n2. REQUERIMIENTOS DE INGRESO.\n3. ESTRUCTURA DEL PROGRAMA: módulos, duración, formato.\n4. PROCESO DE EVALUACIÓN: cómo certificar que alguien puede enseñar el método.\n5. PRECIO recomendado en LATAM.\n6. DERECHOS Y OBLIGACIONES del certificado.\n7. MODELO DE INGRESOS: precio único / membresía / royalty / todo.\n8. COMUNIDAD DE CERTIFICADOS como activo adicional."},
+{t:"Valoración y Estrategia de Salida",
+x:"Tengo un negocio de infoproductos:\nIngresos mensuales: $[X] (lanzamientos $X + recurrente $X + high ticket $X)\nBase de clientes: [X] compradores - Lista de email: [X] - Audiencia: [X]\nAntigüedad: [X] años - Automatizaciones: [DESCRIPCIÓN]\n\n1. VALORACIÓN ESTIMADA: rango de múltiplos para este tipo de negocio digital.\n2. QUÉ AUMENTA EL VALOR: los 5 factores que más impactan en el precio.\n3. QUÉ REDUCE EL VALOR: riesgos que los compradores identificarían.\n4. DOCUMENTACIÓN NECESARIA para preparar la empresa para una venta.\n5. PLATAFORMAS DE VENTA: dónde se venden negocios digitales de este tipo.\n6. ESTRATEGIA ALTERNATIVA: cómo estructurarlo para mínimo tiempo personal."},
+{t:"Construcción de IP (Propiedad Intelectual)",
+x:"Quiero documentar y proteger la propiedad intelectual de mi método.\nNombre del método: [NOMBRE] - Concepto central: [DESCRIPCIÓN]\n\n1. DOCUMENTACIÓN: cómo escribir el manual definitivo que nadie puede replicar.\n2. ELEMENTOS ÚNICOS: los componentes genuinamente originales y protegibles.\n3. NAMING DEL SISTEMA: cómo crear nombres propios para pasos y conceptos.\n4. MARCA REGISTRADA: proceso básico en Argentina y LATAM.\n5. CONTENIDO EVERGREEN: las 5 piezas que más contribuyen al reconocimiento del método.\n6. CITAS Y REFERENCIAS: cómo lograr que otros en el sector citen tu método."}
+]}
+];
+
+var PRICING = [
+{id:"starter",name:"Sistema Digital",price:"$97",badge:"Más Popular",bc:"#C8952A",col:"#C8952A",bg:"#FBF0D0",
+tag:"El sistema completo para arrancar y vender.",
+for:"Profesionales que están empezando o que tienen un producto pero no están vendiendo.",
+inc:["12 fases completas (acceso de por vida)","36+ prompts listos para Claude","Calculadora de proyección de lanzamiento","Hoja de ruta personalizada según tu etapa","Kit gratuito de inicio incluido","Actualizaciones por 12 meses"],
+noinc:["Sesiones en vivo","Comunidad privada","Soporte directo"],
+strat:"Funnel evergreen + lanzamiento orgánico",
+flow:"Instagram → Lead Magnet Gratis → Secuencia 5 emails → Oferta $97",
+urg:"Precio sube a $147 después del lanzamiento",
+script:"Acabo de lanzar el Sistema Persaltum Digital. Es el mapa completo para crear y vender infoproductos con IA en LATAM. Son 12 fases, 36+ prompts de Claude listos para usar, y una hoja de ruta personalizada. Por el lanzamiento, está a $97 en lugar de $147. Cierra el [FECHA]. Te mando el link?",
+proj:"20 ventas = $1.940 | 50 ventas = $4.850 | 100 ventas = $9.700"},
+{id:"pro",name:"Sistema Pro",price:"$297",badge:"Mayor Valor",bc:"#1A5E3C",col:"#1A5E3C",bg:"#E6F4EE",
+tag:"El sistema + comunidad activa + implementación grupal.",
+for:"Profesionales que ya tienen algo, quieren acelerar, y valoran la implementación acompañada.",
+inc:["Todo lo del Sistema Digital","Comunidad privada (Circle/plataforma)","2 sesiones grupales en vivo por mes (Zoom, 90 min)","Grabaciones de todas las sesiones anteriores","Revisión de landing page (1 vez por alumno)","Soporte por email con respuesta en 48hs","Actualizaciones por 24 meses"],
+noinc:["Sesiones 1:1","WhatsApp directo"],
+strat:"Webinar de lanzamiento + lista caliente",
+flow:"Email lista caliente → Webinar gratuito → Pitch al final del webinar",
+urg:"Cupos limitados a 50 alumnos por cohorte. Una vez lleno, lista de espera.",
+script:"Este mes abro una nueva cohorte del Sistema Pro. Sesiones en vivo grupales dos veces por mes para implementar en tiempo real. Los cupos son 50 por cohorte. Está a $297. Queres que te reserve un lugar?",
+proj:"20 ventas = $5.940 | 40 ventas = $11.880 | 50 ventas = $14.850"},
+{id:"elite",name:"Sistema Elite",price:"$697",badge:"High-Ticket",bc:"#5A2D90",col:"#5A2D90",bg:"#EFE7FA",
+tag:"Implementación guiada 1:1 + resultados garantizados.",
+for:"Profesionales que quieren resultados en el menor tiempo posible y valoran el acceso directo.",
+inc:["Todo lo del Sistema Pro","2 sesiones 1:1 por mes (45 min cada una)","Revisión completa de funnel + landing + emails","Soporte directo por WhatsApp (respuesta en 24hs hábiles)","Plan de lanzamiento personalizado para tu producto","Acceso de por vida + todas las actualizaciones futuras"],
+noinc:[],
+strat:"Aplicación + llamada de ventas (no landing pública)",
+flow:"Instagram DM / WhatsApp → Formulario aplicación → Llamada 30 min → Cierre",
+urg:"Máximo 10 alumnos Elite simultáneos.",
+script:"Tengo disponibilidad para 3 nuevos alumnos Elite este mes. Sesiones personales 1:1 + soporte directo + revisión de todo tu funnel. Para ver si es el fit correcto, te mando el formulario de aplicación de 5 minutos. Te parece?",
+proj:"5 alumnos = $3.485 | 10 alumnos = $6.970 | 15 alumnos = $10.455"}
+];
+
+var CHECKLIST = [
+{w:1,d:"Día 1-2",t:"Definir cliente ideal y propuesta de valor con Claude (Fase 1)"},
+{w:1,d:"Día 3-4",t:"Crear lead magnet en Claude + configurar landing de captura en MailerLite"},
+{w:1,d:"Día 5-7",t:"Escribir secuencia de 5 emails de bienvenida con Claude (Fase 2)"},
+{w:2,d:"Día 8-9",t:"Estructurar el índice del producto con Claude (Fase 1, Prompt 3)"},
+{w:2,d:"Día 10-11",t:"Publicar 3 posts orgánicos sobre el problema (sin vender)"},
+{w:2,d:"Día 12-14",t:"DM personal a 20 contactos cálidos anunciando que viene algo"},
+{w:3,d:"Día 15-16",t:"Escribir la landing page con Claude (Fase 3, Prompt 1)"},
+{w:3,d:"Día 17",t:"Configurar producto en Hotmart con precio + order bump"},
+{w:3,d:"Día 18-20",t:"3 posts de calentamiento + stories de anticipación"},
+{w:3,d:"Día 21",t:"Anuncio oficial del lanzamiento (email + post + stories)"},
+{w:4,d:"Día 22 APERTURA",t:"Carrito abierto: email + post + 5 stories + WhatsApp broadcast"},
+{w:4,d:"Día 23-24",t:"Contenido de objeciones + FAQ + respuesta manual a DMs"},
+{w:4,d:"Día 25-26",t:"Testimonios + prueba social + email de mitad de lanzamiento"},
+{w:4,d:"Día 27-28 CIERRE",t:"Last call: email + post urgencia + stories countdown + WhatsApp final"}
+];
+
+var KIT = [
+{n:"01",t:"Define tu cliente ideal",
+x:"Basándote en mi expertise en [TEMA], describí mi cliente ideal con máxima especificidad:\n- Demografía: edad, profesión, situación actual\n- Psicografía: qué piensa antes de dormirse, qué lo frustra, qué desea\n- Objeción 1 antes de comprar cualquier producto en mi nicho\n- La frase exacta que diría para describir su propio problema\n- La frase exacta que diría para describir su resultado deseado\nSé específico. Si la respuesta aplica a cualquier persona, es muy vaga."},
+{n:"02",t:"Propuesta de valor en una oración",
+x:"Tengo este producto: [DESCRIPCIÓN]\nCliente: [CLIENTE IDEAL]\n\nEscribí MI propuesta de valor en UNA ORACIÓN de máximo 20 palabras que incluya:\n- A quién ayudo (específico)\n- Qué resultado obtenemos (medible)\n- El diferenciador único (por qué yo y no otro)\n\nDame 5 variantes de la más directa a la más aspiracional."},
+{n:"03",t:"5 hooks que paran el scroll",
+x:"[BRAND BRIEF]\nTema del post: [TEMA CONCRETO]\n\nEscribí 5 primeras líneas para Instagram que paren el scroll.\nCada hook debe:\n- Crear curiosidad O generar identificación inmediata\n- Tener máximo 12 palabras\n- No empezar con preguntas cliché\nClasificalos del más agresivo al más sutil."},
+{n:"04",t:"Email de ventas de 300 palabras",
+x:"[BRAND BRIEF]\nProducto: [NOMBRE] a $[PRECIO]\n\nEscribí un email de venta de exactamente 300 palabras que:\n- Abra con el dolor más agudo del cliente (no con el producto)\n- Agite el problema en el párrafo 2\n- Presente la solución en el párrafo 3\n- Cierre con CTA directo y razón para actuar hoy\n- Tenga P.D. que funciona como segundo CTA\nTono: conversacional, directo."},
+{n:"05",t:"Story de Instagram que vende",
+x:"[BRAND BRIEF]\nObjetivo: generar interés en [PRODUCTO] sin mencionar el precio directamente.\n\n5 stories de Instagram:\nStory 1: Pregunta provocadora o dato impactante.\nStory 2: El antes (situación actual del cliente).\nStory 3: El insight (el giro mental que cambia la perspectiva).\nStory 4: El después (estado deseado, sin prometer milagros).\nStory 5: CTA suave (si queres saber más, respondé este mensaje).\nPara cada story: texto + qué mostrar visualmente."},
+{n:"06",t:"Respuesta a la objeción es muy caro",
+x:"Vendo [PRODUCTO] a $[PRECIO] y el prospecto dice: Está muy caro para mí ahora.\n\nEscribí 3 respuestas distintas:\nRespuesta A: Reencuadre del valor (el costo del problema vs. el precio de la solución).\nRespuesta B: Reducción del riesgo (garantía + cuotas si aplica).\nRespuesta C: Pregunta clarificadora (descubrir si es precio o prioridad).\nCada respuesta en máximo 4 oraciones. Tono: empático, nunca defensivo."},
+{n:"07",t:"Análisis de competidores en 5 min",
+x:"Soy [DESCRIPCIÓN]. Vendo [PRODUCTO] a [CLIENTE IDEAL].\nMis 3 competidores directos: [NOMBRES O DESCRIPCIONES]\n\nAnalizá con honestidad:\n1. Qué hace bien cada competidor.\n2. Qué le falta a cada competidor (el gap que yo puedo llenar).\n3. Cómo se diferencian entre ellos y cómo se parecen.\n4. El posicionamiento único que queda disponible para mí.\n5. Una frase de posicionamiento que me ubique en ese espacio vacío."},
+{n:"08",t:"Plan de contenido urgente (7 días)",
+x:"[BRAND BRIEF]\nObjetivo de la semana: [GENERAR LEADS / LANZAR ALGO / MANTENER PRESENCIA]\n\nPlan completo para los próximos 7 días:\n3 posts de feed + 5 stories + 3 reels de 30 a 60 segundos.\nPara cada pieza: tema, hook, 3 bullets de contenido, CTA.\nPrioridad: que sea publicable HOY, no perfecto."},
+{n:"09",t:"Testimonio que convierte",
+x:"Tengo este feedback de un cliente: [FEEDBACK EN BRUTO]\n\nTransformalo en un testimonio estructurado:\n1. SITUACIÓN ANTES: cómo estaba el cliente (con emoción).\n2. EL PROCESO: qué hizo exactamente con el producto.\n3. RESULTADO CONCRETO: el después con números o cambios medibles.\n4. POR QUÉ LO RECOMENDARÍA: la razón genuina.\nFormato: párrafo de 100 a 120 palabras. Que suene a persona real."},
+{n:"10",t:"Primera llamada de ventas",
+x:"Tengo que hacer mi primera llamada para vender [PRODUCTO] a $[PRECIO].\nEl prospecto llegó porque [CONTEXTO].\n\nGuión completo de 30 minutos:\n0 a 3 min: Apertura (rapport en 3 primeras oraciones).\n3 a 12 min: Diagnóstico (las 5 preguntas que revelan si es un buen fit).\n12 a 17 min: Visión (mostrarle el futuro posible).\n17 a 22 min: Presentación de la oferta.\n22 a 27 min: Manejo de las 3 objeciones más frecuentes.\n27 a 30 min: Cierre (pedir decisión directamente sin presión).\nTono: conversación entre iguales, no vendedor."}
+];
+
+var BRIEF_PROMPT = "Tomá esta información sobre mí y construime un Brand Brief profesional, conciso y poderoso, listo para pegar al inicio de cualquier prompt de marketing:\n\n[PEGÁ AQUÍ TUS RESPUESTAS DEL FORMULARIO]\n\nEl Brand Brief debe:\n- Tener máximo 300 palabras\n- Incluir: quién soy, a quién ayudo, qué resultado logran, mi tono y voz, mis productos con precios\n- Estar en primera persona\n- Terminar con 5 palabras que NUNCA uso y 5 que SIEMPRE uso";
+
+var KPIS = [
+{g:"Captación",m:"Conversión landing captura",ok:"35 a 55%",al:"menos de 15%",fix:"Reescribí el headline. Testea 3 variantes en 48hs."},
+{g:"Captación",m:"Costo por lead con ads (CPL)",ok:"$1 a $5 USD",al:"más de $10",fix:"Cambiá el creativo. El copy del ad puede ser lo de menos."},
+{g:"Email",m:"Tasa de apertura de emails",ok:"mayor a 28%",al:"menor a 15%",fix:"Mejorá asuntos. Verificá que no caigas en spam."},
+{g:"Email",m:"Tasa de click en emails",ok:"mayor a 3.5%",al:"menor a 1%",fix:"Un solo CTA por email. Si tenés 3 links, la gente no hace click en ninguno."},
+{g:"Conversión",m:"Conversión landing de ventas",ok:"2 a 8%",al:"menor a 1%",fix:"Revisá headline, precio percibido y garantía visible."},
+{g:"Conversión",m:"Tasa de order bump",ok:"20 a 35%",al:"menor a 10%",fix:"El order bump no resuelve el obstáculo correcto. Cambiá la propuesta."},
+{g:"Conversión",m:"Reembolsos",ok:"menor a 4%",al:"mayor a 8%",fix:"El producto no cumple la promesa. Revisá la brecha entre lo que prometés y entregás."},
+{g:"Publicidad",m:"CTR de anuncios",ok:"mayor a 1.5%",al:"menor a 0.5%",fix:"El creativo no para el scroll. Cambiá imagen o video primero."},
+{g:"Publicidad",m:"ROAS funnel completo",ok:"mayor a 3x",al:"menor a 1.5x",fix:"El problema no está en el ad, está en la secuencia de emails post-lead."},
+{g:"Retención",m:"Apertura emails post-compra",ok:"mayor a 45%",al:"menor a 20%",fix:"El email de bienvenida no creó expectativa. Reescribilo."},
+{g:"Retención",m:"Tasa de upsell post-compra",ok:"15 a 25%",al:"menor a 8%",fix:"El upsell no es la evolución lógica del core. Cambiá la oferta."},
+{g:"Escalabilidad",m:"Ingresos recurrentes del total",ok:"mayor a 40%",al:"menor a 15%",fix:"Dependés demasiado de lanzamientos. Lanzá la membresía o el funnel evergreen."}
+];
+
+var PROFILES = [
+{ic:"🌱",lb:"Desde Cero",col:"#1B3D70",bg:"#E7EDF8",
+sit:"Sin producto, sin audiencia, sin lista.",
+goal:"$500 a $1.500 en los primeros 30 días",
+warn:"No intentés construir el funnel perfecto antes de vender. Vendé primero con lo mínimo viable.",
+steps:[
+{wk:"Semana 1",ti:"Definición y validación",tasks:["Elegí UN tema en el que tenés expertise real (Fase 1)","Definí tu cliente ideal con el Prompt de Validación","Creá el lead magnet con Claude en 48hs (Fase 2)","Abrí landing de captura en MailerLite (gratis hasta 500 suscriptores)"]},
+{wk:"Semana 2",ti:"Captación inicial",tasks:["Publicá 3 posts sobre el problema de tu cliente (sin vender)","Configurá la secuencia de 5 emails de bienvenida","DM personal a 20 personas que ya te conocen"]},
+{wk:"Semana 3",ti:"Construcción del producto",tasks:["Estructurá el índice del producto con Claude (Fase 1, Prompt 3)","Escribí la landing de ventas (Fase 3, Prompt 1)","Configurá Hotmart con precio + order bump"]},
+{wk:"Semana 4",ti:"Lanzamiento Relámpago",tasks:["Ejecutá el Lanzamiento Relámpago de 5 días (Fase 4, Prompt 1)","Respondé cada DM y WhatsApp manualmente","Meta: 5 a 15 ventas en la primera semana de carrito abierto"]}
+]},
+{ic:"⚙️",lb:"Tengo Producto, No Vendo",col:"#C8952A",bg:"#FBF0D0",
+sit:"Producto creado. Menos de 10 ventas.",
+goal:"Identificar el cuello de botella y hacer las primeras 20 ventas",
+warn:"Antes de cambiar el producto, diagnosticá el funnel. El 80% de los problemas están en captación o copy, no en el producto.",
+steps:[
+{wk:"Paso 1",ti:"Diagnóstico brutal",tasks:["Tenés leads? Si no, problema de captación. Si tenés pero no venden, problema de conversión.","Revisá el copy de tu landing con el Prompt de Propuesta de Valor (Fase 1)","Hacé el diagnóstico de métricas en la pestaña Datos"]},
+{wk:"Paso 2",ti:"Corrección de la pieza rota",tasks:["Si no tenés lead magnet: crealo esta semana (Fase 2)","Si tenés leads pero no ventas: reescribí el headline de la landing","Si tenés ventas pero pocas: activá order bump y upsell (Fase 3)"]},
+{wk:"Paso 3",ti:"Mini-lanzamiento",tasks:["Hacé un mini-lanzamiento de 5 días a tu audiencia actual (Fase 4)","DM a quien mostró interés pero no compró: qué te frenó?","Ajustá precio o propuesta según el feedback"]},
+{wk:"Paso 4",ti:"Optimización post-venta",tasks:["Configurá la secuencia de emails de bienvenida para compradores","Pedí testimonio a los primeros compradores en el día 7","Activá el programa de afiliados básico (Fase 6)"]}
+]},
+{ic:"📈",lb:"Vendo pero No Escala",col:"#1A5E3C",bg:"#E6F4EE",
+sit:"$500 a $2.000/mes. Ingresos esporádicos, no predecibles.",
+goal:"$2.000 a $5.000/mes recurrentes en 60 días",
+warn:"El problema no es el producto. Es que dependés de lanzamientos manuales. Necesitás un funnel que trabaje mientras no estás.",
+steps:[
+{wk:"Semana 1-2",ti:"Funnel evergreen",tasks:["Configurá el funnel: Lead Magnet a Secuencia email a Venta (Fase 4)","Empezá Meta Ads a $5/día al lead magnet (Fase 5)","Activá order bump si no está activo (+25% al ticket promedio)"]},
+{wk:"Semana 3-4",ti:"Escala de valor",tasks:["Lanzá la membresía/comunidad recurrente (Fase 6, Prompt 1)","Reclutá los primeros 5 afiliados en tu nicho (Fase 6, Prompt 2)","Diseñá la oferta high-ticket para el próximo trimestre (Fase 6, Prompt 3)"]},
+{wk:"Mes 2",ti:"Automatización",tasks:["Creá tu agente de IA para atención al cliente (Fase 7, Prompt 1)","Construí tu Claude Project (Fase 7, Prompt 3)","Implementá el dashboard de Business Intelligence (Fase 10)"]},
+{wk:"Mes 3",ti:"Posicionamiento",tasks:["Estrategia Thought Leadership 90 días (Fase 8, Prompt 1)","Primera colaboración con un creador complementario","Meta: 40% de los ingresos ya recurrente"]}
+]},
+{ic:"🏆",lb:"Escala Consolidada",col:"#5A2D90",bg:"#EFE7FA",
+sit:"$3.000+/mes. Funnel activo, primeros 100 clientes.",
+goal:"$8.000 a $15.000/mes en 90 días",
+warn:"El siguiente cuello de botella es tu tiempo. Automatizá antes de escalar más. Escalar sin automatización solo te quema.",
+steps:[
+{wk:"Mes 1",ti:"Comunidad y ecosistema",tasks:["Lanzá la comunidad con onboarding estructurado (Fase 9, Prompt 1)","Creá el primer evento virtual de crecimiento (Fase 9, Prompt 2)","Identificá y activá tus primeros 5 embajadores naturales (Fase 9, Prompt 3)"]},
+{wk:"Mes 2",ti:"Escala de ads y datos",tasks:["Escalá presupuesto de ads de $10 a $50/día (incrementos del 20% semanal)","Implementá el dashboard completo de KPIs (Fase 10, Prompt 1)","Primer A/B test sistemático en landing y emails (Fase 10, Prompt 2)"]},
+{wk:"Mes 3",ti:"Expansión LATAM",tasks:["Elegí UN país objetivo (México / Colombia / Chile)","Adaptá el copy de ventas para ese mercado (Fase 11, Prompt 2)","Primera colaboración con un creador local del país objetivo"]},
+{wk:"Mes 4+",ti:"Activos y legado",tasks:["Diseñá el programa de certificación (Fase 12, Prompt 1)","Valoración del negocio y estrategia de salida (Fase 12, Prompt 2)","Meta: 50% ingresos recurrentes, negocio funciona en 20hs/semana"]}
+]}
+];
+
+// ═══════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════
+var S = {
+tab:'sistema', phase:'p1', ctab:'desc',
+pf:'all', pri:'pro', sell:false,
+kt:'p', prof:0,
+op:{}, // open phase prompts: key = "p1-0"
+okp:-1, // open kit prompt index
+ck:{} // checked checklist items
+};
+
+// ═══════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════
+function esc(s){
+return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// THE FIX: copy by reference (type + index), never embed text in onclick
+function copyItem(btn, type, a, b){
+var text = '';
+try {
+if(type==='ph'){ var ph=PH.find(function(p){return p.id===a;}); if(ph) text=ph.proms[b].x; }
+else if(type==='kit'){ text=KIT[a].x; }
+else if(type==='scr'){ var t=PRICING.find(function(p){return p.id===a;}); if(t) text=t.script; }
+else if(type==='brief'){ text=BRIEF_PROMPT; }
+if(text && navigator && navigator.clipboard){
+navigator.clipboard.writeText(text).then(function(){
+btn.textContent='✓ Copiado';
+btn.style.background='#1A5E3C';
+setTimeout(function(){ btn.textContent='Copiar'; btn.style.background='#141210'; }, 2000);
+}).catch(function(){});
+}
+} catch(e){}
+}
+
+function mkTag(txt,col){
+return '<span class="tag" style="background:'+col+'1a;color:'+col+';border:1px solid '+col+'35">'+txt+'</span>';
+}
+
+// ═══════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════
+function switchTab(id){
+S.tab=id;
+document.querySelectorAll('.tb').forEach(function(b){ b.classList.remove('on'); });
+document.querySelectorAll('.sec').forEach(function(s){ s.classList.remove('on'); });
+var tabs = document.querySelectorAll('.tb');
+var tabIds = ['sistema','prompts','datos','precios','gratis','mapa'];
+var idx = tabIds.indexOf(id);
+if(idx>=0) tabs[idx].classList.add('on');
+var sec = document.getElementById('sec-'+id);
+if(sec) sec.classList.add('on');
+}
+
+// ═══════════════════════════════════════════
+// SISTEMA
+// ═══════════════════════════════════════════
+function renderPhaseGrid(){
+var ph = PH;
+var html='';
+ph.forEach(function(p){
+var on=S.phase===p.id;
+html+='<button class="pbtn" onclick="selPhase(\''+p.id+'\')" style="background:'+(on?p.col:'#fff')+';border-color:'+(on?p.col:'#E2DED6')+'">';
+html+='<div class="pbtn-ic">'+p.icon+'</div>';
+html+='<div class="pbtn-n" style="color:'+(on?'rgba(255,255,255,0.75)':'#B2AFA9')+'">F'+p.n+'</div>';
+html+='<div class="pbtn-t" style="color:'+(on?'#fff':'#141210')+'">'+p.title+'</div>';
+html+='</button>';
+});
+var el=document.getElementById('phase-grid');
+if(el) el.innerHTML=html;
+}
+
+function selPhase(id){
+S.phase=id; S.ctab='desc'; S.op={};
+renderPhaseGrid();
+renderPhaseDetail();
+}
+
+function switchCtab(id){
+S.ctab=id;
+renderPhaseDetail();
+}
+
+function togglePP(key){
+S.op[key]=!S.op[key];
+renderPhaseDetail();
+}
+
+function renderPhaseDetail(){
+var p=PH.find(function(x){return x.id===S.phase;});
+if(!p) return;
+var ctabs=[{id:'desc',lb:'📖 Descripción'},{id:'prin',lb:'💡 Principios'},{id:'prom',lb:'📋 Prompts'},{id:'met',lb:'✓ Métricas'}];
+var h='<div class="pdet" style="border-color:'+p.col+'">';
+
+// header
+h+='<div class="phdr" style="background:'+p.col+'"><div class="phdr-row">';
+h+='<div><div class="phdr-n">FASE '+p.n+' · '+p.dur.toUpperCase()+'</div>';
+h+='<div class="phdr-t">'+p.icon+' '+p.title+'</div>';
+h+='<div class="phdr-s">'+p.sub+'</div></div>';
+h+='<div class="phdr-kpi"><div class="phdr-kpi-l">META</div><div class="phdr-kpi-v">'+p.kpi+'</div></div>';
+h+='</div></div>';
+
+// ctab bar
+h+='<div class="ctbar">';
+ctabs.forEach(function(t){
+var on=S.ctab===t.id;
+h+='<button class="ctb'+(on?' on':'')+'" onclick="switchCtab(\''+t.id+'\')" style="color:'+(on?p.col:'#B2AFA9')+';border-bottom-color:'+(on?p.col:'transparent')+'">'+t.lb+'</button>';
+});
+h+='</div>';
+
+h+='<div class="ctbody">';
+
+if(S.ctab==='desc'){
+h+='<p style="font-size:14px;line-height:1.9;color:#141210;margin-bottom:14px">'+p.desc+'</p>';
+h+='<div style="background:'+p.bg+';border:1px solid '+p.col+'30;border-radius:10px;padding:12px;margin-bottom:12px">';
+h+='<div style="font-size:10px;font-weight:800;color:'+p.col+';letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px">QUÉ LOGRÁS EN ESTA FASE</div>';
+h+='<div style="font-size:15px;font-weight:800;color:#141210">'+p.kpi+'</div></div>';
+h+='<div style="background:#F1EDE4;border-radius:10px;padding:12px">';
+h+='<div style="font-size:10px;font-weight:800;color:#6B6860;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px">PROMPTS EN ESTA FASE</div>';
+p.proms.forEach(function(pr,i){
+h+='<div style="display:flex;gap:8px;margin-bottom:8px;align-items:flex-start">';
+h+='<div style="width:22px;height:22px;border-radius:50%;background:'+p.col+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0">'+(i+1)+'</div>';
+h+='<div><div style="font-size:13px;font-weight:700;color:#141210">'+pr.t+'</div></div></div>';
+});
+h+='<button onclick="switchCtab(\'prom\')" style="width:100%;margin-top:8px;padding:10px;background:'+p.col+';color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ver los '+p.proms.length+' prompts completos →</button>';
+h+='</div>';
+}
+
+if(S.ctab==='prin'){
+h+='<p style="font-size:13px;color:#6B6860;margin-bottom:12px;line-height:1.7">Las reglas no negociables de esta fase. Violarlas es el camino más corto al fracaso.</p>';
+p.prins.forEach(function(pr,i){
+h+='<div class="prin" style="background:'+(i%2===0?p.bg:'#fff')+';border-left-color:'+p.col+'">';
+h+='<div class="prinn" style="background:'+p.col+'">'+(i+1)+'</div>';
+h+='<p style="margin:0;font-size:13px;line-height:1.7;color:#141210">'+pr+'</p></div>';
+});
+}
+
+if(S.ctab==='prom'){
+h+='<p style="font-size:13px;color:#6B6860;margin-bottom:12px;line-height:1.7"><strong style="color:#141210">Cómo usar:</strong> Copiá el prompt, pegá tu Brand Brief al inicio en Claude, y reemplazá los [CORCHETES] con tu información real.</p>';
+p.proms.forEach(function(pr,j){
+var key=p.id+'-'+j;
+var open=!!S.op[key];
+h+='<div class="pc" style="border-color:'+(open?p.col:'#E2DED6')+'">';
+h+='<div class="pch" style="background:'+(open?p.col+'12':'#F1EDE4')+'" onclick="togglePP(\''+key+'\')">';
+h+='<div class="pch-l">';
+h+='<div class="pcnum" style="background:'+p.col+'">'+(j+1)+'</div>';
+h+='<div><div class="pclbl" style="color:'+p.col+'">Prompt '+(j+1)+'</div><div class="pctxt">'+pr.t+'</div></div>';
+h+='</div>';
+h+='<div class="pcarr" style="color:'+p.col+';transform:'+(open?'rotate(90deg)':'rotate(0deg)')+'">›</div>';
+h+='</div>';
+if(open){
+h+='<div class="pcbody on">';
+h+='<div class="pcmeta"><span class="pcmeta-h">Reemplazá los <strong>[CORCHETES]</strong> con tu info</span>';
+h+='<button class="cp" onclick="copyItem(this,\'ph\',\''+p.id+'\','+j+')">Copiar</button></div>';
+h+='<div class="pctbox"><pre>'+esc(pr.x)+'</pre></div>';
+
+```
+h+='</div>';
+}
+h+='</div>';
+});
+```
+
+}
+
+if(S.ctab===‘met’){
+h+=’<p style="font-size:13px;color:#6B6860;margin-bottom:12px;line-height:1.7">Estas métricas confirman que completaste la fase exitosamente.</p>’;
+p.mets.forEach(function(m,i){
+h+=’<div style="display:flex;gap:10px;align-items:flex-start;padding:11px 12px;background:#fff;border:1px solid #E2DED6;border-radius:10px;margin-bottom:7px">’;
+h+=’<div style="width:28px;height:28px;border-radius:50%;background:#E6F4EE;border:2px solid #1A5E3C;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">✓</div>’;
+h+=’<div><div style="font-size:13px;font-weight:700;color:#141210;line-height:1.4">’+m+’</div>’;
+h+=’<div style="font-size:11px;color:#1A5E3C;margin-top:2px;font-weight:600">Indicador de éxito — Fase ‘+p.n+’</div></div></div>’;
+});
+if(p.n<12){
+h+=’<div style="background:#FBF0D0;border:1px solid rgba(200,149,42,.4);border-radius:10px;padding:12px;margin-top:12px">’;
+h+=’<div style="font-size:10px;font-weight:800;color:#8A6418;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px">SIGUIENTE PASO</div>’;
+h+=’<p style="font-size:13px;color:#8A6418;margin:0 0 8px;line-height:1.6">¿Completaste todas las métricas? Pasá a la siguiente fase.</p>’;
+h+=’<button onclick="selPhase(\'p'+(p.n+1)+'\')" style="width:100%;padding:10px;background:#C8952A;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ir a Fase ‘+(p.n+1)+’ →</button>’;
+h+=’</div>’;
+}
+}
+
+h+=’</div></div>’;
+
+// nav
+h+=’<div class="navbtns">’;
+if(p.n>1) h+=’<button class="nbtn prev" onclick="selPhase(\'p'+(p.n-1)+'\')">← Fase ‘+(p.n-1)+’</button>’;
+if(p.n<12) h+=’<button class="nbtn next" onclick="selPhase(\'p'+(p.n+1)+'\')" style="background:'+p.col+'">Siguiente: Fase ‘+(p.n+1)+’ →</button>’;
+h+=’</div>’;
+
+var el=document.getElementById(‘phase-detail’);
+if(el) el.innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+// PROMPTS
+// ═══════════════════════════════════════════
+function renderPromptFilters(){
+var total=PH.reduce(function(a,p){return a+p.proms.length;},0);
+var h=’<button class="fbtn" onclick="setPF(\'all\')" id="pf-all" style="background:#C8952A;color:#fff;border-color:#C8952A">Todos (’+total+’)</button>’;
+PH.forEach(function(p){
+h+=’<button class="fbtn" onclick="setPF(\''+p.id+'\')" id="pf-'+p.id+'">’+p.icon+’ F’+p.n+’</button>’;
+});
+var el=document.getElementById(‘pfilters’);
+if(el) el.innerHTML=h;
+document.getElementById(‘prom-ey’).textContent=total+’ Prompts · Listos para usar’;
+}
+
+function setPF(id){
+S.pf=id;
+document.querySelectorAll(’.fbtn’).forEach(function(b){ b.style.background=’#fff’; b.style.color=’#B2AFA9’; b.style.borderColor=’#E2DED6’; });
+var btn=document.getElementById(‘pf-’+id);
+if(btn){
+if(id===‘all’){ btn.style.background=’#C8952A’; btn.style.color=’#fff’; btn.style.borderColor=’#C8952A’; }
+else{
+var ph=PH.find(function(p){return p.id===id;});
+var c=ph?ph.col:’#C8952A’;
+btn.style.background=c+‘20’; btn.style.color=c; btn.style.borderColor=c;
+}
+}
+renderPromptsList();
+}
+
+function renderPromptsList(){
+var srch=(document.getElementById(‘psearch’)||{}).value||’’;
+srch=srch.toLowerCase();
+var h=’’;
+PH.forEach(function(p){
+if(S.pf!==‘all’&&S.pf!==p.id) return;
+p.proms.forEach(function(pr,j){
+if(srch&&pr.t.toLowerCase().indexOf(srch)<0) return;
+h+=’<div class="card" style="border-left:4px solid '+p.col+';margin-bottom:12px">’;
+h+=’<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">’;
+h+=’<div>’+mkTag(‘Fase ‘+p.n+’ · ‘+p.title,p.col)+’<div style="font-size:14px;font-weight:700;color:#141210;margin-top:5px">’+pr.t+’</div></div>’;
+h+=’<button class="cp" onclick="copyItem(this,\'ph\',\''+p.id+'\','+j+')">Copiar</button>’;
+h+=’</div>’;
+h+=’<div style="background:#111;border-radius:8px;padding:12px"><pre style="font-size:11px;line-height:1.85;color:#c8f0b8">’+esc(pr.x)+’</pre></div>’;
+h+=’<div style="margin-top:6px;font-size:11px;color:#6B6860;font-style:italic">Reemplazá todos los [CORCHETES] antes de usar.</div>’;
+h+=’</div>’;
+});
+});
+if(!h) h=’<div style="text-align:center;color:#6B6860;font-size:13px;padding:30px">No se encontraron prompts.</div>’;
+var el=document.getElementById(‘plist’);
+if(el) el.innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+// CALCULADORA
+// ═══════════════════════════════════════════
+function calc(){
+var aud=+(document.getElementById(‘s-aud’)||{value:300}).value;
+var pri=+(document.getElementById(‘s-pri’)||{value:97}).value;
+var con=+(document.getElementById(‘s-con’)||{value:2}).value;
+var bum=+(document.getElementById(‘s-bum’)||{value:25}).value;
+var ups=+(document.getElementById(‘s-ups’)||{value:15}).value;
+var bp=27,up=197;
+var el=function(id){return document.getElementById(id);};
+el(‘l-aud’).textContent=aud.toLocaleString()+’ personas’;
+el(‘l-pri’).textContent=’$’+pri+’ USD’;
+el(‘l-con’).textContent=con+’%’;
+el(‘l-bum’).textContent=bum+’%’;
+el(‘l-ups’).textContent=ups+’%’;
+var cv=Math.round(aud*con/100);
+var ci=cv*pri;
+var bv=Math.round(cv*bum/100);
+var bi=bv*bp;
+var uv=Math.round(cv*ups/100);
+var ui=uv*up;
+var net=Math.round((ci+bi+ui)*0.9);
+el(‘r-cor’).textContent=’$’+ci.toLocaleString();
+el(‘r-cors’).textContent=cv+’ ventas’;
+el(‘r-bum’).textContent=’$’+bi.toLocaleString();
+el(‘r-bums’).textContent=bv+’ compras’;
+el(‘r-ups’).textContent=’$’+ui.toLocaleString();
+el(‘r-upss’).textContent=uv+’ compras’;
+el(‘r-net’).textContent=’$’+net.toLocaleString();
+}
+
+function renderKpis(){
+var groups=[];
+KPIS.forEach(function(k){ if(groups.indexOf(k.g)<0) groups.push(k.g); });
+var h=’’;
+groups.forEach(function(g){
+h+=’<div class="mgt">’+g+’</div>’;
+KPIS.filter(function(k){return k.g===g;}).forEach(function(m){
+h+=’<div class="card" style="padding:11px 12px;margin-bottom:7px">’;
+h+=’<div style="font-size:13px;font-weight:700;color:#141210;margin-bottom:7px">’+m.m+’</div>’;
+h+=’<div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px">’;
+h+=mkTag(‘✓ Meta: ‘+m.ok,’#1A5E3C’)+’ ‘+mkTag(‘⚠ Alerta: ‘+m.al,’#A32018’);
+h+=’</div><div style="display:flex;gap:7px"><div style="width:7px;height:7px;border-radius:50%;background:#C8952A;flex-shrink:0;margin-top:5px"></div>’;
+h+=’<span style="font-size:12px;color:#6B6860;line-height:1.6"><strong style="color:#141210">Acción: </strong>’+m.fix+’</span></div></div>’;
+});
+});
+var el=document.getElementById(‘kpis’);
+if(el) el.innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+// PRECIOS
+// ═══════════════════════════════════════════
+function renderPricingCards(){
+var h=’’;
+PRICING.forEach(function(p){
+var on=S.pri===p.id;
+h+=’<div class="pricard" onclick="selPricing(\''+p.id+'\')" style="background:'+(on?p.bg:'#fff')+';border-color:'+(on?p.col:'#E2DED6')+'">’;
+h+=’<div class="pricard-top"><div>’;
+h+=mkTag(p.badge,p.bc);
+h+=’<div class="pricard-name">’+p.name+’</div>’;
+h+=’<div class="pricard-tag">’+p.tag+’</div>’;
+h+=’</div><div class="pricard-price" style="color:'+(on?p.col:'#141210')+'">’+p.price+’</div></div></div>’;
+});
+var el=document.getElementById(‘prilist’);
+if(el) el.innerHTML=h;
+}
+
+function selPricing(id){
+S.pri=id; S.sell=false;
+renderPricingCards();
+renderPricingDetail();
+}
+
+function toggleSell(){
+S.sell=!S.sell;
+renderPricingDetail();
+}
+
+function renderPricingDetail(){
+var t=PRICING.find(function(p){return p.id===S.pri;});
+if(!t) return;
+var h=’<div class="card" style="border:1px solid '+t.col+';margin-bottom:10px">’;
+h+=’<div style="font-size:11px;font-weight:800;color:'+t.col+';letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">PARA QUIÉN ES</div>’;
+h+=’<p style="font-size:13px;line-height:1.7;color:#6B6860;margin-bottom:10px">’+t.for+’</p>’;
+h+=’<div class="div"></div>’;
+h+=’<div style="font-size:11px;font-weight:800;color:'+t.col+';letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">QUÉ INCLUYE</div>’;
+t.inc.forEach(function(i){ h+=’<div style="display:flex;gap:7px;margin-bottom:5px"><span style="color:'+t.col+'">✓</span><span style="font-size:13px;color:#141210;line-height:1.5">’+i+’</span></div>’; });
+if(t.noinc.length){
+h+=’<div class="div"></div>’;
+t.noinc.forEach(function(i){ h+=’<div style="display:flex;gap:7px;margin-bottom:5px"><span style="color:#B2AFA9">—</span><span style="font-size:12px;color:#B2AFA9">’+i+’</span></div>’; });
+}
+h+=’<div class="div"></div>’;
+h+=’<div style="font-size:11px;font-weight:800;color:'+t.col+';letter-spacing:1px;text-transform:uppercase;margin-bottom:5px">PROYECCIÓN</div>’;
+h+=’<div style="font-size:13px;background:'+t.bg+';padding:9px 11px;border-radius:8px;color:#141210">’+t.proj+’</div>’;
+h+=’</div>’;
+
+h+=’<button onclick="toggleSell()" style="width:100%;padding:13px;background:'+t.col+';color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:'+(S.sell?'0':'14px')+'">’+(S.sell?‘▲ Ocultar estrategia’:‘▼ Cómo vender el ‘+t.name)+’</button>’;
+
+if(S.sell){
+h+=’<div class="card" style="border:1px solid '+t.col+';border-top:none;border-top-left-radius:0;border-top-right-radius:0;margin-bottom:14px">’;
+h+=’<div class="sell-f"><div class="sell-fl" style="color:'+t.col+'">Estrategia</div><div class="sell-fv">’+t.strat+’</div></div>’;
+h+=’<div class="sell-f"><div class="sell-fl" style="color:'+t.col+'">Flujo de venta</div><div class="sell-fv">’+t.flow+’</div></div>’;
+h+=’<div class="sell-f"><div class="sell-fl" style="color:'+t.col+'">Urgencia / Escasez</div><div class="sell-fv">’+t.urg+’</div></div>’;
+h+=’<div class="div"></div>’;
+h+=’<div style="font-size:10px;font-weight:800;color:'+t.col+';letter-spacing:1px;text-transform:uppercase;margin-bottom:5px">SCRIPT DE PRIMER MENSAJE</div>’;
+h+=’<div class="scrbox">’+t.script+’</div>’;
+h+=’<div style="display:flex;justify-content:flex-end;margin-top:7px"><button class="cp" onclick="copyItem(this,\'scr\',\''+t.id+'\',0)">Copiar script</button></div>’;
+h+=’</div>’;
+}
+var el=document.getElementById(‘pridet’);
+if(el) el.innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+// KIT GRATIS
+// ═══════════════════════════════════════════
+function kitTab(id){
+S.kt=id;
+[‘p’,‘c’,‘b’].forEach(function(k){
+var p=document.getElementById(‘kit-’+k);
+var b=document.getElementById(‘kt-’+k);
+if(p) p.style.display=k===id?‘block’:‘none’;
+if(b){
+b.style.background=k===id?’#C8952A’:’#fff’;
+b.style.color=k===id?’#fff’:’#B2AFA9’;
+b.style.border=k===id?‘1.5px solid #C8952A’:‘1.5px solid #E2DED6’;
+}
+});
+}
+
+function renderKitPrompts(){
+var h=’<p style="font-size:13px;color:#6B6860;margin-bottom:12px;line-height:1.7">Los 10 prompts más importantes para empezar. Copiá, completá los corchetes y usá en Claude.</p>’;
+KIT.forEach(function(pr,i){
+var open=S.okp===i;
+h+=’<div style="margin-bottom:7px">’;
+h+=’<div onclick="toggleKP('+i+')" style="background:#fff;border:1px solid #E2DED6;border-radius:'+(open?'10px 10px 0 0':'10px')+';padding:11px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">’;
+h+=’<div><span style="font-size:10px;font-weight:800;color:#C8952A;margin-right:7px">’+pr.n+’</span><span style="font-size:13px;font-weight:600;color:#141210">’+pr.t+’</span></div>’;
+h+=’<span style="color:#C8952A;font-size:18px;transform:'+(open?'rotate(90deg)':'rotate(0deg)')+';transition:transform .2s;display:inline-block">›</span>’;
+h+=’</div>’;
+if(open){
+h+=’<div style="background:#111;border-radius:0 0 10px 10px;padding:11px 12px;border:1px solid #E2DED6;border-top:none">’;
+h+=’<div style="display:flex;justify-content:flex-end;margin-bottom:7px"><button class="cp" onclick="copyItem(this,\'kit\','+i+',0)">Copiar</button></div>’;
+h+=’<pre style="font-size:11px;line-height:1.85;color:#c8f0b8">’+esc(pr.x)+’</pre></div>’;
+}
+h+=’</div>’;
+});
+var el=document.getElementById(‘kit-p’);
+if(el) el.innerHTML=h;
+}
+
+function toggleKP(i){
+S.okp=S.okp===i?-1:i;
+renderKitPrompts();
+}
+
+function renderKitChecklist(){
+var done=Object.values(S.ck).filter(Boolean).length;
+var pct=Math.round(done/CHECKLIST.length*100);
+var h=’<div class="card alt" style="margin-bottom:12px">’;
+h+=’<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">’;
+h+=’<div style="font-size:13px;font-weight:700;color:#141210">’+done+’/’+CHECKLIST.length+’ tareas completadas</div>’;
+h+=mkTag(pct+’%’,’#C8952A’);
+h+=’</div><div class="pbg"><div class="pfill" style="width:'+pct+'%"></div></div></div>’;
+[1,2,3,4].forEach(function(w){
+h+=’<div style="font-size:11px;font-weight:800;color:#C8952A;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px">SEMANA ‘+w+’</div>’;
+CHECKLIST.filter(function(c){return c.w===w;}).forEach(function(c,i){
+var id=‘cl’+w+’’+i;
+var dn=!!S.ck[id];
+h+=’<div class="chi'+(dn?' dn':'')+'" onclick="toggleCK(\''+id+'\')">’;
+h+=’<div class="chbox">’+(dn?‘✓’:’’)+’</div>’;
+h+=’<div><div class="ch-d" style="color:'+(dn?'#1A5E3C':'#C8952A')+'">’+c.d+’</div>’;
+h+=’<div class="ch-t">’+c.t+’</div></div></div>’;
+});
+});
+var el=document.getElementById(‘kit-c’);
+if(el) el.innerHTML=h;
+}
+
+function toggleCK(id){
+S.ck[id]=!S.ck[id];
+renderKitChecklist();
+}
+
+function renderKitBrief(){
+var secs=[
+{s:“Identidad”,fs:[”¿Quién soy? (nombre, profesión de origen, años de experiencia)”,”¿Qué enseño/vendo exactamente? (una oración)”,“Mi historia de transformación (2 a 3 oraciones)”,”¿Por qué soy la persona indicada para enseñar esto?”]},
+{s:“Cliente Ideal”,fs:[“Nombre ficticio y edad:”,“Profesión o situación:”,“Mayor frustración con respecto a mi tema:”,“Lo que intenta antes de encontrarme:”,“El resultado específico que busca:”]},
+{s:“Voz y Tono”,fs:[“3 adjetivos que describen cómo comunicás:”,“3 palabras o frases que siempre usás:”,“3 palabras que nunca usás:”,“Tu referente de comunicación:”]},
+{s:“Productos”,fs:[“Lead magnet (gratis):”,“Producto de entrada ($): nombre + precio”,“Producto core ($): nombre + precio”,“Upsell ($): nombre + precio”]}
+];
+var h=’<p style="font-size:13px;color:#6B6860;margin-bottom:12px;line-height:1.7">Completá este Brand Brief y guardalo. Es lo primero que pegás en Claude antes de cualquier sesión de trabajo importante.</p>’;
+secs.forEach(function(s){
+h+=’<div style="margin-bottom:12px"><div style="font-size:11px;font-weight:800;color:#C8952A;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px">’+s.s+’</div>’;
+s.fs.forEach(function(f){
+h+=’<div class="bf"><div class="bf-l">’+f+’</div><div class="bf-p">Tu respuesta aquí…</div></div>’;
+});
+h+=’</div>’;
+});
+h+=’<div class="card gold">’;
+h+=’<div style="font-size:11px;font-weight:800;color:#8A6418;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px">PROMPT: GENERÁ TU BRAND BRIEF FINAL</div>’;
+h+=’<div style="background:#111;border-radius:8px;padding:11px 12px">’;
+h+=’<div style="display:flex;justify-content:flex-end;margin-bottom:6px"><button class="cp" onclick="copyItem(this,\'brief\',0,0)">Copiar</button></div>’;
+h+=’<pre style="font-size:11px;line-height:1.85;color:#c8f0b8">’+esc(‘Tomá esta información sobre mí y construime\nun Brand Brief profesional de 300 palabras…\n\n[PEGÁ TUS RESPUESTAS ARRIBA]’)+’</pre></div></div>’;
+var el=document.getElementById(‘kit-b’);
+if(el) el.innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+// MAPA
+// ═══════════════════════════════════════════
+function renderProfileGrid(){
+var h=’’;
+PROFILES.forEach(function(p,i){
+var on=S.prof===i;
+h+=’<button class="profbtn" onclick="selProf('+i+')" style="background:'+(on?p.bg:'#fff')+';border-color:'+(on?p.col:'#E2DED6')+'">’;
+h+=’<div class="prof-ic">’+p.ic+’</div>’;
+h+=’<div class="prof-l" style="color:'+(on?p.col:'#B2AFA9')+'">’+p.lb+’</div></button>’;
+});
+var el=document.getElementById(‘profgrid’);
+if(el) el.innerHTML=h;
+}
+
+function selProf(i){
+S.prof=i;
+renderProfileGrid();
+renderProfileDetail();
+}
+
+function renderProfileDetail(){
+var p=PROFILES[S.prof];
+var h=’’;
+h+=’<div class="card" style="background:'+p.bg+';border:1px solid '+p.col+'30;margin-bottom:14px">’;
+h+=’<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">’;
+h+=’<div><div style="font-size:20px">’+p.ic+’</div><div style="font-size:16px;font-weight:800;color:#141210;margin-top:3px">’+p.lb+’</div><div style="font-size:12px;color:#6B6860">’+p.sit+’</div></div>’;
+h+=mkTag(p.goal,p.col)+’</div>’;
+h+=’<div class="wbox" style="background:'+p.col+'15;border:1px solid '+p.col+'30">’;
+h+=’<div class="wbox-l" style="color:'+p.col+'">⚠ TRAMPA A EVITAR</div>’;
+h+=’<div class="wbox-t" style="color:#141210">’+p.warn+’</div></div></div>’;
+p.steps.forEach(function(step,i){
+h+=’<div class="step" style="border-left-color:'+p.col+'">’;
+h+=’<div class="step-in">’;
+h+=’<div class="step-n" style="background:'+p.col+'20;border-color:'+p.col+';color:'+p.col+'">’+(i+1)+’</div>’;
+h+=’<div style="flex:1"><div class="step-wk" style="color:'+p.col+'">’+step.wk.toUpperCase()+’</div>’;
+h+=’<div class="step-tit">’+step.ti+’</div>’;
+step.tasks.forEach(function(t){
+h+=’<div class="step-tsk"><span style="color:'+p.col+';font-size:12px;flex-shrink:0">→</span><span class="step-tsk-t">’+t+’</span></div>’;
+});
+h+=’</div></div></div>’;
+});
+h+=’<div class="dbox">’;
+h+=’<div style="font-size:11px;font-weight:800;color:#C8952A;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px">EL PRINCIPIO QUE LO UNIFICA TODO</div>’;
+h+=’<p>“Un sistema de ventas no es lo que hacés cuando querés vender. Es lo que construís para que las ventas ocurran sin que tengas que iniciar cada una manualmente.”</p>’;
+h+=’<div style="height:1px;background:#333;margin:12px 0"></div>’;
+h+=’<div class="dgrid">’;
+[[“Captación constante”,“Leads que entran solos”],[“Conversión probada”,“Páginas y scripts que cierran”],[“Automatización activa”,“Emails que nutren sin vos”],[“LTV maximizado”,“Cada cliente vale más de una vez”]].forEach(function(x){
+h+=’<div class="dcell"><div class="dc-t">’+x[0]+’</div><div class="dc-s">’+x[1]+’</div></div>’;
+});
+h+=’</div></div>’;
+var el=document.getElementById(‘profdet’);
+if(el) el.innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+(function(){
+try{ renderPhaseGrid(); }catch(e){}
+try{ renderPhaseDetail(); }catch(e){}
+try{ renderPromptFilters(); }catch(e){}
+try{ renderPromptsList(); }catch(e){}
+try{ calc(); }catch(e){}
+try{ renderKpis(); }catch(e){}
+try{ renderPricingCards(); }catch(e){}
+try{ renderPricingDetail(); }catch(e){}
+try{ renderKitPrompts(); }catch(e){}
+try{ renderKitChecklist(); }catch(e){}
+try{ renderKitBrief(); }catch(e){}
+try{ renderProfileGrid(); }catch(e){}
+try{ renderProfileDetail(); }catch(e){}
+})();
+</script>
+
+</body>
+</html>
